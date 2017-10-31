@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the assortment of races for the game system. The special
+      advantages of each race are conferred through a combination of scripts and
+      automatic assignment of special abilities. All special abilities are assigned
+      via the bootstrapping of the ability, resulting in the ability being
+      automatically assigned to the actor whenever the race is selected. If an ability
+      is both user-selected AND conferred by a race, the ability only appears a single
+      time because it all abilities are "unique".
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Nationality Header -->
+  <thing 
+    id="nahdrTheah" 
+	name="Théah" 
+	description="Nationalities of Théah" 
+	compset="Nation" 
+	uniqueness="unique" 
+	isshowonly="yes">
+    <tag group="Region" tag="Theah"/>
+    </thing>
+  <thing 
+    id="nahdrPirat" 
+	name="Pirate Nations" 
+	description="Nationalities of the Pirate Nations"
+	compset="Nation" 
+	uniqueness="unique" 
+	isshowonly="yes">
+    <usesource source="srcPirate"/>
+    <tag group="Region" tag="Pirate"/>
+    </thing>
+	
+  <!-- Nationalities -->
+  <thing
+    id="naAvalon"
+    name="Avalon"
+    compset="Nation"
+    isunique="yes"
+    description="Green and enchanted, this union of three kingdoms has recently risen to the forefront of Théan politics.">
+    <tag group="Region" tag="Theah"/>
+    <tag group="AttrBon" tag="attrPan"/>
+    <tag group="AttrBon" tag="attrRes"/>
+    <tag group="AltNation" tag="GlamIsla"/>
+    <bootstrap thing="laOldThean">
+      </bootstrap>
+    <bootstrap thing="laAvalon">
+      </bootstrap>
+    </thing>
+  <thing
+    id="naCastille"
+    name="Castille"
+    compset="Nation"
+    isunique="yes"
+    description="Headquarters of the Vaticine church, this fertile nation has recently fallen under attack from Montaigne to the north.">
+    <tag group="Region" tag="Theah"/>
+    <tag group="AttrBon" tag="attrFin"/>
+    <tag group="AttrBon" tag="attrWit"/>
+    <bootstrap thing="laOldThean">
+      </bootstrap>
+    <bootstrap thing="laCastille">
+      </bootstrap>
+    </thing>
+  <thing
+    id="naEisen"
+    name="Eisen"
+    compset="Nation"
+    isunique="yes"
+    description="A proud land recovering from a thirty year war. A nation of veterans, Eisen is also a land of horrors let loose by three decades of mass murder.">
+    <tag group="Region" tag="Theah"/>
+    <tag group="AttrBon" tag="attrBra"/>
+    <tag group="AttrBon" tag="attrRes"/>
+    <bootstrap thing="laOldThean">
+      </bootstrap>
+    <bootstrap thing="laEisen">
+      </bootstrap>
+    </thing>
+  <thing
+    id="naHighland"
+    name="Highland Marches"
+    compset="Nation"
+    isunique="yes"
+    description="To the North of Avalon are men and women made strong by a harsh land. The Highlanders’ greatest desire is freedom at any cost.">
+    <tag group="Region" tag="Theah"/>
+    <tag group="AttrBon" tag="attrBra"/>
+    <tag group="AttrBon" tag="attrFin"/>
+    <tag group="AltNation" tag="GlamIsla"/>
+    <bootstrap thing="laOldThean">
+      </bootstrap>
+    <bootstrap thing="laHighland">
+      </bootstrap>
+    </thing>
+  <thing
+    id="naInismore"
+    name="Inismore"
+    compset="Nation"
+    isunique="yes"
+    description="The Emerald Isle is the rebellious, misbehaving little brother of Avalon, led by a king who may be immortal and is more than certainly mad.">
+    <tag group="Region" tag="Theah"/>
+    <tag group="AttrBon" tag="attrFin"/>
+    <tag group="AttrBon" tag="attrWit"/>
+    <tag group="AltNation" tag="GlamIsla"/>
+    <bootstrap thing="laOldThean">
+      </bootstrap>
+    <bootstrap thing="laInish">
+      </bootstrap>
+    </thing>
+  <thing
+    id="naMontai"
+    name="Montaigne"
+    compset="Nation"
+    isunique="yes"
+    description="One of Théah's most powerful nations, leading the world in art and culture evan as its Emperor crushes the populace beneath his thumb.">
+    <tag group="Region" tag="Theah"/>
+    <tag group="AttrBon" tag="attrFin"/>
+    <tag group="AttrBon" tag="attrPan"/>
+    <bootstrap thing="laOldThean">
+      </bootstrap>
+    <bootstrap thing="laMontai">
+      </bootstrap>
+    </thing>
+  <thing
+    id="naSarmat"
+    name="Sarmatian Commonwealth"
+    compset="Nation"
+    isunique="yes"
+    description="Two nations bound by a single crown, the Commonwealth is a democratic monarchy where all people are equal, even kings.">
+    <tag group="Region" tag="Theah"/>
+    <tag group="AttrBon" tag="attrBra"/>
+    <tag group="AttrBon" tag="attrRes"/>
+    <bootstrap thing="laOldThean">
+      </bootstrap>
+    <bootstrap thing="laSarmat">
+      </bootstrap>
+    </thing>
+  <thing
+    id="naUssara"
+    name="Ussara"
+    compset="Nation"
+    isunique="yes"
+    description="A nation torn between traditional isolationism and an ambitious ruler who will do anything to drag his nation into the future, no matter the cost.">
+    <tag group="Region" tag="Theah"/>
+    <tag group="AttrBon" tag="attrRes"/>
+    <tag group="AttrBon" tag="attrWit"/>
+    <bootstrap thing="laOldThean">
+      </bootstrap>
+    <bootstrap thing="laUssara">
+      </bootstrap>
+    </thing>
+  <thing
+    id="naVesten"
+    name="Vestenmannavnjar"
+    compset="Nation"
+    isunique="yes"
+    description="A nation of raiders and warlords who conquered the world's economy by hammering their swords and spears into coins.">
+    <tag group="Region" tag="Theah"/>
+    <tag group="AttrBon" tag="attrBra"/>
+    <tag group="AttrBon" tag="attrWit"/>
+    <bootstrap thing="laOldThean">
+      </bootstrap>
+    </thing>
+  <thing
+    id="naVodacce"
+    name="Vodacce"
+    compset="Nation"
+    isunique="yes"
+    description="The former cradle of civilization, now split between seven merchant Princes whose comple schemes reach every corner of the world.">
+    <tag group="Region" tag="Theah"/>
+    <tag group="AttrBon" tag="attrFin"/>
+    <tag group="AttrBon" tag="attrRes"/>
+    <bootstrap thing="laOldThean">
+      </bootstrap>
+    <bootstrap thing="laVodacce">
+      </bootstrap>
+    </thing>
+    
+  <thing
+    id="nbBrawn"
+    name="+1 Brawn"
+    compset="NatBonus"
+    isunique="yes"
+    description="+1 to Brawn">
+    <tag group="AttrBon" tag="attrBra"/>
+    
+    <eval index="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      
+      #traitbonus[attrBra] += 1
+      ]]></eval>
+      
+    </thing> 
+  <thing
+    id="nbFinesse"
+    name="+1 Finesse"
+    compset="NatBonus"
+    isunique="yes"
+    description="+1 to Finesse">
+    <tag group="AttrBon" tag="attrFin"/>
+    
+    <eval index="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      
+      #traitbonus[attrFin] += 1
+      ]]></eval>
+      
+    </thing>
+  <thing
+    id="nbWits"
+    name="+1 Wits"
+    compset="NatBonus"
+    isunique="yes"
+    description="+1 to Wits">
+    <tag group="AttrBon" tag="attrWit"/>
+    
+    <eval index="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      
+      #traitbonus[attrWit] += 1
+      ]]></eval>
+      
+    </thing>
+  <thing
+    id="nbResolve"
+    name="+1 Resolve"
+    compset="NatBonus"
+    isunique="yes"
+    description="+1 to Resolve">
+    <tag group="AttrBon" tag="attrRes"/>
+    
+    <eval index="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      
+      #traitbonus[attrRes] += 1
+      ]]></eval>
+      
+    </thing>
+  <thing
+    id="nbPanache"
+    name="+1 Panache"
+    compset="NatBonus"
+    isunique="yes"
+    description="+1 to Panache">
+    <tag group="AttrBon" tag="attrPan"/>
+    
+    <eval index="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      
+      #traitbonus[attrPan] += 1
+      ]]></eval>
+      
+    </thing>       
+  </document>

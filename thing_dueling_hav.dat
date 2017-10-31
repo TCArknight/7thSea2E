@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document signature="Hero Lab Data">
+  <thing id="dsLakeDai" name="Lakedaimon Agoge" description="{b}Adversity breeds greatness.{/b} That simple motto \nserves as the guiding principle for the {i}docents{/i} of the Lakedaimon Agoge. They strive to push their students to be worthy of their divine heritage, descendants of the goddess Potnia Agrotera. They carve their own spear. They forge their sword, side by side the master swordsmiths of Lakedaimon. They sleep with their bow cradled in their arms.\n\nAll graduates of the Lakedaimon Agoge learn this quintessentially Numanari dueling Style, though the Style has since spread beyond the survival school&apos;s graduates. Numanari agoge have become somewhat chic amongst the young social elite of Théah, though almost all of them lose their stomach for the rigorous training methods after only a few days. Docent Euthalia, one of the toughest and most respected docents of the Lakedaimon Agoge, has taken it upon herself to leave the isles and travel to the Théah mainland. She has founded a new school in the Vodacce city of Joppa, in order to test the heroic spirit of the Théans in search of any students she deems worthy of being named Numanari." compset="DuelStyle" summary="Fighting style that utilizes the Spear, Bow or Sword." uniqueness="unique">
+    <usesource source="srcHeroVil"/>
+    <usesource source="srcPirate"/>
+	<tag group="User" tag="UserSelect"/>
+    <tag group="DomainTerm" tag="Weapon"/>
+    <bootstrap thing="sbAgogeThr"></bootstrap>
+    </thing>
+  <thing id="sbAgogeThr" name="Agoge Thrust" description="When you learn the Lakedaimon Agoge Style, you \nchoose a weapon from the spear, the sword or the bow. When you use your weapon with the Lakedaimon Agoge Style, you gain the following benefit.\n* If you choose the sword, you take your first Action in a Round as if you had 1 additional Raise.\n* If you choose the spear, you may Re-Roll 1 die for an Athletics Risk you take if you describe how you use your spear to aid you.\n* If you choose the bow, you use Aim (instead of Weaponry) to determine the effects of your Maneuvers when using that ranged weapon.\nWhen you wield your chosen weapon, your Lunge Maneuver is replaced by the Agoge Thrust. Agoge Thrust deals a number of Wounds equal to your Weaponry plus the number of Raises you spend, but you must spend your next Action this Round to recover and regroup, spending 1 Raise to do so." compset="StyleBon" uniqueness="unique">
+    <usesource source="srcHeroVil"/>
+    <usesource source="srcPirate"/>
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>
+  </document>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is the definition file that provides the basis for everything else. All of
+      the Skeleton data files contain examples of the most common behaviors you'll
+      need and can be readily adapted to the game system you want to support. You'll
+      find inline comments throughout all of the Skeleton data files that describe
+      what is being done, as well as external documentation that outlines how
+      everything is structured and how all the pieces fit together. A detailed
+      example is also provided that outlines how to adapt these Skeleton data files
+      for use with the Savage Worlds game system.
+-->
+
+<document signature="Hero Lab Definition">
+
+  <!-- The "game" element is where you'll define the basics for the game system.
+  -->
+
+  <game
+    game="7th Sea 2nd Edition"
+    publisher="John Wick Presents"
+    website="http://www.johnwickpresents.com/"
+    copyright="2016 John Wick Presents"
+    legaloutput="7th Sea and all related marks are copyright and trademark 2016 John Wick Presents. All rights reserved.">
+    </game>
+
+  <!-- The "author" element is where you'll provide details about yourself as the
+        author of the data files.
+  -->
+
+  <author
+    author="Thomas Clegg"
+    email="tn_clegg@lycos.com"
+    website="">
+    </author>
+
+  <!-- The "release" element specifies the details for each new revision of the data
+        files that you make available to others. This makes it easy to track the
+        version of the data files in which problems occur and ensures that other
+        users can verify that they update to new versions when you publish them.
+  -->
+
+  <release
+    major="1"
+    minor="0"
+    required="7.6b"
+    summary=""><![CDATA[{b}{text ffff80}7th Sea (2nd Edition) data files for Hero Lab{text 010101}{/b}
+
+Welcome to the 7th Sea Second Edition data files for Hero Lab! For details on using Hero Lab, please refer to the Tutorial and/or User Manual documentation that will be found with Hero Lab under the Start menu. A separate manual with specifics for the Savage Worlds data files can be accessed via the "Help" menu and the "Configure Hero" form.
+
+These data files represent an implementation of the 2nd Edition core rulebook rules for the 7th Sea RPG from John Wick Presents. Many items have mouse-over information associated with them, so if you see an icon that isn't familiar, be sure to mouse over it for more information.
+
+{b}{text ffff80}Legal Information:{text 010101}{/b}
+7th Sea and all related marks are copyright and trademark 2016 John Wick Presents. All rights reserved. No part of this work may be duplicated without express permission from the Author. This is a work of fiction. All characters and places are creations of imagination.
+]]>
+    </release>
+
+  <!-- The "structure" element defines special structural details about the data files
+        and how Hero Lab should manage them. We allow wider summary panels than normal
+        to show a statblock within them.
+  -->
+
+  <structure
+    folder="7thSea"
+    summarymax="300">
+    </structure>
+
+  <!-- The "behavior" element specifies assorted behavioral aspects of the data files
+        that reflect the nuances of both the game system and the data files your create.
+  -->
+
+  <behavior>
+
+    <!-- Configure how the integrate dice roller should behave for this game system. -->
+
+    <diceroller mode="totals" dietype="10" quantity="1"/>
+
+    <!-- Define how each lead is displayed to the user when importing from a portfolio. -->
+
+    <leadsummary><![CDATA[
+      ~start with the nationality
+      var txt as string
+      txt = hero.findchild[Nation].field[name].text
+      if (empty(txt) <> 0) then
+        txt = "No Nationality"
+        endif
+      @text &= txt
+
+      ~append the CP rating of the character
+      @text &= " - CP: " & hero.child[resAttrib].field[resMax].text
+      ]]></leadsummary>
+
+    <!-- Define how the initiative is auto-calculated by the Tactical Console. -->
+
+    <initiative><![CDATA[
+      ~calculate the primary initiative rating
+      @initiative = random(10) + 1
+      ~calculate the tiebreaker initiative rating
+      @tiebreaker = 0
+      ]]></initiative>
+
+    </behavior>
+
+
+  <!-- Define an assortment of macros that will make writing scripts faster and easier. -->
+
+  <scriptmacro
+    name="trait"
+    param1="trait"
+    result="hero.child[#trait].field[trtFinal].value"/>
+  <scriptmacro
+    name="traitfound"
+    param1="trait"
+    result="hero.childfound[#trait].field[trtFinal].value"/>
+  <scriptmacro
+    name="traitbonus"
+    param1="trait"
+    result="hero.child[#trait].field[trtBonus].value"/>
+  <scriptmacro
+    name="traitinplay"
+    param1="trait"
+    result="hero.child[#trait].field[trtInPlay].value"/>
+  <scriptmacro
+    name="traituser"
+    param1="trait"
+    result="hero.child[#trait].field[trtUser].value"/>
+  <scriptmacro
+    name="traitmax"
+    param1="trait"
+    result="hero.child[#trait].field[trtMaximum].value"/>
+  <scriptmacro
+    name="tbonusmax"
+    param1="trait"
+    result="hero.child[#trait].field[xMaxBonus].value"/>
+  <scriptmacro
+    name="childname"
+    param1="child"
+    result="hero.childfound[#child].field[name].text"/>
+  <scriptmacro
+    name="resmax"
+    param1="resource"
+    result="hero.child[#resource].field[resMax].value"/>
+  <scriptmacro
+    name="resspent"
+    param1="resource"
+    result="hero.child[#resource].field[resSpent].value"/>
+  <scriptmacro
+    name="resleft"
+    param1="resource"
+    result="hero.child[#resource].field[resLeft].value"/>
+  <scriptmacro
+    name="resextra"
+    param1="resource"
+    result="hero.child[#resource].field[resExtra].value"/>
+  <scriptmacro
+    name="trkmax"
+    param1="tracker"
+    result="hero.child[#tracker].field[trkMax].value"/>
+  <scriptmacro
+    name="trkuser"
+    param1="tracker"
+    result="hero.child[#tracker].field[trkUser].value"/>
+  <scriptmacro
+    name="skillrank"
+    param1="skill"
+    result="hero.child[#skill].field[trtUser].value"/>
+  <scriptmacro
+    name="skillbonus"
+    param1="skill"
+    result="hero.child[#skill].field[trtBonus].value"/>
+  <scriptmacro
+    name="bkgdbonus"
+    param1="skill"
+    result="hero.child[#skill].field[trtBonus].value += 1"/>
+  <scriptmacro
+    name="bkgdskill"
+    param1="skill"
+    result="perform hero.childfound[#skill].assign[User.BgdRank]"/>
+  <scriptmacro
+    name="isnation"
+    param1="nation"
+    result="hero.tagis[Nation.#nation]"/>  
+  <scriptmacro
+    name="altnation"
+    param1="nation"
+    result="hero.tagis[AltNation.#nation]"/>
+    
+  <scriptmacro
+    name="hasadvant"
+    param1="advant"
+    result="hero.tagcount[Advantage.#advant]"/>
+	
+  <scriptmacro
+    name="duelstyle"
+    param1="style"
+    result="hero.tagcount[DuelStyle.#style]"/>
+
+  <scriptmacro
+    name="conceal"
+    param1="target"
+    result="perform hero.childfound[#target].assign[User.Hidden]"/>
+ 
+	<scriptmacro
+    name="reveal"
+    param1="target"
+    result="perform hero.childfound[#target].delete[User.Hidden]"/>
+   
+  <!-- Decoration character used in summary panel headertitle scripts -->
+  <scriptmacro
+    name="summtitle_decoration" result="chr(150)"/>
+
+
+  <!-- The "advancement" element controls whether serialized advancement logic is enabled
+        and how the advancement mechanisms should behave for the game system.
+  -->
+
+  <advancement
+    enable="yes">
+
+    <!-- Verify that the character can be transitioned to advancement mode -->
+
+    <canadvance><![CDATA[
+      var bullet as string
+      bullet = "{bmp bullet_red}{horz 4}"
+      @message = ""
+
+      ~perform tests to assure all starting resources have been assigned
+      if (#resleft[resAttrib] <> 0) then
+        @message &= bullet & "Character points must be assigned for the character.{br}"
+        endif
+      if (#resleft[resBackgr] <> 0) then
+        @message &= bullet & "Background slots must be assigned for the character.{br}"
+        endif
+      ]]></canadvance>
+
+    <!-- Handle the transition to/from advancement mode -->
+
+    <transition><![CDATA[
+      if (state.iscreate <> 0) then
+        @message = "{b}{text ffff00}Creation Phase{text 010101}{/b}"
+        @message &= "{br}{br}"
+        @message &= "{align left}You have unlocked your character, thereby exiting the Character Advancement phase and moving back to the Character Creation phase. "
+        @message &= "{br}{br}"
+        @message &= "While unlocked, traits defined during character creation can be adjusted, as long as those traits have not yet been altered on the Advances tab. "
+        @message &= "Traits that already have advancements applied to them will remain locked unless those advancements are deleted. "
+        @message &= "{br}{br}"
+        @message &= "Lock your character and remove any advancements on a trait if you wish to revise the rating that trait was given during character creation. "
+      else
+        @message = "{b}{text ffff00}Advancement Phase{text 010101}{/b}"
+        @message &= "{br}{br}"
+        @message &= "{align left}You have locked your character creation traits. "
+        @message &= "{br}{br}"
+        @message &= "By locking your character creation traits, you have begun the Character Advancement phase of play. "
+        @message &= "While locked, you cannot alter traits defined during character creation. "
+        @message &= "Use the Advances tab while the character is locked to allocate advances to new abilities or to increase existing traits. "
+        @message &= "{br}{br}"
+        @message &= "Unlock the character to go back to the Character Creation phase. "
+        endif
+      ]]></transition>
+
+
+    </advancement>
+
+
+  <!-- The "phase" elements define the various evaluation stages that all processing of
+        scripts will be channeled through. Each phase identifies a stage, with the list
+        of phases being processed in the order specified below. Within each phase, the
+        priority value assigned controls the processing order.
+  -->
+
+  <phase
+    id="Initialize"
+    name="Initialization"
+    description="Anything that has to happen before everything else">
+    </phase>
+
+  <phase
+    id="Setup"
+    name="Setup"
+    description="Anything that has to be processed before normal processing gets underway">
+    </phase>
+
+  <phase
+    id="Effects"
+    name="Effects"
+    description="Apply derived effects that influence equipment modifiers and the like">
+    </phase>
+
+  <phase
+    id="PreTraits"
+    name="Pre-Traits"
+    description="Adjustments to traits before they are finalized">
+    </phase>
+
+  <!-- NOTE! All Health calculations are assumed to occur within the 5000-5999 priority range during this phase. -->
+  <phase
+    id="Traits"
+    name="Traits"
+    description="Finalization of trait values">
+    </phase>
+
+  <phase
+    id="Final"
+    name="Final"
+    description="Any last-minute processing that must happen after everything else">
+    </phase>
+
+  <phase
+    id="Validate"
+    name="Validation"
+    description="Validation tests that occur after all evaluation processing">
+    </phase>
+
+  <phase
+    id="Render"
+    name="Render"
+    description="Any processing that simply renders values for use by the UI or processes last-minute validation - no calculations">
+    </phase>
+
+  </document>

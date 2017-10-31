@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the assortment of races for the game system. The special
+      advantages of each race are conferred through a combination of scripts and
+      automatic assignment of special abilities. All special abilities are assigned
+      via the bootstrapping of the ability, resulting in the ability being
+      automatically assigned to the actor whenever the race is selected. If an ability
+      is both user-selected AND conferred by a race, the ability only appears a single
+      time because it all abilities are "unique".
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Secret Societies -->
+  <thing
+    id="socBroCoa"
+    name="Brotherhood of the Coast"
+    compset="Society"
+    isunique="yes"
+    description="Serving under the black flag, these pirates seek freedom and liberty...and a profit from those who would exploit the weak and vulnerable.">
+    </thing>
+
+  <thing
+    id="socDieKreu"
+    name="Die Kreuzritter"
+    compset="Society"
+    isunique="yes"
+    description="Clandestine warriors who battle Monsters and protect others from horrors unleashed by Villains.">
+    </thing>
+
+  <thing
+    id="socExpSoc"
+    name="Explorer's Society"
+    compset="Society"
+    isunique="yes"
+    description="Scholars and adventurers seeking out the ancient truths in the world by investigating ruins from a race long gone from the face of the world.">
+    </thing>
+
+  <thing
+    id="socInvisCo"
+    name="The Invisible College"
+    compset="Society"
+    isunique="yes"
+    description="A band of clergy hoping to topple the Inquisition and restore the Church, operating right under the Inquisition’s nose.">
+    </thing>
+
+  <thing
+    id="socRoseCro"
+    name="Knights of the Rose and Cross"
+    compset="Society"
+    isunique="yes"
+    description="Knights-errant wandering Théah, righting wrongs and meting justice through Heroic quests.">
+    </thing>
+
+  <thing
+    id="socVagos"
+    name="Los Vagabundos"
+    compset="Society"
+    isunique="yes"
+    description="A clandestine cabal set to protect the virtuous nobles of Théah and overthrow the unworthy.">
+    </thing>
+
+  <thing
+    id="socMocSka"
+    name="Moèiutes Skara"
+    compset="Society"
+    isunique="yes"
+    description="Rising from the ashes of the War of the Cross, the group known as 'Grandmother's Shawl' seeks to end war and bring peace to Théah, once and for all.">
+    </thing>
+
+  <thing
+    id="socRilasci"
+    name="The Rilasciare"
+    compset="Society"
+    isunique="yes"
+    description="Free thinkers who fight the two 'great corruptions' of the world: monarchy and the Church.">
+    </thing>
+
+  <thing
+    id="socSophia"
+    name="Sophia's Daughters"
+    compset="Society"
+    isunique="yes"
+    description="A sect of the Rilasciare, these women seek to liberate Fate Witches and undermine the Merchant Princes of Vodacce.">
+    </thing>
+
+  <!-- Nations of Théah, Vol. 1 -->
+  <thing
+    id="socLongStr"
+    name="Long-Strider League"
+    compset="Society"
+    isunique="yes"
+    description="Born from the ministrations of the Moèiutes Skara in the Glamour Isles, this group spreads information and tidings across Théah, ensuring the right people have the information they need.">
+    <usesource source="srcTheahV1"/>
+    </thing>
+
+  <thing
+    id="socInqAqu"
+    name="Inquisitio Aquila"
+    compset="Society"
+    isunique="yes"
+    description="The Inquisitio Aquila lurks within the existing Vaticine and Inquisitorial organization, but also outside it in lay people. The Inquisitio Aquila recruits sympathizers everywhere -- from the town baker who eavesdrops on gossip to find out who plans to inform on whom to the Cardinal’s manservant who overhears his boss discussing the next book to ban.">
+    <usesource source="srcTheahV1"/>
+    </thing>
+
+  <thing
+    id="socLaBrav"
+    name="La Bravoure de l’Épervier"
+    compset="Society"
+    isunique="yes"
+    description="The Sparrow’s Bravery. The Bravery refers to the group of men and women who formed a bond and now work together toward a common goal. Bravery also refers to the Mantle of the Sparrow, a red leather hood, adorned with a pointed nose and capelet. Finally, Bravery refers to the common attribute its members share.{br}{br}This Secret Society was founded and operates today on the same principles as Los Vagabundos.">
+    <usesource source="srcTheahV1"/>
+    </thing>
+
+  <thing
+    id="socSeekers"
+    name="Seekers of the Word of Ekerila"
+    compset="Society"
+    isunique="yes"
+    description="A Seeker primarily concerns herself with the study of ancient runes, especially those found in or around Syrneth ruins. The Secret Society seeks to find a connection between the two and highly prizes any texts, translations or evidence of such.">
+    <usesource source="srcTheahV1"/>
+    </thing>
+               
+  </document>

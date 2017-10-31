@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains an assortment of Quirks -->
+
+<document signature="Hero Lab Data">
+
+  <!-- Quirks -->
+  <!-- Heroes and Villains -->
+  <thing id="quDocent" name="Docent" description="Earn a Hero Point when you push another character to live up to her potential, even when it means trouble or when it complicates the situation." compset="Quirk" uniqueness="unique">
+    <usesource source="srcHeroVil"/>
+    </thing>       
+
+
+  </document>

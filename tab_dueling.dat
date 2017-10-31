@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the definition of the "Abilities" tab panel. This tab is where
+      the user selects the special abilities for the character.
+
+      All public visual elements used with this tab panel start with the prefix "ab"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+
+
+  <!-- duDueling portal
+  -->
+  <portal
+    id="duDueling"
+    style="tblNormal">
+    <table_dynamic
+      component="DuelStyle"
+      showtemplate="duStylePic"
+      choosetemplate="SimpleItem"
+      showfixedlast="yes"
+      addpick="resDuel">
+      <candidate>!Hide.DuelStyle</candidate>
+      <titlebar><![CDATA[
+        @text = "Add a Dueling Style - " & hero.child[resDuel].field[resSummary].text
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+        @text = "Dueling Styles: " & hero.child[resDuel].field[resSummary].text
+        ]]></headertitle>
+      <additem><![CDATA[
+        ~set the color based on whether the proper number of slots are allocated
+        if (field[resLeft].value = 0) then
+          @text = "{text clrgrey}"
+        elseif (field[resLeft].value < 0) then
+          @text = "{text clrwarning}"
+          endif
+        
+        @text &= "Add New Dueling Style"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+
+  <!-- Style Bonus portal -->
+  <portal
+    id="duStyleBon"
+    style="tblInvis">
+    <table_fixed
+      component="StyleBon"
+      scrollable="no"
+      showtemplate="duBonPick">
+      <headertitle><![CDATA[
+        @text = "Style Bonus"
+        ]]>
+        </headertitle>
+      </table_fixed>
+    </portal>
+
+
+  <template
+    id="duStylePic"
+    name="Dueling Style Pick"
+    compset="DuelStyle"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="name">
+        </label>
+      </portal>
+      
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+	<portal 
+	  id="menu1" 
+	  style="menuSmall">
+	  <menu_literal 
+	    field="usrChosenL">
+        <choice display="-- Choose --"/>
+        <choice display="Bow"/>
+        <choice display="Spear"/>
+        <choice display="Sword"/>
+        </menu_literal>
+	  </portal>
+ <!-- 
+    <portal
+      id="menu1"
+      style="menuSmall">
+      <menu_things
+       	field="usrChosen1"
+       	component="none"
+       	maxvisible="10"
+       	usepicksfield="usrSource1"
+       	candidatefield="usrCandid1">
+       	</menu_things>
+      </portal> 
+-->      
+    <portal
+      id="domain"
+      style="editNormal">
+      <edit
+        field="domDomain">
+        </edit>
+      </portal>
+            
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+      portal[domain].width = 150
+      portal[menu1].width = 150
+
+      ~center the other portals vertically
+      perform portal[name].centervert
+      perform portal[delete].centervert
+      perform portal[menu1].centervert
+
+      ~position the delete portal on the far right
+      perform portal[delete].alignedge[right,0]
+
+      ~position the info portal to the left of the delete button
+      perform portal[info].alignrel[rtol,delete,-8]
+	  
+      portal[menu1].visible = tagis[User.UserSelect]
+      portal[domain].visible = tagis[User.NeedDomain]
+      
+      ~if we don't need a menu or domain, position the name across entire row
+      if (tagis[User.UserSelect] + tagis[User.NeedDomain] = 0) then
+        ~position the name on the left and let it use all available space
+        portal[name].left = 0
+        portal[name].width = minimum(portal[name].width,portal[info].left - 5)
+        endif
+
+      ~if we need a menu or domain, reveal and position the name accordingly
+      ~Menu  
+      if (tagis[User.UserSelect] = 1) then
+       
+        ~position the menu portal to the left of the info button
+        perform portal[menu1].alignrel[rtol,info,-8]
+
+        ~position the name on the left and let it use all available space
+        portal[name].left = 0
+        portal[name].width = minimum(portal[name].width,portal[menu1].left - 5)
+        endif
+        
+      ~Domain
+      if (tagis[User.NeedDomain] = 1) then
+        
+        ~position the domain portal to the left of the info button
+        perform portal[domain].alignrel[rtol,info,-8]
+        
+        ~position the name on the left and let it use all available space
+        portal[name].left = 0
+        portal[name].width = minimum(portal[name].width,portal[domain].left - 5)
+        endif
+      
+           
+      ~if the background is auto-added, change its font to indicate that fact
+      if (candelete = 0) then
+        perform portal[name].setstyle[lblAuto]
+        endif
+      ]]></position>
+
+    </template>
+
+  <template
+    id="duBonPick"
+    name="Style Bonus Pick"
+    compset="StyleBon"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="desc"
+      style="lblBrdLeft">
+      <label       
+        ismultiline="yes">
+        <labeltext><![CDATA[
+          @text = "{align left}{b}" & field[name].text & ":{/b} "
+          @text &= field[descript].text
+          ]]></labeltext>
+        </label>
+      </portal>
+      
+    <position><![CDATA[
+	  portal[desc].height = height
+	  
+      ~position our tallest portal at the top
+      portal[desc].top = 0
+
+      ~center the portals vertically
+      ~perform portal[desc].centervert
+
+      ~position the name on the left and let it use all available space
+      portal[desc].left = 0
+      portal[desc].width = width
+      
+      ~if the background is auto-added, change its font to indicate that fact
+      if (candelete = 0) then
+        perform portal[desc].setstyle[lblAuto]
+        endif
+		
+      ]]></position>
+
+    </template>
+        
+  <!-- dueling style layout
+  -->
+  <layout
+    id="dueling">
+    <portalref portal="duDueling" taborder="10"/>
+    <portalref portal="duStyleBon" />
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+      ~freeze our table in advancement mode to disable adding new choices
+      ~Note: All freezing must be done *before* any positioning is performed.
+      ~if (state.iscreate = 0) then
+      ~  portal[duDueling].freeze = 1
+      ~  endif
+
+      portal[duDueling].visible = 1
+      portal[duStyleBon].visible = 1
+      
+      ~position and size the table to span the full layout; it will only use the
+      ~vertical space that it actually needs
+      perform portal[duDueling].autoplace
+      perform portal[duStyleBon].autoplace[20]
+      
+      ]]></position>
+
+    </layout>
+
+  <!-- dueling panel  -->
+  <panel
+    id="dueling"
+    name="Dueling"
+    marginhorz="5"
+    marginvert="5"
+    order="120">
+    <live>!HideTab.dueling</live>
+    <layoutref layout="dueling"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+  </document>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document signature="Hero Lab Structure">
+  <loadonce key="7th Sea 2nd Core Sources"/>
+
+<!--
+
+12/17/2016 - Thomas Clegg (TCArknight)
+-Created New
+
+-->
+
+  <!-- ============================================== -->
+  <!-- SOURCES                                        -->
+  <!-- ============================================== -->
+
+  <!-- 
+    This is the primary Parent Source for 7th Sea (2nd Edition). Every other "parent" source will build upon this one.
+  -->
+  <source
+    id="src7thSea2"
+    name="7th Sea (2nd Edition)"
+    selectable="no"
+    parent=""
+    sortorder="1"
+    description="7th Sea (2nd Edition) from John Wick Presents.">
+    </source>
+
+  <source
+    id="NoMaxRank"
+    name="No limit on initial skill ranks."
+    abbrev="No Skill Max"
+    parent="Optional"
+    reportable="yes"
+    sortorder="10"
+    description="Normally, Skills are limited to 3 ranks in the beginning. This lets them be up to Rank 5.">
+    </source>
+</document>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the definitions of how the Editor should handle all the
+      various publicly accessible objects (i.e. component sets) within the game
+      system. A separate "editthing" elemenet is defined for each component set,
+      along with the appropriate details for how to configure each facet via
+      "inputthing" elements.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Advantage editthing -->
+  <editthing
+    compset="Advantage"
+    name="Advantages"
+    prefix="ad"
+    description="As basic traits, backgrounds have various characteristics that are not currently used.{br}They also have an optional custom name for display on the Special tab."
+    summary="Defines an Advantage upon which starting CPs can be spent by a character.">
+    <inputthing
+      name="Name for Special Tab"
+      helptext="Specify an optional custom name to be used on the Special tab.">
+      <it_field field="spcName"/>
+      </inputthing>
+	<inputthing
+      name="Point Cost"
+      helptext="Select the base point cost">
+      <it_taglist group="PointCost" tag="?"/>
+      </inputthing>
+	<inputthing
+      name="Nation?"
+      helptext="If the advantage has different point cost for another specific nation, select here.">
+      <it_taglist group="Nation" tag="?"/>
+      </inputthing>
+ 	<inputthing
+      name="Alternate Nation?"
+      helptext="If the cost is different for a group of nations instead, select that here.">
+      <it_taglist group="AltNation" tag="?"/>
+      </inputthing>
+	<inputthing
+      name="Nation Cost"
+      helptext="Select the point cost for specified nation.">
+      <it_taglist group="NatCost" tag="?"/>
+      </inputthing>    <inputthing
+      name="Hide from User?"
+      helptext="Specify whether this special ability is hidden from direct user selection (e.g. Flight is only conferred by the Avian race).">
+      <it_tagcheck group="Hide" tag="Background"/>
+      </inputthing>
+    <inputthing
+      name="Activated by User?"
+      helptext="Specify whether this special ability can be activated by the user via the In-Play tab.">
+      <it_tagcheck group="User" tag="Activation"/>
+      </inputthing>
+	<inputthing
+      name="Activation Text"
+      helptext="Use this text for Activation instead of the Advantage name on InPlay tab.">
+      <it_field field="advActText"/>
+      </inputthing>
+    <inputthing
+      name="Creation Only?"
+      helptext="Specify whether this special ability can only be selected for a character during creation.">
+      <it_tagcheck group="User" tag="CreateOnly"/>
+      </inputthing>
+    <inputthing
+      name="Require Domain Specification?"
+      helptext="Specify whether the edge requires the user to specify a domain.">
+      <it_tagcheck group="User" tag="NeedDomain"/>
+      </inputthing>
+    <inputthing
+      name="Domain Term"
+      helptext="Specify the term to use as a label for the domain. If empty, the term 'Domain' is used.">
+      <it_tagpick group="DomainTerm" tag="?" dynamic="yes"/>
+      </inputthing>
+    <inputthing
+      name="Select from Menu??"
+      helptext="Specify whether the edge requires the user to specify a domain.">
+      <it_tagcheck group="User" tag="UserSelect"/>
+      </inputthing>
+    <inputthing
+      name="Menu #1 Source"
+      helptext="Specify the source from which to retrieve choices for display in the first menu.">
+      <it_tagpick group="ChooseSrc1" tag="?"/>
+      </inputthing>
+    <inputthing
+      name="Menu #1 Tag Expression"
+      helptext="Specify the tag expression used to identify choices for display in the first menu. If empty, no first menu is shown.">
+      <it_field field="usrCandid1"/>
+      </inputthing>
+    </editthing>
+
+
+  <!-- Background editthing -->
+  <editthing
+    compset="Background"
+    name="Backgrounds"
+    prefix="bk"
+    description="As basic traits, backgrounds have various characteristics that are not currently used.{br}They also have an optional custom name for display on the Special tab."
+    summary="Defines a Background upon which starting CPs can be spent by a character.">
+    <inputthing
+      name="Name for Special Tab"
+      helptext="Specify an optional custom name to be used on the Special tab.">
+      <it_field field="spcName"/>
+      </inputthing>
+    <inputthing
+      name="Hide from User?"
+      helptext="Specify whether this special ability is hidden from direct user selection (e.g. Flight is only conferred by the Avian race).">
+      <it_tagcheck group="Hide" tag="Background"/>
+      </inputthing>
+    <inputthing
+      name="Activated by User?"
+      helptext="Specify whether this special ability can be activated by the user via the In-Play tab.">
+      <it_tagcheck group="User" tag="Activation"/>
+      </inputthing>
+    <inputthing
+      name="Creation Only?"
+      helptext="Specify whether this special ability can only be selected for a character during creation.">
+      <it_tagcheck group="User" tag="CreateOnly"/>
+      </inputthing>
+	<inputthing
+      name="Background Skills"
+      helptext="Select the Background Skills provided by the background here.">
+      <it_taglist group="SkillBack" tag="?"/>
+      </inputthing>
+    <inputthing
+      name="Quirks"
+      helptext="Select the Quirk provided by the background here.">
+      <it_taglist group="QuirkBack" tag="?"/>
+      </inputthing>
+    <inputthing
+      name="Advantages"
+      helptext="Select the Advantges provided by the background here.">
+      <it_bootlist compset="Advantage"/>
+      </inputthing>
+            
+<!-- These facets of special abilities are not currently used for anything so they are commented out.
+    <inputthing
+      name="Minimum Value"
+      helptext="Specify the minimum rating for the special ability (default is 0).">
+      <it_field field="trtMinimum"/>
+      </inputthing>
+    <inputthing
+      name="Maximum Value"
+      helptext="Specify the maximum rating for the skill(default is 10).">
+      <it_field field="trtMaximum"/>
+      </inputthing>
+    <inputthing
+      name="Abbreviation"
+      helptext="Specify a very short abbreviation for use in displaying the skill via its abbreviation (max 5 characters).">
+      <it_field field="trtAbbrev"/>
+      </inputthing>
+-->
+    </editthing>
+
+
+  <!-- Dueling Style editthing -->
+  <editthing
+    compset="DuelStyle"
+    name="Dueling Style"
+    prefix="na"
+    description="Dueling styles are fairly simple. However, some can include user selections."
+    summary="Defines a Dueling Style that can be selected by a character.">
+    </editthing>
+
+  <!-- Dueling Style Bonus editthing -->
+  <editthing
+    compset="StyleBon"
+    name="Dueling Style Bonus"
+    prefix="na"
+    description="Dueling styles bonuses are fairly simple. However, some can include user selections."
+    summary="Defines a Dueling Style Maneuver that can be selected by a character.">
+	<inputthing
+      name="Activated by User?"
+      helptext="Specify whether this special ability can be activated by the user via the In-Play tab.">
+      <it_tagcheck group="User" tag="Activation"/>
+      </inputthing>
+    <inputthing
+      name="Require Domain Specification?"
+      helptext="Specify whether the edge requires the user to specify a domain.">
+      <it_tagcheck group="User" tag="NeedDomain"/>
+      </inputthing>
+    <inputthing
+      name="Domain Term"
+      helptext="Specify the term to use as a label for the domain. If empty, the term 'Domain' is used.">
+      <it_tagpick group="DomainTerm" tag="?" dynamic="yes"/>
+      </inputthing>
+    <inputthing
+      name="Select from Menu??"
+      helptext="Specify whether the edge requires the user to specify a domain.">
+      <it_tagcheck group="User" tag="UserSelect"/>
+      </inputthing>
+    <inputthing
+      name="Menu #1 Source"
+      helptext="Specify the source from which to retrieve choices for display in the first menu.">
+      <it_tagpick group="ChooseSrc1" tag="?"/>
+      </inputthing>
+    <inputthing
+      name="Menu #1 Tag Expression"
+      helptext="Specify the tag expression used to identify choices for display in the first menu. If empty, no first menu is shown.">
+      <it_field field="usrCandid1"/>
+      </inputthing>
+    </editthing>
+	
+  <!-- Nationality editthing -->
+  <editthing
+    compset="Nation"
+    name="Nationality"
+    prefix="na"
+    description="Nationalities have no special fields - only a name. If a nationality confers an ability,{br}create it as a special ability and bootstrap it from the nationality."
+    summary="Defines a Nationality that can be selected by a character.">
+    </editthing>
+    
+  <!-- Quirks editthing -->
+  <editthing
+    compset="Quirk"
+    name="Quirk"
+    prefix="qu"
+    description="Quirks have no special fields - only a name. If a quirk confers an ability,{br}create it as a special ability and bootstrap it from the nationality."
+    summary="Defines a Quirk that can be included in a background.">
+    </editthing>
+    
+  <!-- Languages editthing -->
+  <editthing
+    compset="Language"
+    name="Language"
+    prefix="la"
+    description="Languages are simple items with no additional fields."
+    summary="Defines a Language that can be selected by the Hero.">
+    </editthing>
+    
+  <!-- Faiths editthing -->
+  <editthing
+    compset="Faith"
+    name="Faith"
+    prefix="fa"
+    description="Faiths are simple items with no additional fields."
+    summary="Defines a Faith that can be selected by the Hero.">
+    </editthing>
+    
+  <!-- Hubris editthing -->
+  <editthing
+    compset="Hubris"
+    name="Hubris"
+    prefix="vh"
+    description="Hubris are simple items with no additional fields."
+    summary="Defines a Hubris that can be selected by the Hero.">
+    </editthing>
+    
+  <!-- Virtues editthing -->
+  <editthing
+    compset="Virtue"
+    name="Virtue"
+    prefix="vh"
+    description="Virtues are simple items with no additional fields."
+    summary="Defines a Virtue that can be selected by the Hero.">
+    </editthing>
+    
+  <!-- Mechanics editthing -->
+  <editthing
+    compset="Mechanics"
+    name="Mechanic"
+    description="A mechanics thing will be automatically added to every character to apply its effects. There is no built-in logic for mechanics,{br}as they provide a means for the user to customize everything to work as he chooses. As such, there are no fields and{br}everything is assumed to be done through scripts."
+    summary="Defines a set of custom behaviors that are defined by the user and applied to each character.">
+    </editthing>
+
+
+  </document>

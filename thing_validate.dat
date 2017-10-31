@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains an assortment of things used solely for validation reporting.
+      Each thing has one or more "evalrule" scripts that verify facets of each actor
+      and report appropriate error messages if not satisfied.
+
+     If you prefer, you could instead have a small number of things with numerous
+     "evalrule" scripts associated with each. The approach used below is to have lots
+     of things with scripts targeted at a narrow purpose, but there is no reason you
+     couldn't have a few things with lots of scripts targeted as a wide range of
+     purposes. By having lots of separate things, the name of each can be leveraged
+     for use within the validation error report, which can often improve the clarity
+     and usefulness of the validation messages.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Validate facets of the nationality -->
+  <thing
+    id="valNation"
+    name="Nationality"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have a nation selected -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Must be selected"><![CDATA[
+      ~if we have a nation selected, we're good
+      validif (hero.tagis[Nation.?] <> 0)
+      ]]></evalrule>
+
+    </thing>
+    
+  <!-- Validate facets of the nationality -->
+  <thing
+    id="valNatBon"
+    name="Nationality Bonus"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have a nation selected -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Must be selected"><![CDATA[
+      ~if we have a bonus selected, we're good
+      validif (hero.tagis[NatBon.?] <> 0)
+      ]]></evalrule>
+
+    <!-- Make sure that bonus is valid for nation selected -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Bonus invalid for selected Nationality"><![CDATA[
+      var myNation as string
+      var myBonus as string
+      var nBonus as string
+      var eBonus as string
+      
+      ~if we don't have a bonus selected, we're good
+      validif (hero.tagis[NatBon.?] = 0)
+      doneif (hero.tagis[NatBon.?] = 0)
+      
+      myNation = hero.tagids[Nation.?,"|"]
+
+      myBonus = hero.tagids[NatBon.?,"|"]
+      nBonus = hero.tagids[AttrBon.?,"|"]
+
+      foreach pick in hero from Nation where myNation
+        eBonus = eachpick.tagids[AttrBon.?,"|"]
+        nexteach
+        
+      foreach pick in hero from NatBonus where myBonus
+        nBonus = eachpick.tagids[AttrBon.?,"|"]
+        nexteach
+      
+      validif (pos(eBonus, nBonus) > -1)
+      
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      
+      ]]></evalrule>
+
+    </thing>
+
+  <!-- Character points thing for validation reporting -->
+  <thing
+    id="valAP"
+    name="Attribute Points"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all CPs spent -->
+    <evalrule index="1" phase="Validate" priority="8000" severity="warning" message="Unused CPs remain"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (#resleft[resAttrib] <= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many CPs spent -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many CPs spent"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (#resleft[resAttrib] >= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    </thing>
+
+  <!-- Dueling thing for validation reporting -->
+  <thing
+    id="valDuel"
+    name="Dueling"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all special abilities selected -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Not enough selected"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (hero.child[resDuel].field[resLeft].value <= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[dueling] = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many advantages selected -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many selected"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (hero.child[resDuel].field[resLeft].value >= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[dueling] = 0
+      ]]></evalrule>
+
+    </thing>
+    
+  <!-- Background thing for validation reporting -->
+  <thing
+    id="valBackgr"
+    name="Background"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all special abilities selected -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Not enough selected"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (hero.child[resBackgr].field[resLeft].value <= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many advantages selected -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many selected"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (hero.child[resBackgr].field[resLeft].value >= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    </thing>
+  <!-- Virtue thing for validation reporting -->
+  <thing
+    id="valVirtue"
+    name="Virtue"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all special abilities selected -->
+    <evalrule index="1" phase="Validate" priority="8000" message="must be selected"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (hero.tagis[Virtue.?] <> 0)
+      
+      ~mark associated tabs as invalid
+      container.panelvalid[advback] = 0
+      ]]></evalrule>
+
+    </thing>
+    
+  <!-- Hubris thing for validation reporting -->
+  <thing
+    id="valHubris"
+    name="Hubris"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all special abilities selected -->
+    <evalrule index="1" phase="Validate" priority="8000" message="must be selected"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (hero.tagis[Hubris.?] <> 0)
+      
+      ~mark associated tabs as invalid
+      container.panelvalid[advback] = 0
+      ]]></evalrule>
+
+    </thing>
+
+    
+  <!-- Advantages thing for validation reporting -->
+  <thing
+    id="valAdvant"
+    name="Advantage"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all special abilities selected -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Not enough selected"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (hero.child[resAdvant].field[resLeft].value <= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[advback] = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many advantages selected -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many selected"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (hero.child[resAdvant].field[resLeft].value >= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[advback] = 0
+      ]]></evalrule>
+
+    </thing>
+    
+  <!-- Sorcery Minor Powers thing for validation reporting -->
+  <thing
+    id="valSorcMin"
+    name="Sorcery Minor Power"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all Minor powers selected -->
+    <evalrule index="1" phase="Validate" priority="8000" severity="error" message="Not enough selected"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (hero.child[resSorcMin].field[resLeft].value <= 0)
+
+      ~mark associated tabs as invalid
+      hero.findchild[Sorcery].linkvalid = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many Minor powers selected -->
+    <evalrule index="2" phase="Validate" priority="8000" severity="error"  message="Too many selected"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (hero.child[resSorcMin].field[resLeft].value >= 0)
+
+      ~mark associated tabs as invalid
+      hero.findchild[Sorcery].linkvalid = 0
+      ]]></evalrule>
+
+    </thing>
+
+  <!-- Sorcery Major Powers thing for validation reporting -->
+  <thing
+    id="valSorcMaj"
+    name="Sorcery Major Power"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all Minor powers selected -->
+    <evalrule index="1" phase="Validate" priority="8000" severity="warning" message="Not enough selected"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (hero.child[resSorcMaj].field[resLeft].value <= 0)
+
+      ~mark associated tabs as invalid
+      hero.findchild[Sorcery].linkvalid = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many Minor powers selected -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many selected"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (hero.child[resSorcMin].field[resLeft].value >= 0)
+
+      ~mark associated tabs as invalid
+      hero.findchild[Sorcery].linkvalid = 0
+      ]]></evalrule>
+
+    </thing>
+
+  <!-- Glamour Minor Powers thing for validation reporting -->
+  <thing
+    id="valGlamMaj"
+    name="Glamour Major Power"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that selected powers match types from Glamour-->
+    <evalrule index="1" phase="Validate" priority="8000" message="Not valid for selected Knight"><![CDATA[
+      var myKnight as string
+      var myPower as string
+      var kTags as string
+      var eTags as string
+      
+      ~if we don't have a sorcerer selected, we're good
+      validif (hero.tagis[HasSorc.soKniAva] = 0)
+      doneif (hero.tagis[HasSorc.soKniAva] = 0)
+
+      ~if we don't have a Knight selected, we're good
+      validif (hero.tagis[GlaKnight.?] = 0)
+      doneif (hero.tagis[GlaKnight.?] = 0)
+      
+      myKnight = hero.tagids[GlaKnight.?,"|"]
+      myPower = hero.tagids[HasPower.?,"|"]
+
+      foreach pick in hero from GlaKnight where myKnight
+        kTags = eachpick.tagids[GlaMajor.?,"|"] & "|GlaMajor.Luck"
+        nexteach
+        
+      foreach pick in hero from PowerMin where myPower
+        @valid = 0
+        eTags = eachpick.tagids[GlaMajor.?,"|"]
+        
+        if (pos(kTags, eTags) > -1) then
+          @valid = 1
+          endif
+        nexteach
+
+      ~mark associated tabs as invalid
+      container.panelvalid[sorcery] = @valid
+      ]]></evalrule>
+
+    </thing>
+    
+  <!-- Glamour Minor Powers thing for validation reporting -->
+  <thing
+    id="valGlamMin"
+    name="Glamour Minor Power"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that selected powers match types from Glamour-->
+    <evalrule index="1" phase="Validate" priority="8000" message="Not valid for selected Knight"><![CDATA[
+      var myKnight as string
+      var myPower as string
+      var kTags as string
+      var eTags as string
+      
+      ~if we don't have a sorcerer selected, we're good
+      validif (hero.tagis[HasSorc.soKniAva] = 0)
+      doneif (hero.tagis[HasSorc.soKniAva] = 0)
+
+      ~if we don't have a Knight selected, we're good
+      validif (hero.tagis[GlaKnight.?] = 0)
+      doneif (hero.tagis[GlaKnight.?] = 0)
+      
+      myKnight = hero.tagids[GlaKnight.?,"|"]
+      myPower = hero.tagids[HasPower.?,"|"]
+
+      foreach pick in hero from GlaKnight where myKnight
+        kTags = eachpick.tagids[GlaMinor.?,"|"] & "|GlaMinor.Luck"
+        nexteach
+        
+      foreach pick in hero from PowerMin where myPower
+        @valid = 0
+        eTags = eachpick.tagids[GlaMinor.?,"|"]
+        
+        if (pos(kTags, eTags) > -1) then
+          @valid = 1
+          endif
+        nexteach
+
+      ~mark associated tabs as invalid
+      container.panelvalid[sorcery] = @valid
+      ]]></evalrule>
+
+    </thing>
+    
+  <!-- Language thing for validation reporting -->
+  <thing
+    id="valLang"
+    name="Language"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all special abilities selected -->
+    <evalrule index="1" phase="Validate" priority="8000" severity="warning" message="Not enough selected"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (hero.child[resLang].field[resLeft].value <= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[skills] = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many advantages selected -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many selected"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (hero.child[resLang].field[resLeft].value >= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[skills] = 0
+      ]]></evalrule>
+
+    </thing>
+    
+  <!-- Story thing for validation reporting -->
+  <thing
+    id="valStory"
+    name="Story"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we have all special abilities selected -->
+    <evalrule index="1" phase="Validate" priority="8000" severity="error" message="Not enough selected"><![CDATA[
+      ~we have a negative or zero quantity left, we're good
+      validif (hero.child[resStory].field[resLeft].value <= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[story] = 0
+      ]]></evalrule>
+
+    <!-- Make sure that we don't have too many advantages selected -->
+    <evalrule index="2" phase="Validate" priority="8000" message="Too many selected"><![CDATA[
+      ~we have a positive or zero quantity left, we're good
+      validif (hero.child[resStory].field[resLeft].value >= 0)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[story] = 0
+      ]]></evalrule>
+
+    </thing>
+
+	<!-- Hands thing for validation reporting -->
+  <thing
+    id="valHands"
+    name="Hands"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we don't have too many hands worth of gear equipped -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Equipped gear requires too many hands" name="Check Hands"><![CDATA[
+      ~if we have no more than two hands of gear equipped, we're good
+      validif (hero.tagcount[Hero.Hand] <= herofield[acHands].value)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[armory] = 0
+      ]]></evalrule>
+
+    </thing>
+	
+  <!-- Sorcery thing for validation reporting -->
+  <thing
+    id="valSorcChs"
+    name="Sorcery"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we don't have too many hands worth of gear equipped -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Choice of Sorcery required." name="Chosen Sorcery"><![CDATA[
+      ~if we have no more than two hands of gear equipped, we're good
+      validif (hero.tagis[Sorcery.Sorcery] + hero.tagis[HasSorc.?] >= 2)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[basics] = 0
+      ]]></evalrule>
+
+    </thing>
+	
+  <!-- Armor thing for validation reporting -->
+  <thing
+    id="valArmor"
+    name="Armor"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we don't have multiple sets of armor equipped -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Multiple suits of armor equipped"><![CDATA[
+      ~if we have no more than one set of armor equipped, we're good
+      validif (hero.tagcount[Armor.?] <= 1)
+
+      ~mark associaated tabs as invalid
+      container.panelvalid[armory] = 0
+      ]]></evalrule>
+
+    </thing>
+
+
+  <!-- Shield thing for validation reporting -->
+  <thing
+    id="valShields"
+    name="Shields"
+    compset="Simple">
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Make sure that we don't have multiple shields equipped -->
+    <evalrule index="1" phase="Validate" priority="8000" message="Multiple shields equipped"><![CDATA[
+      ~if we have no more than one set of armor equipped, we're good
+      validif (hero.tagcount[Shield.?] <= 1)
+
+      ~mark associated tabs as invalid
+      container.panelvalid[armory] = 0
+      ]]></evalrule>
+
+    </thing>
+
+
+    </document>

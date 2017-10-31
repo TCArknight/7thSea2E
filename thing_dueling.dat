@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Dueling Styles
+-->
+
+<document signature="Hero Lab Data">
+
+  <thing
+    id="dsAldana"
+    name="Aldana"
+    compset="DuelStyle"
+    isunique="yes"
+    description="Aldana is the fighting Style of choice for many Castillians, one of the few fighting Styles on Théah that forgoes the use of the off-hand. Instead, the off-hand is tucked behind the Duelist's back and he presents his side to his opponent, narrowing the choice of targets that can be struck at. Aldana is designed for use with fencing weapons.{br}{br}Aldana combines fencing with dancing to produce an unpredictable series of movements. The Duelist silently counts time inside his head, mentally playing the song that he is 'dancing' to. This allows him to make unpredictable moves along with the rhythm of the song, which is unknown to his opponent."
+    summary="Fighting style that combines fencing with dancing.">
+    <bootstrap thing="sbAldana">
+      </bootstrap>
+    </thing>
+
+  <thing
+    id="dsAmbrogia"
+    name="Ambrogia"
+    compset="DuelStyle"
+    isunique="yes"
+    description="Ambrogia has caught on like wildfire in recent years. It is remarkable for two chief reasons. The first is that it teaches its students to fight with their sword in their left hand and their main gauche in their right. The second is that its creator, Veronica Ambrogia, also happens to be one of Vodacce's most famous courtesans.{br}{br}While Ambrogia does focus on the left hand (a factor that many Duelists find difficult to deal with), it emphasizes practicality over style. The students learn to use whatever they find in their hands to win the duel. 'After all,' teaches Madame Ambrogia, 'it's the winner who tells the tale.'"
+    summary="Fighting style that combines sword with main-gauche.">
+    <bootstrap thing="sbAmbrogia">
+      </bootstrap>
+    </thing>        
+
+  <thing
+    id="dsBoucher"
+    name="Boucher"
+    compset="DuelStyle"
+    isunique="yes"
+    description="The Boucher Style of fighting was originally forged in the streets of Montaigne, and isn't considered a 'gentlemanly' school. However, some Duelists are more concerned with results than with the impression they make on their peers; this Style is designed with them in mind. Students of Boucher wield a long knife in each hand, and use the two together in a series of attacks designed to confuse and disorient the opponent.{br}{br}Boucher is one of the fastest fighting Styles taught on Théah today. Once the superior reach of the opponent's weapon has been overcome, the knife fighter starts a flurry of attacks that is almost impossible to stop."
+    summary="Fighting style that combines paired long knives.">
+    <bootstrap thing="sbBoucher">
+      </bootstrap>
+    </thing>        
+
+  <thing
+    id="dsDonovan"
+    name="Donovan"
+    compset="DuelStyle"
+    isunique="yes"
+    description="Created by Donovan Durant -- the most famous bodyguard in all of Théah -- this Style of swordplay is unique in both application and in the occupation of its creator. Donovan was very particular in those he took on as clients, only choosing to defend those who he truly believed needed protection. Before his retirement, it was said that only one ward under his protection ever died -- his first. He swore to never let it happen again. He kept that oath.{br}{br}Upon his retirement, he founded the Donovan Academy in Carleon, a school with perhaps the most rigid requirements for entry of them all. Every single student is approved personally by Donovan after a rigorous interview process. Only those who Donovan Durant judges to share his commitment to protection are permitted to study in his Academy."
+    summary="Fighting style that uses a single heavy weapon (longsword, mace, etc.).">
+    <bootstrap thing="sbDonovan">
+      </bootstrap>
+    </thing>        
+    
+  <thing
+    id="dsDrexel"
+    name="Drexel"
+    compset="DuelStyle"
+    isunique="yes"
+    description="This school was developed by a mercenary named Kristoff Drexel, the leader of the warband known as the Blood Spirits. He often found himself in unpredictable situations that called for flexibility in thought and fighting Style. Thus, he devised several different ways to make use of the versatile Eisen zweihander. The Drexel fighting Style is very popular among elite mercenaries because of its ability to deal with many different situations.{br}{br}A Duelist making use of Drexel has more ways of attacking and defending himself than a Duelist using another Style. There are three Stances, or ways of holding the zweihander, that Drexel teaches. Each has certain advantages and disadvantages."
+    summary="Eisen fighting style that uses a single zweihander in different stances.">
+    <bootstrap thing="sbDrexel">
+      </bootstrap>
+    </thing>    
+  <thing
+    id="dsEisenfau"
+    name="Eisenfaust"
+    compset="DuelStyle"
+    isunique="yes"
+    description="Eisenfaust makes use of a broadsword with an off-hand panzerhand, or iron glove. The Duelist deflects or grabs incoming attacks with his glove and exploits the openings created with his broadsword. Eisenfaust is defensive, teaching its students to wait for their opponent to make a mistake before attacking.{br}{br}Eisenfaust exploits mistakes made by an opponent. Gradually, the opponent grows impatient or angry. As soon as he slips up, the student of Eisenfaust is on top of him, raining down fearsome broadsword blows."
+    summary="Eisen Fighting style that uses a broadsword with an off-hand panzerhand, or iron glove.">
+    <bootstrap thing="sbEisenfau">
+      </bootstrap>
+    </thing>
+    
+  <thing
+    id="dsLeegstra"
+    name="Leegstra"
+    compset="DuelStyle"
+    isunique="yes"
+    description="Leegstra has been practiced by Vesten for centuries, well before it had a name or there was such a thing as the Duelist's Guild. This extremely aggressive Style teaches the use of a weapon in each hand, and encourages an almost reckless level of offense, seeking to suffocate opponents beneath a constant rain of blows.{br}{br}Although the method of fighting itself is old, it was only formalized around two decades ago by Leegstra Eldsdóttir, a Vesten woman who boasted that she had never been beaten in single combat. With the rise of the Duelist's Guilds, she founded her own Academy in the city of Thorshofn."
+    summary="Vesten fighting style that uses a pair of heavy weapons.">
+    <bootstrap thing="sbLeegstra">
+      </bootstrap>
+    </thing>    
+  <thing
+    id="dsMantovan"
+    name="Mantovani"
+    compset="DuelStyle"
+    isunique="yes"
+    description="Originally popularized amongst serial novels in Vodacce, the Mantovani style is born of practicality. Many would-be Duelists have attempted to perfect a Style that uses something less conspicuous than a sword; Vito Mantovani chose the whip.{br}{br}The Mantovani Style favors misdirection and adaptability, using a whip to manipulate the environment: taking hold of small items to throw them at the opponent with the flick of a wrist or laying a small lash across the hand to make continuing to fight more pain than it is worth."
+    summary="Vodacce fighting style that uses a whip.">
+    <bootstrap thing="sbMantovan">
+      </bootstrap>
+    </thing>
+    
+  <thing
+    id="dsMireli"
+    name="Mireli"
+    compset="DuelStyle"
+    isunique="yes"
+    description="Katya Mireli was a dancer who traveled across Ussura with various circus troupes, never staying in one place or with one group for very long. Her most famous performance was a captivating dance with a curved sword in each hand. Her act became so famous that it attracted the attention of the nobility and wealthy merchants, who would come from a hundred miles or more to see the famous Mireli Sword Dance.{br}{br}The Mireli Sword Academy is unique in that it has no set campus. Those who wish to learn it must find Mireli or one of her students as they travel from place to place, often amongst performers or circus troupes. This has been tradition for the Academy's nearly three decade long history."
+    summary="Ussaran fighting style that uses a pair of heavy curved swords.">
+    <bootstrap thing="sbMireli">
+      </bootstrap>
+    </thing>
+    
+  <thing
+    id="dsSabat"
+    name="Sabat"
+    compset="DuelStyle"
+    isunique="yes"
+    description="Mirek Sabat spent most of his life fascinated by the game of chess. He believed that many forms of strategy in chess could be applied to other strategies in life, from politics to warfare to swordplay. By twenty, he was considered by most to be a grand master, although it wasn't unknown for him to lose a match to an inferior opponent as he experimented with some unorthodox strategy.{br}{br}The Sabat school of fencing favors a defensive Style that allows opponents to attack relentlessly to exhaust themselves. Once the adversary is vulnerable, Sabat seeks to end the bout decisively and in one master stroke."
+    summary="A defensive fighting style that uses a heavy curved sword.">
+    <bootstrap thing="sbSabat">
+      </bootstrap>
+    </thing>
+    
+  <thing
+    id="dsTorres"
+    name="Torres"
+    compset="DuelStyle"
+    isunique="yes"
+    description="Originally developed for bullfighting, the Torres style makes use of a rapier in one hand and a cloak in the other. The student uses subtle movements to draw his opponent's attention to the cloak, and then blindside him with the rapier.{br}{br}The Torres school is an extremely effective defensive style, as the cloak and sword combine to form a wall of cloth and steel between the student and his opponent's blade. Masters of the school are some of the most quick-witted and agile men and women in the world."
+    summary="A fighting style that uses a rapier in one hand and a cloak in the other.">
+    <bootstrap thing="sbTorres">
+      </bootstrap>
+    </thing>
+    
+  <thing
+    id="dsValroux"
+    name="Valroux"
+    compset="DuelStyle"
+    isunique="yes"
+    description="The Valroux Style of fighting is one of several that uses a fencing weapon in the primary hand and a main gauche in the off-hand. The fighting Style is technically defensive, with the main gauche used only to parry. Students of this Style call attention to openings they could have exploited, generally humiliate their opponents, and finish them off whenever the duel grows wearisome.{br}{br}One of the main strengths of this Style is its demoralizing effect on opponents. Masters of Valroux move the duel around in a dizzying circle, keeping their opponent guessing as to the pace of combat, all the while hurling insults that infuriate their adversary. To win against a student of the Valroux Style requires an iron will and long patience."
+    summary="A technically defensive fighting style that uses a fencing weapon and a main-gauche.">
+    <bootstrap thing="sbValroux">
+      </bootstrap>
+    </thing>
+
+<!-- Style Bonus -->
+  <thing
+    id="sbAldana"
+    name="Aldana Ruse"
+    compset="StyleBon"
+    isunique="yes"
+    description="When you wield a fencing sword in one hand and nothing else, you can perform a special Maneuver called the Aldana Ruse, causing your target to take additional Wounds equal to your Ranks in Panache the next time he takes Wounds this Round. You can only perform Aldana Ruse once per Round.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>
+  <thing
+    id="sbAmbrogia"
+    name="Veronica's Guile"
+    compset="StyleBon"
+    isunique="yes"
+    description="When wielding a dagger in your right hand and a fencing sword (such as a rapier or cutlass) in your left, you gain an ability called Veronica's Guile. When you build a Risk Pool for Weaponry, you may use either your Finesse or Wits. If you spend a Hero Point, you may use both.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>
+  <thing
+    id="sbBoucher"
+    name="Boucher Step"
+    compset="StyleBon"
+    isunique="yes"
+    description="When wielding a dagger or knife in one hand with nothing in the other --or a dagger or knife in each hand-- you gain an ability called Boucher Step. Boucher Step allows you to perform two Maneuvers back to back, spending Raises as normal for each of them before your opponent can react. All other rules for Maneuvers still apply -- you cannot perform the same Maneuver twice in a row, for example. You can only use Boucher Step once per Round.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>
+  <thing
+    id="sbDonovan"
+    name="Donovan's Bulwark"
+    compset="StyleBon"
+    isunique="yes"
+    description="When you wield a heavy weapon (a longsword, mace, etc.) in one hand and nothing in the other, your Parry Maneuver is replaced by Donovan's Bulwark. Donovan's Bulwark prevents Wounds dealt to you or an ally within your reach equal to your Ranks in Weaponry. Additionally, when you perform the Donovan's Bulwark Maneuver, you can spend a Hero Point to lock weapons with your opponent. Both you and your opponent lose all of your remaining Raises and can take no more Actions this Round.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>
+  <thing
+    id="sbDrexel"
+    name="Drexel Stances"
+    compset="StyleBon"
+    isunique="yes"
+    description="When you wield a heavy weapon in two hands, you can choose a Stance:{br}{b}*{/b} Bittner Stance (Forward): Maneuvers that prevent Wounds prevent additional Wounds equal to your Resolve, but you cannot perform the Slash Maneuver -- although you can still spend Raises on your Action to deal Wounds as a non-Duelist would.{br}{b}*{/b} Metzger Stance (Back): You take all Actions as if you had additional Raises equal to your Wits. These additional Raises are only for when you take your Actions, and cannot be spent. However, you cannot perform the Parry Maneuver -- although you can still spend Raises on your Action to prevent Wounds as a non-Duelist would.{br}{b}*{/b} Gerbeck Stance (High): Maneuvers that deal Wounds deal 1 additional Wound, but you take all Actions as if you had 1 fewer Raise (minimum 1).{br}{br}You select your Stance at the beginning of each Round. If you wish to change your Stance during a Round, you must spend 1 Raise to do so.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>    
+  <thing
+    id="sbEisenfau"
+    name="Iron Reply"
+    compset="StyleBon"
+    isunique="yes"
+    description="When you wield a heavy weapon in one hand and a panzerhand in the other, your Riposte Maneuver is replaced by the Iron Reply -- preventing a number of Wounds equal to your Ranks in Resolve + your Ranks in Weaponry. You also deal a number of Wounds equal to your Ranks in Brawn + your Ranks in Weaponry.{br}{br}You can only perform Iron Reply once per Round.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>    
+  <thing
+    id="sbLeegstra"
+    name="Leegstra's Crash"
+    compset="StyleBon"
+    isunique="yes"
+    description="When you wield a heavy weapon in each hand (typically axes or hammers, although heavy-bladed broadswords are not uncommon), you may perform a special Maneuver called Leegstra's Crash. Leegstra's Crash deals a number of Wounds equal to your Ranks in Weaponry. A Duelist can only perform Leegstra's Crash once per Round.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>    
+  <thing
+    id="sbMantovan"
+    name="Mantovani Flay"
+    compset="StyleBon"
+    isunique="yes"
+    description="When you wield a whip, you gain a special Maneuver called Mantovani Flay. This Maneuver deals one Wound, and you choose a Maneuver that you know your opponent can perform (a basic Maneuver or a specific Style bonus that you know they possess). Your target cannot perform that Maneuver on their next Action because you bind their weapon, lay a particularly painful slash across the back of their hand, or otherwise control the way they can act. You can only perform Mantovani Flay once per Round.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>    
+  <thing
+    id="sbMireli"
+    name="Mireli's Revision"
+    compset="StyleBon"
+    isunique="yes"
+    description="When you wield a heavy weapon (such as a saber or cutlass, although some Mireli Duelists favor a hatchet) in one hand, or one in each hand, you may perform a special Maneuver called Mireli's Revision. Mireli's Revision functions identically to either the Bash or Parry Maneuver. The Duelist chooses the effect of Mireli's Revision when she performs it.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>    
+  <thing
+    id="sbSabat"
+    name="Sabat Gambit"
+    compset="StyleBon"
+    isunique="yes"
+    description="When you wield a heavy weapon (typically a heavy curved saber) in one hand, your Lunge is replaced by the Sabat Gambit. Sabat Gambit deals a number of Wounds equal to your Ranks in Weaponry + your Finesse + the number of Raises you spend.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>
+  <thing
+    id="sbTorres"
+    name="Matador's Flourish"
+    compset="StyleBon"
+    isunique="yes"
+    description="When you wield a fencing sword (such as a rapier or cutlass) in one hand and nothing in the other, and are wearing a long cloak, you can perform a special Maneuver called the Matador's Flourish. Matador's Flourish prevents a number of Wounds equal to your Ranks in Athletics. A Duelist can perform Matador's Flourish once per Round.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>
+      <thing
+    id="sbValroux"
+    name="Valroux Press"
+    compset="StyleBon"
+    isunique="yes"
+    description="When you wield a fencing sword in your right hand and a dagger in the left, you can perform a special Maneuver called Valroux Cross. Valroux Cross prevents Wounds equal to your Weaponry, and you choose a Maneuver you know your opponent can perform on her next Action. Performing any other Maneuver costs your opponent an additional Raise. You can only perform Valroux Cross once per Round, immediately following the Maneuver that caused your Wounds.">
+    <tag group="CoManeuver" tag="Style"/>
+    </thing>    
+    
+  </document>

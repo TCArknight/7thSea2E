@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the assortment of advantages for the game system.
+      Abilities confer their effects through scripts that apply the necessary changes
+      to the appropriate traits.
+
+      Abilities influence traits, so all adjustments must be applied prior to when the
+      final trait value is calculated. The script timing used below (PreTraits/5000)
+      ensures that we satisfy this requirement. All abilities should be designated as
+      "unique" so that they can only be selected a single time by the user.
+-->
+
+<document signature="Hero Lab Data">
+
+<!-- Heroes and Villains -->    
+  <thing
+    id="adFlawExec"
+    name="Flawless Execution"
+    compset="Advantage"
+    isunique="no"
+    description="Must have the ability to perform Duelist Maneuvers. Choose one Maneuver you know. You can spend a Hero Point instead of a Raise to perform this Maneuver. All other rules pertaining to Maneuvers still apply (you can still only perform some Maneuvers once per Round, you cannot perform the same Maneuver twice in a row, etc). A Hero can only use this Advantage once per Round.">
+    <usesource source="srcHeroVil"/>
+    <tag group="PointCost" tag="2"/>
+    <exprreq message="Ability to use Dueling Maneuvers required."><![CDATA[
+      tagis[Hero.DuelMane] <> 0
+      ]]></exprreq>    
+      
+    </thing>
+    
+  <thing
+    id="adLeaDuel"
+    name="Learned Duelist"
+    compset="Advantage"
+    isunique="no"
+    description="A Hero must have the Duelist Academy Advantage in order to purchase this Advantage. Choose another Duelist Academy Style to learn.">
+    <usesource source="srcHeroVil"/>
+    <tag group="PointCost" tag="3"/>
+    <!-- Increase the Dueling Style count to the Character -->
+    <eval index="1" phase="PreTraits" priority="5000"><![CDATA[
+      
+      #resmax[resDuel] += 1
+  
+      ]]></eval>      
+    <exprreq message="Duelist Academy required."><![CDATA[
+      #hasadvant[adDuelAcad] <> 0
+      ]]></exprreq>    
+    </thing>      
+
+  <thing
+    id="adStuComb"
+    name="Student of Combat"
+    compset="Advantage"
+    isunique="yes"
+    description="You learn the Slash and Parry Maneuvers, as well as one non-Style Maneuver of your choice, and can perform these as a Duelist does. The Duelist Academy Advantage is considered a 3 point Advantage for you.">
+    <usesource source="srcHeroVil"/>
+    <tag group="PointCost" tag="3"/>
+    <!-- Assign the Cost Override tag to Duelist Academy advantages -->
+    <eval index="1" phase="Traits" priority="5000"><![CDATA[
+      
+      doneif (#hasadvant[adDuelAcad] = 0)
+      
+      foreach pick in hero from Advantage where "thingid.adDuelAcad"
+        perform eachpick.assign[CostOver.3]
+        nexteach
+  
+      ]]></eval>    
+    </thing>      
+
+  <thing
+    id="adSavior"
+    name="Savior"
+    compset="Advantage"
+    isunique="yes"
+    description="It is not enough to simply stop a Villain -- you must change her. The greatest weapon against wickedness is to take an agent of evil and make her a force for good. When you take a Risk in the direct pursuit of redeeming a Villain and turning her toward a path of Heroism, you can spend a Hero Point in place of spending a Raise for any Action. If an Action would require multiple Raises (because of Improvisation, being Unskilled, being under Pressure, etc.) you only need to spend one Hero Point to accomplish it. Because you are not spending Raises for these Actions, it remains your turn -- this means that, in effect, so long as you have Hero Points you can continue to take Actions back-to-back if every Action that you take is directly related to the redemption of a Villain.">
+    <usesource source="srcHeroVil"/>
+    <tag group="PointCost" tag="4"/>
+    </thing>      
+                       
+  </document>

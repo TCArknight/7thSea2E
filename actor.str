@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the definitions of components associated directly with the
+      actor and its management.
+-->
+
+<document signature="Hero Lab Structure">
+
+  <!-- Actor component
+        Encapsulates all the details associated with every actor
+  -->
+  <component
+    id="Actor"
+    name="Actor"
+    autocompset="no"
+    ispublic="no">
+      
+    <!-- Image to display in the TacCon -->
+    <field
+      id="acTacImage"
+      name="Image"
+      type="derived">
+      </field>
+      
+    <!-- Number of hands of equipment the actor can use simultaneously -->
+    <field
+      id="acHands"
+      name="Hands Available"
+      type="derived"
+      defvalue="2">
+      </field>
+
+    <!-- Starting character points to allocate -->
+    <field
+      id="acStartAP"
+      name="Attribute Points"
+      type="user"
+      defvalue="2">
+      </field>
+
+    <!-- Starting ability slots to allocate -->
+    <field
+      id="acStartAdv"
+      name="Advantage Points"
+      type="user"
+      defvalue="5">
+      </field> 
+    
+    <!-- Starting Skill Ranks to allocate -->
+    <field
+      id="acStartSki"
+      name="Skill Ranks"
+      type="user"
+      defvalue="10">
+      </field>
+      
+    <!-- Starting background slots to allocate -->
+    <field
+      id="acStartBac"
+      name="Background Slots"
+      type="user"
+      defvalue="2">
+      </field>
+
+    <!-- Starting quirk slots to allocate -->
+    <field
+      id="acStartQui"
+      name="Quirk Slots"
+      type="user"
+      defvalue="2">
+      </field>
+      
+    <!-- Starting XP for the character -->
+    <field
+      id="acStartXP"
+      name="Starting XP"
+      type="user">
+      </field>
+
+    <!-- Starting cash for the character -->
+    <field
+      id="acCashCfg"
+      name="Starting Cash"
+      type="user"
+      defvalue="100">
+      </field>
+
+    <!-- nationality bonus expression -->
+    <field
+      id="natBonExpr"
+      name="Nationality Bonus Expr."
+      maxlength="75"
+      type="derived">
+      </field>
+
+    <!-- valid Sorcery expression -->
+    <field
+      id="acSorcExpr"
+      name="Valid Sorcery Expr."
+      maxlength="75"
+      type="derived">
+      </field>
+	  
+    <!-- Hero Points for the character -->
+    <field
+      id="acHeroPts"
+      name="Hero Points"
+      type="derived">
+      </field>
+      
+    <!-- Bonus Hero Points for the character -->
+    <field
+      id="acBonHero"
+      name="Bonus Hero Points"
+      type="derived"
+      defvalue="0">
+      </field>
+                        
+    <!-- Net wealth for the character -->
+    <field
+      id="acWealth"
+      name="Wealth"
+      type="derived">
+      </field>
+      
+    <!-- Bonus Wealth for the character -->
+    <field
+      id="acBonWeal"
+      name="Bonus Wealth"
+      type="derived"
+      defvalue="0">
+      </field>
+      
+    <!-- Character type - PC, NPC, or other -->
+    <field
+      id="acType"
+      name="Character Type"
+      type="user"
+      style="menu"
+      defthing="typHero">
+      </field>
+
+    <!-- For NPCs, you can enter a book id (SKU) and name -->
+    <field
+      id="acBookId"
+      name="Book Identifier / SKU"
+      type="user"
+      maxlength="25">
+      </field>
+    <field
+      id="acBookName"
+      name="Book Name"
+      type="user"
+      maxlength="100">
+      </field>
+
+    <!-- Whether character is abandoning his action in combat for benefits in the next turn  -->
+    <field
+      id="acAbandon"
+      name="Abandoning"
+      type="derived"
+      persistence="full">
+      </field>
+
+    <!-- Index of the last advancement for the character -->
+    <field
+      id="acLastAdv"
+      name="Last Advancement"
+      type="derived">
+      </field>
+
+
+    <!-- Copy the first user image for use in the TacCon -->
+    <eval index="2" phase="Final" priority="1000"><![CDATA[
+      ~all heroes should be able to reroll initiative
+      perform hero.assign[Hero.RerollInit]
+
+      field[acTacImage].value = hero.findchild[UserImage,"TRUE",_CompSeq_].field[uimgImage].value
+      ]]></eval>
+
+    <!-- calculate the net cash possessed for the character -->
+    <eval index="3" phase="Render" priority="5000"><![CDATA[
+      ~our net cash is our configured starting cash plus our accrued cash
+      field[acWealth].value = #trkmax[trkWealth]
+      ]]></eval>
+
+    <!-- activate our selected character type -->
+    <eval index="4" phase="Setup" priority="5000"><![CDATA[
+      perform field[acType].chosen.forward[CharType.?]
+
+      ~ Assign a tag to hide tabs
+      perform hero.assign[HideTab.ship]
+      perform hero.assign[HideTab.sorcery]
+      perform hero.assign[HideTab.dueling]
+      perform hero.assign[HideTab.armory]
+      perform hero.assign[HideTab.gear]
+      ~perform hero.assign[HideTab.advances]
+      perform hero.assign[HideTab.journal]
+      perform hero.assign[HideTab.special]
+      perform hero.assign[HideTab.smArmory]
+
+      ~ Assign a tag to show the Languages Portal
+      perform hero.assign[Hero.ShowLang]
+
+      ~ Assign a tag to set the Maximum Skill rank
+      perform hero.assign[SkillMax.3]
+      ]]></eval>
+                        
+    </component>
+
+
+  <!-- Personal component
+        Encapsulates all of the personal details tracked on the Personal tab
+  -->
+  <component
+    id="Personal"
+    name="Personal Info"
+    ispublic="no">
+
+    <!-- Age of the actor -->
+    <field
+      id="perAge"
+      name="Age"
+      type="user"
+      defvalue="25">
+      <!-- Bound the age to within the limits specified for the actor -->
+      <bound phase="Render" priority="10000"><![CDATA[
+        @minimum = field[perAgeMin].value
+        @maximum = field[perAgeMax].value
+        ]]></bound>
+      </field>
+
+    <!-- Minimum age of the actor -->
+    <field
+      id="perAgeMin"
+      name="Minimum Age"
+      type="derived"
+      defvalue="15">
+      </field>
+
+    <!-- Maximum age of the actor -->
+    <field
+      id="perAgeMax"
+      name="Maximum Age"
+      type="derived"
+      defvalue="75">
+      </field>
+
+    <!-- Height of the actor (in inches) -->
+    <field
+      id="perHeight"
+      name="Height"
+      type="user"
+      maxfinal="20"
+      defvalue="68">
+      <!-- Bound the age to within the limits specified for the actor -->
+      <bound phase="Render" priority="10000"><![CDATA[
+        @minimum = field[perHtMin].value
+        @maximum = field[perHtMax].value
+        ]]></bound>
+      <!-- Final value for display is converted from inches to feet and inches -->
+      <finalize><![CDATA[
+        ~calculate the height in terms of feet and inches
+        var feet as number
+        var inches as number
+        feet = @value / 12
+        feet = round(feet,0,-1)
+        inches = @value - (feet * 12)
+
+        ~synthesize appropriate text to display the height properly
+        @text = feet & "'"
+        if (inches <> 0) then
+          @text = @text & " " & inches & chr(34)
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Minimum height of the actor -->
+    <field
+      id="perHtMin"
+      name="Minimum Height"
+      type="derived"
+      defvalue="36">
+      </field>
+
+    <!-- Maximum height of the actor -->
+    <field
+      id="perHtMax"
+      name="Maximum Height"
+      type="derived"
+      defvalue="96">
+      </field>
+
+    <!-- Weight of the actor (in pounds) -->
+    <field
+      id="perWeight"
+      name="Weight"
+      type="user"
+      maxfinal="20"
+      defvalue="160">
+      <!-- Bound the weight to within the limits specified for the actor -->
+      <bound phase="Render" priority="10000"><![CDATA[
+        @minimum = field[perWtMin].value
+        @maximum = field[perWtMax].value
+        ]]></bound>
+      <!-- Final value for display includes the "lb." suffix in a different font size -->
+      <finalize><![CDATA[
+        @text = @text & "{size 40}lb."
+        ]]></finalize>
+      </field>
+
+    <!-- Minimum weight of the actor -->
+    <field
+      id="perWtMin"
+      name="Minimum Weight"
+      type="derived"
+      defvalue="30">
+      </field>
+
+    <!-- Maximum weight of the actor -->
+    <field
+      id="perWtMax"
+      name="Maximum Weight"
+      type="derived"
+      defvalue="500">
+      </field>
+
+    <!-- Gender of the actor (0=male, 1=female, 2=specify) -->
+    <field
+      id="perGender"
+      name="Gender"
+      type="user"
+      minvalue="0"
+      maxvalue="2"
+      maxfinal="100"
+      nevercache="yes">
+      <finalize><![CDATA[
+        if (@value = 0) then
+          @text = "Male"
+        elseif (@value = 1) then
+          @text = "Female"
+        elseif (field[perGenUser].isempty = 0) then
+          @text = field[perGenUser].text
+        else
+          @text = "No Gender"
+          endif
+        ]]></finalize>
+      </field>
+    <field
+      id="perGenUser"
+      name="Gender"
+      type="user"
+      maxlength="100">
+      </field>
+
+    <!-- Hair color -->
+    <field
+      id="perHair"
+      name="Hair Color"
+      maxlength="25"
+      type="user">
+      </field>
+
+    <!-- Eye color -->
+    <field
+      id="perEyes"
+      name="Eye Color"
+      maxlength="25"
+      type="user">
+      </field>
+
+    <!-- Skin color -->
+    <field
+      id="perSkin"
+      name="Skin Color"
+      maxlength="25"
+      type="user">
+      </field>
+
+    <!-- Background description of the actor -->
+    <field
+      id="perInfo"
+      name="Background Text"
+      type="user"
+      maxlength="10000">
+      </field>
+      
+    <!-- Background description of the actor -->
+    <field
+      id="perStories"
+      name="Stories Text"
+      type="user"
+      maxlength="10000">
+      </field>
+    
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      ~ Assign a tag if the user hasn't specified any background text
+      if (field[perInfo].isempty <> 0) then
+        perform assign[Helper.NoPersText]
+        endif
+      ]]></eval>
+      
+    <eval index="2" phase="Setup" priority="1000"><![CDATA[
+      ~ Assign a tag if the user hasn't specified any background text
+      if (field[perInfo].isempty <> 0) then
+        perform assign[Helper.NoStoryTxt]
+        endif
+      ]]></eval>
+      
+    </component>
+
+
+  <!-- Define various component sets associated with the components defined above.
+  -->
+
+  <!-- The "Personal" compset is auto-defined for the component -->
+
+  <!-- Actor - all the collective one-shot details for the actor -->
+  <compset
+    id="Actor">
+    <compref component="Actor"/>
+    </compset>
+
+
+  </document>

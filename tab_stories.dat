@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document signature="Hero Lab Data">
+
+
+  <!-- stoTitle portal
+        Unlike other tabs, the title for this tab is independent of the table, so
+        this portal is simply a title like is assigned on other tabs.
+  
+  <portal
+    id="stoTitle"
+    style="lblTitle">
+    <label
+      istitle="yes"
+      text="Stories">
+      </label>
+    </portal> -->
+
+
+  <!-- story portal
+  -->
+  <portal
+    id="story"
+    style="tblNormal">
+    <table_auto
+      component="Story"
+      showtemplate="stoPick"
+      autothing="stoStory"
+      addpick="resStory">
+      <headertitle><![CDATA[
+        @text = "Stories: " & hero.child[resStory].field[resSummary].text
+        ]]></headertitle>
+      <additem><![CDATA[
+        @text = "Add New Story Entry"
+        ]]></additem>
+      </table_auto>
+    </portal>
+
+
+  <!-- stoPick template
+        
+  -->
+  <template
+    id="stoPick"
+    name="Story"
+    compset="Story"
+    marginhorz="3"
+    marginvert="3">
+
+    <portal
+      id="editName"
+      style="editNormal">
+      <edit
+        field="UserName"
+        placeholdertext="Name of the Story">
+        </edit>
+      </portal>
+
+    <portal
+      id="lblname"
+      style="lblSmTitle">
+      <label
+        text="Story Name">
+        </label>
+      </portal>
+      
+    <portal
+      id="editGoal"
+      style="editNormal">
+      <edit
+        field="StorGoal"
+        placeholdertext="Goal of the Story">
+        </edit>
+      </portal>
+
+    <portal
+      id="lblGoal"
+      style="lblSmTitle">
+      <label
+        text="Goal">
+        </label>
+      </portal>
+
+    <portal
+      id="editRewd"
+      style="editNormal">
+      <edit
+        field="StorReward"
+        placeholdertext="Reward for completing the Story">
+        </edit>
+      </portal>
+
+    <portal
+      id="lblRewd"
+      style="lblSmTitle">
+      <label
+        text="Reward">
+        </label>
+      </portal>
+
+    <portal
+      id="menuComp"
+      style="menuNormal">
+      <menu_literal
+        field="StorComp">
+        <choice value="1" display="1 Step"/>
+        <choice value="2" display="2 Steps"/>
+        <choice value="3" display="3 Steps"/>
+        <choice value="4" display="4 Steps"/>
+        <choice value="5" display="5 Steps"/>
+        </menu_literal>
+      </portal>
+      
+    <portal
+      id="lblComp"
+      style="lblSmTitle">
+      <label
+        text="Steps to Complete">
+        </label>
+      </portal>
+      
+    <portal
+      id="editStep1"
+      style="editNormal">
+      <edit
+        field="StorStep1"
+        placeholdertext="First Step to Completion">
+        </edit>
+      </portal>
+
+    <portal
+      id="chkStep1"
+      style="chkNormal"
+      showinvalid="yes"
+      tiptext="Step Completed?">
+      <checkbox field="Step1Comp" />
+      </portal>
+      
+    <portal
+      id="lblStep1"
+      style="lblSmTitle">
+      <label
+        text="Step 1">
+        </label>
+      </portal>
+    <portal
+      id="editStep2"
+      style="editNormal">
+      <edit
+        field="StorStep2"
+        placeholdertext="Second Step to Completion">
+        </edit>
+      </portal>
+
+    <portal
+      id="chkStep2"
+      style="chkNormal"
+      showinvalid="yes"
+      tiptext="Step Completed?">
+      <checkbox field="Step2Comp" />
+      </portal>
+      
+    <portal
+      id="lblStep2"
+      style="lblSmTitle">
+      <label
+        text="Step 2">
+        </label>
+      </portal>
+      
+    <portal
+      id="editStep3"
+      style="editNormal">
+      <edit
+        field="StorStep3"
+        placeholdertext="Third Step to Completion">
+        </edit>
+      </portal>
+
+    <portal
+      id="chkStep3"
+      style="chkNormal"
+      showinvalid="yes"
+      tiptext="Step Completed?">
+      <checkbox field="Step3Comp" />
+      </portal>
+      
+    <portal
+      id="lblStep3"
+      style="lblSmTitle">
+      <label
+        text="Step 3">
+        </label>
+      </portal>
+      
+    <portal
+      id="editStep4"
+      style="editNormal">
+      <edit
+        field="StorStep4"
+        placeholdertext="Fourth Step to Completion">
+        </edit>
+      </portal>
+
+    <portal
+      id="chkStep4"
+      style="chkNormal"
+      showinvalid="yes"
+      tiptext="Step Completed?">
+      <checkbox field="Step4Comp" />
+      </portal>
+      
+    <portal
+      id="lblStep4"
+      style="lblSmTitle">
+      <label
+        text="Step 4">
+        </label>
+      </portal>
+      
+    <portal
+      id="editStep5"
+      style="editNormal">
+      <edit
+        field="StorStep5"
+        placeholdertext="Fifth Step to Completion">
+        </edit>
+      </portal>
+
+    <portal
+      id="chkStep5"
+      style="chkNormal"
+      showinvalid="yes"
+      tiptext="Step Completed?">
+      <checkbox field="Step5Comp" />
+      </portal>
+      
+    <portal
+      id="lblStep5"
+      style="lblSmTitle">
+      <label
+        text="Step 5">
+        </label>
+      </portal>
+      
+    <portal
+      id="lblStoComp"
+      style="lblTitle">
+      <label
+        text="STORY COMPLETE">
+        </label>
+      </portal>
+      
+    <portal
+      id="notes"
+      style="actNotesSm"
+      tiptext="Click here to edit detailed notes for the journal entry.">
+      <action
+        action="notes"
+        field="StorNotes">
+        </action>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo><![CDATA[
+        ~start with the title of the entry
+        @text = field[StorSumm].text
+        ]]></mouseinfo>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click here to delete this journal entry.">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height with a suitable size
+      height = 250
+      
+      var myWidth as number
+      myWidth = width - 175
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~put the info button in the top right corner
+      perform portal[info].alignedge[right,0]
+
+      ~position the notes button to the left of the info button
+      perform portal[notes].alignrel[rtol,info,-6]
+      perform portal[notes].centeron[vert,info]
+      
+      ~determine the "top" of the lower section of the template
+      var lower as number
+      lower = portal[info].bottom + 4
+
+      ~center the delete button horizontally beneath the info button
+      perform portal[delete].centeron[horz,info]
+
+      ~center the delete button vertically within the lower portion of the template
+      portal[delete].top = lower + (height - lower - portal[delete].height) / 2
+
+
+      portal[lblname].width = 100
+      portal[lblname].top = 0
+      portal[lblname].left = 0
+      portal[lblname].height = 20
+
+      portal[editName].width = myWidth
+      portal[editName].top = 0
+      portal[editName].height = 20
+      portal[editName].left = portal[lblname].right + 5
+
+      portal[lblGoal].width = 100
+      portal[lblGoal].left = portal[lblname].left
+      portal[lblGoal].top = portal[lblname].bottom + 5
+      portal[lblGoal].height = 20
+
+      portal[editGoal].width = myWidth
+      portal[editGoal].left = portal[lblGoal].right + 5
+      portal[editGoal].top = portal[lblGoal].top
+      portal[editGoal].height = 20
+ 
+      portal[lblRewd].width = 100
+      portal[lblRewd].left = portal[lblGoal].left
+      portal[lblRewd].top = portal[lblGoal].bottom + 5
+      portal[lblRewd].height = 20
+
+      portal[editRewd].width = myWidth
+      portal[editRewd].left = portal[lblRewd].right + 5
+      portal[editRewd].top = portal[lblRewd].top
+      portal[editRewd].height = 20
+
+      portal[lblComp].width = 100
+      portal[lblComp].left = portal[lblRewd].left
+      portal[lblComp].top = portal[lblRewd].bottom + 5
+      portal[lblComp].height = 20
+
+      portal[menuComp].width = myWidth / 3
+      portal[menuComp].left = portal[lblComp].right + 5
+      portal[menuComp].top = portal[lblComp].top
+      portal[menuComp].height = 20
+
+      portal[lblStoComp].width = myWidth / 2
+      portal[lblStoComp].left = portal[menuComp].right + 5
+      portal[lblStoComp].top = portal[menuComp].top
+      portal[lblStoComp].height = 20
+	  portal[lblStoComp].visible = tagis[Story.Complete]
+
+	  var steps as number
+	  steps = field[StorComp].value
+	  
+	  ~notify "Steps to complete: " & steps
+	  
+      portal[lblStep1].width = 100
+      portal[lblStep1].left = portal[lblComp].left
+      portal[lblStep1].top = portal[lblComp].bottom + 5
+      portal[lblStep1].height = 20
+      
+      portal[chkStep1].width = 20
+      portal[chkStep1].left = portal[lblStep1].right + 5
+      portal[chkStep1].top = portal[lblStep1].top
+      portal[chkStep1].height = 20
+
+      portal[editStep1].width = portal[editRewd].width - 25
+      portal[editStep1].left = portal[chkStep1].right + 5
+      portal[editStep1].top = portal[chkStep1].top
+      portal[editStep1].height = 20
+
+      portal[lblStep2].width = 100
+      portal[lblStep2].left = portal[lblStep1].left
+      portal[lblStep2].top = portal[lblStep1].bottom + 5
+      portal[lblStep2].height = 20
+	  if (steps >= 2) then
+        portal[lblStep2].visible = portal[chkStep1].value
+	  else
+        portal[lblStep2].visible = 0
+	    endif
+
+      portal[chkStep2].width = 20
+      portal[chkStep2].left = portal[chkStep1].left
+      portal[chkStep2].top = portal[chkStep1].bottom + 5
+      portal[chkStep2].height = 20
+      portal[chkStep2].visible = portal[lblStep2].visible
+
+      portal[editStep2].width = portal[editStep1].width
+      portal[editStep2].left = portal[chkStep2].right + 5
+      portal[editStep2].top = portal[chkStep2].top
+      portal[editStep2].height = 20
+      portal[editStep2].visible = portal[lblStep2].visible
+
+      portal[lblStep3].width = 100
+      portal[lblStep3].left = portal[lblStep2].left
+      portal[lblStep3].top = portal[lblStep2].bottom + 5
+      portal[lblStep3].height = 20
+ 	  if (steps >= 3) then
+        portal[lblStep3].visible = portal[chkStep2].value
+	  else
+        portal[lblStep3].visible = 0
+	    endif
+
+      portal[chkStep3].width = 20
+      portal[chkStep3].left = portal[chkStep2].left
+      portal[chkStep3].top = portal[chkStep2].bottom + 5
+      portal[chkStep3].height = 20
+      portal[chkStep3].visible = portal[lblStep3].visible
+
+      portal[editStep3].width = portal[editStep1].width
+      portal[editStep3].left = portal[chkStep3].right + 5
+      portal[editStep3].top = portal[chkStep3].top
+      portal[editStep3].height = 20
+      portal[editStep3].visible = portal[lblStep3].visible
+      
+      portal[lblStep4].width = 100
+      portal[lblStep4].left = portal[lblStep3].left
+      portal[lblStep4].top = portal[lblStep3].bottom + 5
+      portal[lblStep4].height = 20
+	  if (steps >= 4) then
+        portal[lblStep4].visible = portal[chkStep3].value
+	  else
+        portal[lblStep4].visible = 0
+	    endif
+
+      portal[chkStep4].width = 20
+      portal[chkStep4].left = portal[chkStep3].left
+      portal[chkStep4].top = portal[chkStep3].bottom + 5
+      portal[chkStep4].height = 20
+      portal[chkStep4].visible = portal[lblStep4].visible
+
+      portal[editStep4].width = portal[editStep1].width
+      portal[editStep4].left = portal[chkStep4].right + 5
+      portal[editStep4].top = portal[chkStep4].top
+      portal[editStep4].height = 20
+      portal[editStep4].visible = portal[lblStep4].visible
+
+      portal[lblStep5].width = 100
+      portal[lblStep5].left = portal[lblStep4].left
+      portal[lblStep5].top = portal[lblStep4].bottom + 5
+      portal[lblStep5].height = 20
+      portal[lblStep5].visible = portal[chkStep4].value
+
+      portal[chkStep5].width = 20
+      portal[chkStep5].left = portal[chkStep4].left
+      portal[chkStep5].top = portal[chkStep4].bottom + 5
+      portal[chkStep5].height = 20
+      portal[chkStep5].visible = portal[lblStep5].visible
+	  if (steps >= 5) then
+        portal[lblStep5].visible = portal[chkStep4].value
+	  else
+        portal[lblStep5].visible = 0
+	    endif
+
+      portal[editStep5].width = portal[editStep1].width
+      portal[editStep5].left = portal[chkStep5].right + 5
+      portal[editStep5].top = portal[chkStep5].top
+      portal[editStep5].height = 20
+      portal[editStep5].visible = portal[lblStep5].visible
+      
+      ]]></position>
+    </template>
+
+  <layout
+    id="story">
+    <portalref portal="story" taborder="10"/>
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+      ~position the title at the top, followed by the template, and then the table
+      perform portal[story].autoplace[0]
+      ]]></position>
+
+    </layout>
+
+  <panel
+    id="story"
+    name="Stories"
+    marginhorz="5"
+    marginvert="5"
+    order="130">
+    <live>!HideTab.story</live>
+    <layoutref layout="story"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+
+  </document>

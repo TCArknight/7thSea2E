@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the assortment of races for the game system. The special
+      advantages of each race are conferred through a combination of scripts and
+      automatic assignment of special abilities. All special abilities are assigned
+      via the bootstrapping of the ability, resulting in the ability being
+      automatically assigned to the actor whenever the race is selected. If an ability
+      is both user-selected AND conferred by a race, the ability only appears a single
+      time because it all abilities are "unique".
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Languages -->
+  <thing
+    id="laAllLang"
+    name="All Languages"
+    compset="Language"
+    isunique="yes"
+    description="Your skill with languages is exceptional thanks to your Linguist ability. You can converse in any language no matter your Wits.">
+    <tag group="Hide" tag="Language"/>
+    </thing>
+  <thing
+    id="laOldThean"
+    name="Old Thean"
+    compset="Language"
+    isunique="yes"
+    description="The language of business. Most every Thean knows it.">
+    </thing>
+  <thing
+    id="laSidhe"
+    name="Sidhe"
+    compset="Language"
+    isunique="yes"
+    description="The language of the Sidhe.">
+    </thing>
+  <thing
+    id="laAvalon"
+    name="Avalonian"
+    compset="Language"
+    isunique="yes"
+    description="The language of Avalon.">
+    </thing>
+  <thing
+    id="laCastille"
+    name="Castillian"
+    compset="Language"
+    isunique="yes"
+    description="The language of Castille.">
+    </thing>
+  <thing
+    id="laEisen"
+    name="Eisen"
+    compset="Language"
+    isunique="yes"
+    description="The language of Eisen.">
+    </thing>
+  <thing
+    id="laHighland"
+    name="Highlander"
+    compset="Language"
+    isunique="yes"
+    description="The language of The Highland Marches.">
+    </thing>
+  <thing
+    id="laInish"
+    name="Inish"
+    compset="Language"
+    isunique="yes"
+    description="The language of Inismore.">
+    </thing>
+  <thing
+    id="laMontai"
+    name="Montaigne"
+    compset="Language"
+    isunique="yes"
+    description="The language of Montaigne.">
+    </thing>
+  <thing
+    id="laSarmat"
+    name="Sarmat"
+    compset="Language"
+    isunique="yes"
+    description="The language of The Sarmatian Commonwealth.">
+    </thing>
+  <thing
+    id="laUssara"
+    name="Ussaran"
+    compset="Language"
+    isunique="yes"
+    description="The language of Ussara.">
+    </thing>
+  <thing
+    id="laVesten"
+    name="Vesten"
+    compset="Language"
+    isunique="yes"
+    description="The language of Vestenmennavenjar.">
+    </thing>
+  <thing
+    id="laVodacce"
+    name="Vodacce"
+    compset="Language"
+    isunique="yes"
+    description="The language of Vodacce.">
+    </thing>
+    
+  </document>

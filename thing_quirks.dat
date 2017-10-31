@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains an assortment of Quirks -->
+
+<document signature="Hero Lab Data">
+
+  <!-- Quirks -->
+
+  <thing
+    id="quArchaeol"
+    name="Archaeologist"
+    compset="Quirk"
+    isunique="yes"
+    description="Earn a Hero Point when you turn an artifact of value over to a university, museum, or a publicly displayed site.">
+    </thing>
+    
+  <thing
+    id="quAristo"
+    name="Aristocrat"
+    compset="Quirk"
+    isunique="yes"
+    description="Earn a Hero Point when you prove there is more to nobility than expensive clothes and attending court.">
+    </thing>
+
+  <thing
+    id="quArmyOff"
+    name="Army Officer"
+    compset="Quirk"
+    isunique="yes"
+    description="Earn a Hero Point whenever you seize command during a moment of intense violence or extreme danger.">
+    </thing>
+
+  <thing
+    id="quArtist"
+    name="Artist"
+    compset="Quirk"
+    isunique="yes"
+    description="Earn a Hero Point when you make a sacrifice in the hope of making Théah a more beautiful place.">
+    </thing>
+
+  <thing
+    id="quAssassin"
+    name="Assassin"
+    compset="Quirk"
+    isunique="yes"
+    description="Earn a Hero Point when you go out of your way to avoid the death of an adversary or outright refuse a course of action because it could result in another person’s death.">
+    </thing>
+
+  <thing id="quCourtier" name="Courtier" description="Earn a Hero Point when you turn the tide of violence with charm and flair." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quCavalry" name="Cavalry" description="Earn a Hero Point when you apply your skills in horse riding to an uncommon situation." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quCrafter" name="Crafter" description="Earn a Hero Point when you use everyday crafting skills to solve a problem deemed too complex for such a simple solution." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quCriminal" name="Criminal" description="Earn a Hero Point when you break the law in the pursuit of a noble endeavor." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quDoctor" name="Doctor" description="Earn a Hero Point when you tend to the injuries of a Villain or the innocents harmed by a Villain." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quDuelist" name="Duelist" description="Earn a Hero Point when you resort to the edge of your blade to defend a noble ideal." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quEngineer" name="Engineer" description="Earn a Hero Point when you use your technological savvy to solve a problem." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quExplorer" name="Explorer" description="Earn a Hero Point when you set your eyes upon a sight few, if any, ThÃ©ans have ever seen before." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quFarmkid" name="Farmkid" description="Earn a Hero Point when you solve a complex problem in a simple, tried and true method from back on the farm." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quHunter" name="Hunter" description="Earn a Hero Point when you use your hunter&apos;s acumen to save someone from danger." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quJenny" name="Jenny" description="Earn a Hero Point when you resolve a conflict with seduction or sexual wiles." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quMerc" name="Mercenary" description="Earn a Hero Point when you choose to ply your trade for a reason that&apos;s worth more to you than money." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quMerchant" name="Merchant" description="Earn a Hero Point when you sell an item for far less than it&apos;s worth to someone who desperately needs it." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quNavOffic" name="Naval Officer" description="Earn a Hero Point when you put the needs of the crew ahead of the needs of the mission." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quOrphan" name="Orphan" description="Earn a Hero Point when you put yourself in danger to ensure someone else doesn&apos;t have to be alone." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quPerform" name="Performer" description="Earn a Hero Point when you use your crowd-pleasing skills for something more than making a few coins." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quPirate" name="Pirate" description="Earn a Hero Point when you make a personal sacrifice to ensure the freedom of another." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quPriest" name="Priest" description="Earn a Hero Point when you set aside the rhetoric and take action to practice the virtues you preach." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quProfess" name="Professor" description="Earn a Hero Point when you use knowledge from an obscure text to solve a complicated problem." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quPugilist" name="Pugilist" description="Earn a Hero Point when you drop what you&apos;re holding to fight with fists regardless of your opponent&apos;s weapon." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quQuarterm" name="Quartermaster" description="Earn a Hero Point when you solve a problem for your crew." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quSailor" name="Sailor" description="Earn a Hero Point when you put aside your personal desires to ensure the safety and comfort of your allies." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quScholar" name="Scholar" description="Earn a Hero Point when you put yourself in harm&apos;s way in pursuit of knowledge." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quServant" name="Servant" description="Earn a Hero Point when you put yourself in danger to assist another character with a difficult task." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quShipCapt" name="Ship Captain" description="Earn a Hero Point when you&apos;re the last one in your crew to safety." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quSoldier" name="Soldier" description="Earn a Hero Point when you stick to the plan regardless of  the danger to yourself." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quSpy" name="Spy" description="Earn a Hero Point when you take a great risk to uncover a secret." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quBard" name="Bard" description="Earn a Hero Point when you solve a problem by following an example set by a Legend." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quKnightEr" name="Knight Errant" description="Earn a Hero Point when you uphold an ideal of knightly virtue in a way that gets you into trouble." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quPrivate" name="Privateer" description="Earn a Hero Point when you defeat the enemies of the Crown of Avalon." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quUniAgent" name="Unification Agent" description="Earn a Hero Point when you ensure the stability of the Glamour Isles Unification." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quPuritan" name="Puritan" description="Earn a Hero Point when you expose corruption, hypocrisy, or ineffectiveness within the Vaticine Church." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quSaoi" name="Saoi (Wise One)" description="Earn a Hero Point when you put yourself in harm&apos;s way to protect the artists of ThÃ©ah." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quSeancha" name="Seanchaidh (Warrior-Poet)" description="Earn a Hero Point when you enforce the ancient laws of your people." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quAlquim" name="Alquimista" description="Earn a Hero Point when you improve another ThÃ©an&apos;s life\nthrough Alchemy." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quAntropo" name="Antropologo" description="Earn a Hero Point when you solve a problem for a group of strangers." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quDiestro" name="Diestro" description="Earn a Hero Point when you best a trained duelist at her own game." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quHexe" name="Hexe" description="Earn a Hero Point when you go out of your way to ensure that the dead stay dead." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quKrieger" name="Krieger (Warrior)" description="Earn a Hero Point when you choose to fight to defend the\ndefenseless or prevent destruction." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quUngetum" name="Ungetumjager (Monster Hunter)" description="Earn a Hero Point when you choose to hunt down an inhuman creature so it will never hurt anyone ever again." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quMirabil" name="Mirabilis (Priest)" description="Earn a Hero Point when you give of yourself to demonstrate the warmth and compassion of the Vaticine Church." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quVitalien" name="Vitalienbruder (Pirate)" description="Earn a Hero Point when you take from the rich to give to the poor." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quLamiDu" name="L&apos;Ami Du Roi (Courtier)" description="Earn a Hero Point when you leverage the King&apos;s favor to solve a problem." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quMousque" name="Mousqueaire" description="Earn a Hero Point when you take a serious injury to protect your comrades or King." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quRevolut" name="Revolutionnaire" description="Earn a Hero Point when you make a personal sacrifice for the sake of liberty." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quSorcPort" name="Sorcier Porte" description="Earn a Hero Point when you close a {i}Blessure{/i} that a Villain ripped open." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quPosel" name="Posel (Envoy)" description="Earn a Hero Point when you insist on democracy when it would be advantageous for you to not take a vote." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quTremtis" name="Tremtis (Expatriate)" description="Earn a Hero Point when something from your past comes back to haunt you." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quWingHuss" name="Winged Hussar" description="Earn a Hero Point when you and your steed plunge headfirst into a battle or conflict, heedless of the danger." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quZynys" name="Zynys (Soothsayer)" description="Earn a Hero Point when you use something evil for good." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quCossack" name="Cossack" description="Earn a Hero Point when you leave behind something important so you can travel light." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quProgress" name="Progressivist" description="Earn a Hero Point when you risk life and limb to secure a piece of advanced technology." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quTouMatus" name="Touched By Matushka" description="Earn a Hero Point when you teach someone a lesson in a way that would make Matushka proud." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quWhaler" name="Whaler" description="Earn a Hero Point when you face a creature that could swallow a man whole." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quBearsark" name="Bearsark" description="Earn a Hero Point when you let the Game Master choose your character&apos;s next action." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quGuildmas" name="Guildmastaren" description="Earn a Hero Point when you use the vast resources of the Vendel League for something more noble than profit." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quSjorover" name="Sjorover (Pirate)" description="Earn a Hero Point when put yourself in danger in order to ensure your place of honor at the Allfather&apos;s table." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quSkald" name="Skald" description="Earn a Hero Point when you use your knowledge as a Seidr to help another Hero to solve a problem or thwart a Villain." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quBravo" name="Bravo" description="Earn a Hero Point when you put yourself in danger to defend the life of the person you&apos;ve sworn to protect." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quConsig" name="Consigliere" description="Earn a Hero Point when you take a great risk to protect someone else&apos;s secret." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quEsplorat" name="Esploratore" description="Earn a Hero Point when you use non-ThÃ©an items or knowledge to solve a problem." compset="Quirk" uniqueness="unique"></thing>
+  <thing id="quSorteStr" name="Sorte Strega" description="Earn a Hero Point when you commit to a dangerous course of action that you believe is destiny." compset="Quirk" uniqueness="unique"></thing>
+
+  </document>

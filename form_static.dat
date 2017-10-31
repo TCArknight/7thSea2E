@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the definition of the "static" form for the game system.
+      The "static" form represents the region at the top of the main window that
+      is always visible for every actor (hence the term "static"). It's an area of
+      limited vertical height that spans the entire width of the main window, less
+      the region needed for the validation button and the dashboard (if visible).
+
+      In general, the "static" form should contain the character's name and core
+      aspects of the character that the user will often want to refer to. However,
+      there are no hard requirements for what is placed in the "static" form.
+
+      NOTE! The unique id of the "static" form is specially recognized by Hero Lab
+      as the form to be used across the top of the main window. A form with the
+      id "static" is required within your data files.
+-->
+
+<document signature="Hero Lab Data">
+
+
+  <!-- stName template
+        This template displays the character name and a label to prefix it.
+  -->
+  <template
+    id="stName"
+    name="Static Panel Name"
+    compset="useredit">
+
+    <portal
+      id="master"
+      style="actMaster"
+      tiptext="Click this button to activate this ally's Master.">
+      <action
+        action="master">
+        </action>
+      </portal>
+
+    <portal
+      id="edit"
+      style="editNormal">
+      <edit
+        field="useredit"
+        placeholdertext="Enter your character name here">
+        </edit>
+      </portal>
+
+    <position><![CDATA[
+      ~only show the master button if the actor is a minion
+      portal[master].visible = hero.isminion
+      if (portal[master].visible <> 0) then
+        perform portal[edit].alignrel[ltor,master,8]
+        endif
+
+      portal[edit].width = 185
+
+      ~our dimensions are the extent of our portals
+      height = portal[edit].bottom
+      width = portal[edit].right
+      ]]></position>
+
+    </template>
+
+
+  <!-- stActor template
+        This template displays all the basic state information for the actor, such
+        as health, power, character points, and wealth.
+  -->
+  <template
+    id="stActor"
+    name="Static Actor"
+    compset="Actor">
+
+    <portal
+      id="hp"
+      style="lblStatic">
+      <label>
+        <labeltext><![CDATA[
+          @text = "Hero Points: " & #trkuser[trkHeroPts] & " / " & #trkmax[trkHeroPts]
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <portal
+      id="cp"
+      style="lblStatic">
+      <label>
+        <labeltext><![CDATA[
+          @text = "CP: " & hero.child[resAttrib].field[resShort].text
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <portal
+      id="wealth"
+      style="lblStatic">
+      <label>
+        <labeltext><![CDATA[
+          ~@text = "Wealth: " & #trkuser[trkWealth] & " / " & #trkmax[trkWealth]
+          @text = "Max Wealth: " & #trkmax[trkWealth]
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <position><![CDATA[
+      ~all portals are text in the same style, and we set the template height based
+      ~on the height of one of the portals, so vertical alignment can be ignored
+
+      ~position the portals horizontally
+      portal[hp].left = 0
+      perform portal[cp].alignrel[ltor,hp,15]
+      perform portal[wealth].alignrel[ltor,cp,15]
+
+      ~since right now, we don't deal with wealth or CP, hide those in case need them later
+      ~hide any portals that don't fully fit within the visible horizontal space
+      ~if (portal[cp].right > width) then
+        portal[cp].visible = 0
+      ~  endif
+      if (portal[wealth].right > width) then
+        portal[wealth].visible = 0
+        endif
+
+      ~our height is the bottommost extent of our portals
+      height = portal[hp].bottom
+      ]]></position>
+
+    </template>
+
+
+  <!-- static layout
+        This layout consists of the character's name, Nation, and status info, which
+        are laid out in a ribbon across the top.
+  -->
+  <layout
+    id="static">
+    <templateref template="stName" thing="heroname" taborder="10"/>
+    <templateref template="stActor" thing="actor"/>
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+      ~position the name template on the left, with a little margin, then render it
+      ~to generate the appropriate dimensions
+      template[stName].left = 10
+      perform template[stName].render
+
+      ~position the Nation portal to the right of the name, with the actor template
+      ~a little to the right of the Nation
+      template[stActor].left = template[stName].right + 15
+
+      ~limit the width of the actor template to the remaining space available and
+      ~then render the template
+      template[stActor].width = width - template[stActor].left
+      perform template[stActor].render
+
+      ~center all visual elements vertically
+      ~Note: We can't do this until after we've calculated the heights for both
+      ~       templates, which is done when we render them.
+      template[stName].top = (height - template[stName].height) / 2
+      template[stActor].top = (height - template[stActor].height) / 2
+      ]]></position>
+
+    </layout>
+
+
+  <!-- static form
+        This is the "static" form shown at the top of the main window within Hero
+        Lab.
+
+        NOTE! The unique id of this form is specially recognized by Hero Lab as
+        the form to be used across the top of the main window. A form with this
+        id is required within your data files.
+
+        NOTE! By default, this form is 40 pixels in height, and it must always be
+        set to be at least 40 pixels in height.
+  -->
+  <form
+    id="static"
+    name="Static">
+    <layoutref layout="static"/>
+    <position><![CDATA[
+      ~we only want to use 20 pixels of height and we want it centered vertically
+      layout[static].height = 20
+      layout[static].top = (height - layout[static].height) / 2
+      ]]></position>
+    </form>
+
+  </document>

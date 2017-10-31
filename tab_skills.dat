@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definition of the "Skills" tab panel. This tab is where
+      the user selects and adjusts the skills for the character.
+
+      All public visual elements used with this tab panel start with the prefix "sk"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+
+
+  <portal
+    id="skSkills"
+    style="tblInvis">
+    <table_fixed
+      component="Skill"
+      scrollable="no"
+      showtemplate="skPick"
+      columns="1">
+      <headertitle><![CDATA[
+        @text = "Skills"
+        if (hero.tagis[Hero.Creature] = 0) then
+          @text &= "  -  " & hero.child[resSkill].field[resSummary].text
+          endif
+        ]]>
+        </headertitle>
+      </table_fixed>
+    </portal>  
+    
+  <!-- skLangs portal
+        Displays list of languages the character knows and allows them to select
+        a new one if they have the slots.
+   -->
+  <portal
+    id="skLangs"
+    style="tblNormal">
+    <table_dynamic
+      component="Language"
+      showtemplate="LangPick"
+      choosetemplate="SimpleItem"
+      showfixedlast="yes"
+      addpick="resLang"
+      columns="2">
+      <list><![CDATA[
+        !Hide.Language
+        ]]></list>
+      <titlebar><![CDATA[
+        @text = "Add a Language"
+        @text &= " - " & hero.child[resLang].field[resSummary].text
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+        @text = "Languages"
+        @text &= ": " & hero.child[resLang].field[resSummary].text
+        ]]></headertitle>
+      <additem><![CDATA[
+        ~set the color based on whether the proper number of slots are allocated
+        if (field[resLeft].value = 0) then
+          @text = "{text a0a0a0}"
+        elseif (field[resLeft].value < 0) then
+          @text = "{text ff0000}"
+          endif
+        @text &= "Add New Language"
+        ]]></additem>
+      </table_dynamic>
+    </portal>        
+  <!-- skThing template
+        Displays the name of the skill, with its linked attribute at the right edge.
+  -->
+  <template
+    id="skThing"
+    name="Skill Thing"
+    compset="Skill"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="name">
+        </label>
+      </portal>
+
+    <portal
+      id="attribute"
+      style="lblSecond">
+      <label>
+        <labeltext><![CDATA[
+          @text = linkage[attribute].field[name].text
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[name].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~center the portals vertically
+      perform portal[name].centervert
+      perform portal[attribute].centervert
+
+      ~position the attribute portal on the far right
+      perform portal[attribute].alignedge[right,0]
+
+      ~position the name on the left and let it use all available space
+      portal[name].left = 0
+      portal[name].width = minimum(portal[name].width,portal[attribute].left - 8)
+      ]]></position>
+
+    </template>
+
+
+  <!-- skPick template
+        Displays a skill within the table of skills. In addition to the name, an
+        incrementer is shown that allows the user to assign skill points to the
+        skill by adjusting the die type. Skills the require a domain display the
+        appropriate edit portal so the user can enter the domain. Skills can also
+        be deleted and have a mouse-over info icon.
+  -->
+  <template
+    id="skPick"
+    name="Skill Pick"
+    compset="Skill"
+    marginhorz="23"
+    marginvert="3">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="name">
+        </label>
+      </portal>
+      
+    <portal
+      id="value"
+      style="incrSimple">
+      <incrementer
+        field="trtUser">
+        </incrementer>
+      <mouseinfo><![CDATA[
+        if (hero.tagis[mode.creation] = 0) then
+          @text = "Skills must be modified via the Advances tab once the character is locked for play."
+        elseif (autonomous = 0) then
+          @text = "This trait has been improved via the Advances tab and cannot be modified further from here."
+        else
+          @text = "Allocate points to this skill by clicking on the arrows to increase/decrease the number of points assigned."
+          endif
+        ]]></mouseinfo>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo><![CDATA[
+          @text = "{b}" & field[name].text & "{/b}"
+          @text &= "{br}{br}{align left}" & field[xCustDesc].text
+        ]]></mouseinfo>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+      
+    <portal
+      id="menu1"
+      style="menuNormal">
+      <menu_things
+        field="usrChosen1"
+        component="none"
+        maxvisible="10"
+        usepicksfield="usrSource1"
+        candidatefield="usrCandid1">
+        </menu_things>
+      </portal>  
+               
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~freeze our value in advancement mode or if an advancement has modified us
+      ~Note: All freezing must be done *before* any positioning is performed.
+      if (state.iscreate = 0) then
+        portal[value].freeze = 1
+      elseif (autonomous = 0) then
+        portal[value].freeze = 1
+        endif
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+
+      ~center the other portals vertically
+      perform portal[name].centervert
+      perform portal[value].centervert
+      perform portal[delete].centervert
+      perform portal[menu1].centervert
+
+      ~position the delete portal on the far right
+      perform portal[delete].alignedge[right,0]
+
+      ~position the info portal to the left of the delete portal (plus a gap)
+      perform portal[info].alignrel[rtol,delete,-10]
+
+     ~position the incrementer to the left of the info portal (plus a gap)
+      perform portal[value].alignrel[rtol,info,-10]
+
+     ~if we don't need a domain, hide it and let the name use all available space
+      if (tagis[User.NeedSpec] = 0) then
+        portal[menu1].visible = 0
+        portal[name].left = 0
+        portal[name].width = minimum(portal[name].width,portal[value].left - portal[name].left - 10)
+
+      ~otherwise, position the domain portals next to the name also, make the 
+      ~name portal invivisible and shift the domain to the name position 
+      ~to use it as a custom Skill name when a Custom Skill is chosen
+      else
+        ~if (tagis[Custom.Skill] > 0) then
+        ~  portal[name].visible = 0
+        ~  portal[domain].width = minimum(150,portal[value].left - portal[domain].left - 5)
+        ~else
+          perform portal[menu1].alignrel[rtol,value,-100]
+          portal[menu1].width = 150
+        ~  endif
+        endif
+                
+      ~position the name on the left and make sure its width does not exceed the available space
+      portal[name].left = 0
+      ]]></position>
+
+    </template>
+    
+  <!-- LangItem template
+  -->
+  <template
+    id="LangPick"
+    name="Language Pick"
+    compset="Language"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="thingname">
+        </label>
+      </portal>
+
+    <portal
+      id="username"
+      style="editNormal">
+      <edit
+        field="UserName"
+        maxlength="100">
+        </edit>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+
+      ~center the other portals vertically
+      perform portal[name].centeron[vert,info]
+      perform portal[username].centeron[vert,info]
+      perform portal[delete].centeron[vert,info]
+
+      ~position the delete portal on the far right
+      perform portal[delete].alignedge[right,0]
+
+      ~position the info portal to the left of the delete button
+      perform portal[info].alignrel[rtol,delete,-8]
+
+      var edge as number
+      edge = portal[info].left - 5
+
+      ~position the name on the left and let it use all available space
+      portal[name].left = 0
+      portal[name].width = minimum(portal[name].width,edge)
+
+      ~if this is a "custom" item pick, show an edit portal instead of the name
+      if (tagis[Helper.CustomItem] <> 0) then
+        portal[name].visible = 0
+        portal[username].left = portal[name].left
+        var limit as number
+        limit = portal[info].left - portal[username].left - 5
+        portal[username].width = minimum(200,limit)
+      else
+        portal[username].visible = 0
+        endif
+
+      ~if this is an auto-added pick, change its font to indicate that fact
+      if (ispick + !candelete >= 2) then
+        perform portal[name].setstyle[lblAuto]
+        endif
+      ]]></position>
+
+    </template>
+
+  <!-- skills layout
+        This layout orchestrates the display of the visual elements that comprise
+        the Skills tab. This amounts to a title at the top and a dynamic table below
+        where the user can add and adjust the skills he wants.
+
+        The logic for this layout is similar to (albeit much simpler than) the
+        logic for the Basics tab. So please refer to the Basics tab for more details.
+  -->
+  <layout
+    id="skills">
+    <portalref portal="skSkills" taborder="10"/>
+    <portalref portal="skLangs" taborder="20"/>
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+      ~freeze our skills table in advancement mode to disable adding new choices
+      ~Note: All freezing must be done *before* any positioning is performed.
+      if (state.iscreate = 0) then
+        portal[skSkills].freeze = 1
+        endif
+
+      ~both tables span the full width
+      portal[skSkills].width = width
+      portal[skLangs].width = width
+
+      ~the languages table is only visible if enabled
+      if (hero.tagis[Hero.ShowLang] <> 0) then
+         portal[skLangs].visible = 1
+         endif
+
+      ~if the languages table is visible, reserve space for it at the bottom
+      ~var y as number
+      ~if (portal[skLangs].visible = 0) then
+      ~  y = bottom
+      ~else
+      ~  portal[skLangs].maxrows = 4
+      ~  portal[skLangs].top = height - portal[skLangs].height
+      ~  y = portal[skLangs].top - 15
+      ~  endif
+
+      ~position and size the table to span the full layout; it will only use the
+      ~vertical space that it actually needs
+      ~portal[skSkills].height = bottom
+
+      ~position the languages table beneath the skills and let is expand
+      ~portal[skLangs].top = height/2
+      ~portal[skLangs].height = height - portal[skLangs].top
+       perform portal[skSkills].autoplace
+       perform portal[skLangs].autoplace[20]
+
+      
+      ]]></position>
+
+    </layout>
+
+
+  <!-- skills panel
+        This is the "Skills" panel shown within Hero Lab. Since we want this panel
+        to appear after Basics and within the traits grouping, we assign it an
+        "order" of 120.
+
+        The logic for this panel is similar to the logic for the Basics panel, so
+        please refer to the Basics panel for more details.
+  -->
+  <panel
+    id="skills"
+    name="Skills"
+    marginhorz="5"
+    marginvert="5"
+    order="110">
+    <live>!HideTab.skills</live>
+    <layoutref layout="skills"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+
+
+  </document>

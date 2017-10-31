@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the assortment of advances that can be selected by actors as
+      their experience accrues.
+-->
+
+<document signature="Hero Lab Data">
+
+
+  <!-- Advancement Details - shared by all advancements
+  -->
+  <thing
+    id="advDetails"
+    name="Advancement Details"
+    compset="AdvDetails">
+    </thing>
+
+
+  <!-- New Ability advance
+
+  <thing
+    id="advBackgr"
+    name="Gain a New Background"
+    compset="Advance"
+    description="Select a new ability of your choice.">
+    <fieldval field="advAction" value="New Ability"/>
+    <fieldval field="advDynamic" value="component.Background"/>
+    <tag group="Advance" tag="AddNew"/>   -->
+    <!-- Modify tagexpr to deny abilities that have already been added to the character
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+      ~get the list of all abilities on the hero and assemble it as a list of precluded tags
+      var tagexpr as string
+      tagexpr = hero.tagids[Background.?," & !"]
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+      field[advDynamic].text = splice(field[advDynamic].text,tagexpr," & !")
+      ]]></eval> -->
+
+    <!-- Attach the child entity for tracking the advance
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing> -->
+	
+  <!-- Increase Skill to Rank 1
+  -->
+  <thing
+    id="advSkill1"
+    name="Increase Skill to Rank 1"
+    compset="Advance"
+    description="Select a skill to make Rank 1.">
+    <fieldval field="advAction" value="Increase Skill"/>
+    <fieldval field="advDynamic" value="component.Skill"/>
+    <fieldval field="advCost" value="1"/>
+    <tag group="Advance" tag="Increase"/>
+    <!-- Modify advCost based on existing skill rank -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+       ~get the list of all unique skills on the hero and assemble it as a list of precluded tags
+      var tagexpr as string
+	  var loopcount as number
+	  loopcount = 0
+	  
+	  ~notify field[advDynamic].text
+      foreach pick in hero where "component.Skill" 
+       if (eachpick.field[trtFinal].value = 0) then
+	      loopcount += 1
+	      if (loopcount = 1) then
+		     tagexpr &= "&( "
+		  else
+		     tagexpr &= " |"
+             endif
+			 
+          tagexpr &= " Skill." & eachpick.idstring
+          endif
+        nexteach
+		
+	  if (loopcount <> 0) then
+	    tagexpr &= ")"
+		endif
+		
+      ~~notify tagexpr
+	  
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+	  ~~notify "empty(tagexpr) = " & empty(tagexpr) 
+	  
+      if (empty(tagexpr) = 0) then
+        field[advDynamic].text &= tagexpr
+        endif
+      ~notify field[advDynamic].text
+      ]]></eval>
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+
+  <!-- Increase Skill to Rank 2
+  -->
+  <thing
+    id="advSkill2"
+    name="Increase Skill to Rank 2"
+    compset="Advance"
+    description="Select a skill to make Rank 2.">
+    <fieldval field="advAction" value="Increase Skill"/>
+    <fieldval field="advDynamic" value="component.Skill"/>
+    <fieldval field="advCost" value="2"/>
+    <tag group="Advance" tag="Increase"/>
+    <!-- Modify advCost based on existing skill rank -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+       ~get the list of all unique skills on the hero and assemble it as a list of precluded tags
+      var tagexpr as string
+	  var loopcount as number
+	  loopcount = 0
+	  
+	  ~notify field[advDynamic].text
+      foreach pick in hero where "component.Skill" 
+       if (eachpick.field[trtFinal].value = 1) then
+	      loopcount += 1
+	      if (loopcount = 1) then
+		     tagexpr &= "&( "
+		  else
+		     tagexpr &= " |"
+             endif
+			 
+          tagexpr &= " Skill." & eachpick.idstring
+          endif
+        nexteach
+		
+	  if (loopcount <> 0) then
+	    tagexpr &= ")"
+		endif
+		
+      ~~notify tagexpr
+	  
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+	  ~~notify "empty(tagexpr) = " & empty(tagexpr) 
+	  
+      if (empty(tagexpr) = 0) then
+        field[advDynamic].text &= tagexpr
+        endif
+      ~notify field[advDynamic].text
+      ]]></eval>
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+	
+<!-- Increase Skill to Rank 3
+  -->
+  <thing
+    id="advSkill3"
+    name="Increase Skill to Rank 3"
+    compset="Advance"
+    description="Select a skill to make Rank 3.">
+    <fieldval field="advAction" value="Increase Skill"/>
+    <fieldval field="advDynamic" value="component.Skill"/>
+    <fieldval field="advCost" value="3"/>
+    <tag group="Advance" tag="Increase"/>
+    <!-- Modify advCost based on existing skill rank -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+       ~get the list of all unique skills on the hero and assemble it as a list of precluded tags
+      var tagexpr as string
+	  var loopcount as number
+	  loopcount = 0
+	  
+	  ~notify field[advDynamic].text
+      foreach pick in hero where "component.Skill" 
+       if (eachpick.field[trtFinal].value = 2) then
+	      loopcount += 1
+	      if (loopcount = 1) then
+		     tagexpr &= "&( "
+		  else
+		     tagexpr &= " |"
+             endif
+			 
+          tagexpr &= " Skill." & eachpick.idstring
+          endif
+        nexteach
+		
+	  if (loopcount <> 0) then
+	    tagexpr &= ")"
+		endif
+		
+      ~~notify tagexpr
+	  
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+	  ~~notify "empty(tagexpr) = " & empty(tagexpr) 
+	  
+      if (empty(tagexpr) = 0) then
+        field[advDynamic].text &= tagexpr
+        endif
+      ~notify field[advDynamic].text
+      ]]></eval>
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+
+<!-- Increase Skill to Rank 4
+  -->
+  <thing
+    id="advSkill4"
+    name="Increase Skill to Rank 4"
+    compset="Advance"
+    description="Select a skill to make Rank 4.">
+    <fieldval field="advAction" value="Increase Skill"/>
+    <fieldval field="advDynamic" value="component.Skill"/>
+    <fieldval field="advCost" value="4"/>
+    <tag group="Advance" tag="Increase"/>
+    <!-- Modify advCost based on existing skill rank -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+       ~get the list of all unique skills on the hero and assemble it as a list of precluded tags
+      var tagexpr as string
+	  var loopcount as number
+	  loopcount = 0
+	  
+	  ~notify field[advDynamic].text
+      foreach pick in hero where "component.Skill" 
+       if (eachpick.field[trtFinal].value = 3) then
+	      loopcount += 1
+	      if (loopcount = 1) then
+		     tagexpr &= "&( "
+		  else
+		     tagexpr &= " |"
+             endif
+			 
+          tagexpr &= " Skill." & eachpick.idstring
+          endif
+        nexteach
+		
+	  if (loopcount <> 0) then
+	    tagexpr &= ")"
+		endif
+		
+      ~~notify tagexpr
+	  
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+	  ~~notify "empty(tagexpr) = " & empty(tagexpr) 
+	  
+      if (empty(tagexpr) = 0) then
+        field[advDynamic].text &= tagexpr
+        endif
+      ~notify field[advDynamic].text
+      ]]></eval>
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+	
+<!-- Increase Skill to Rank 5
+  -->
+  <thing
+    id="advSkill5"
+    name="Increase Skill to Rank 5"
+    compset="Advance"
+    description="Select a skill to make Rank 5.">
+    <fieldval field="advAction" value="Increase Skill"/>
+    <fieldval field="advDynamic" value="component.Skill"/>
+    <fieldval field="advCost" value="5"/>
+    <tag group="Advance" tag="Increase"/>
+    <!-- Modify advCost based on existing skill rank -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+       ~get the list of all unique skills on the hero and assemble it as a list of precluded tags
+      var tagexpr as string
+	  var loopcount as number
+	  loopcount = 0
+	  
+	  ~notify field[advDynamic].text
+      foreach pick in hero where "component.Skill" 
+       if (eachpick.field[trtFinal].value = 4) then
+	      loopcount += 1
+	      if (loopcount = 1) then
+		     tagexpr &= "&( "
+		  else
+		     tagexpr &= " |"
+             endif
+			 
+          tagexpr &= " Skill." & eachpick.idstring
+          endif
+        nexteach
+		
+	  if (loopcount <> 0) then
+	    tagexpr &= ")"
+		endif
+		
+      ~~notify tagexpr
+	  
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+	  ~~notify "empty(tagexpr) = " & empty(tagexpr) 
+	  
+      if (empty(tagexpr) = 0) then
+        field[advDynamic].text &= tagexpr
+        endif
+      ~notify field[advDynamic].text
+      ]]></eval>
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+	
+<!-- Add New Advantage - 1 Pt.
+  -->
+  <thing
+    id="advAdvant1"
+    name="Add Advantage (1 Pt.)"
+    compset="Advance"
+    description="Select a 1 point advantage ">
+    <fieldval field="advAction" value="New Advantage"/>
+    <fieldval field="advDynamic" value="component.Advantage &amp; PointCost.1"/>
+    <fieldval field="advCost" value="1"/>
+    <tag group="Advance" tag="AddNew"/>
+    <!-- Modify advCost based on existing skill rank -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+	  var tagexpr as string
+	  
+       ~get the list of all unique skills on the hero and assemble it as a list of precluded tags
+      foreach pick in hero from Advantage where "!Hide.Advantage"
+        if (eachpick.isunique <> 0) then
+          tagexpr &= " & !Advantage." & eachpick.idstring
+          endif
+        nexteach
+	  
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+      if (empty(tagexpr) = 0) then
+        field[advDynamic].text &= tagexpr
+        endif
+	  ~notify field[advDynamic].text
+      ]]></eval>
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+  <thing
+    id="advAdvant2"
+    name="Add Advantage (2 Pt.)"
+    compset="Advance"
+    description="Select a 2 point advantage ">
+    <fieldval field="advAction" value="New Advantage"/>
+    <fieldval field="advDynamic" value="component.Advantage &amp; PointCost.2"/>
+    <fieldval field="advCost" value="2"/>
+    <tag group="Advance" tag="AddNew"/>
+    <!-- Modify advCost based on existing skill rank -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+	  var tagexpr as string
+	  
+       ~get the list of all unique skills on the hero and assemble it as a list of precluded tags
+      foreach pick in hero from Advantage where "!Hide.Advantage"
+        if (eachpick.isunique <> 0) then
+          tagexpr &= " & !Advantage." & eachpick.idstring
+          endif
+        nexteach
+	  
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+      if (empty(tagexpr) = 0) then
+        field[advDynamic].text &= tagexpr
+        endif
+	  ~notify field[advDynamic].text
+      ]]></eval>
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+  <thing
+    id="advAdvant3"
+    name="Add Advantage (3 Pt.)"
+    compset="Advance"
+    description="Select a 3 point advantage ">
+    <fieldval field="advAction" value="New Advantage"/>
+    <fieldval field="advDynamic" value="component.Advantage &amp; PointCost.3"/>
+    <fieldval field="advCost" value="3"/>
+    <tag group="Advance" tag="AddNew"/>
+    <!-- Modify advCost based on existing skill rank -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+	  var tagexpr as string
+	  
+       ~get the list of all unique skills on the hero and assemble it as a list of precluded tags
+      foreach pick in hero from Advantage where "!Hide.Advantage"
+        if (eachpick.isunique <> 0) then
+          tagexpr &= " & !Advantage." & eachpick.idstring
+          endif
+        nexteach
+	  
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+      if (empty(tagexpr) = 0) then
+        field[advDynamic].text &= tagexpr
+        endif
+	  ~notify field[advDynamic].text
+      ]]></eval>
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+  <thing
+    id="advAdvant4"
+    name="Add Advantage (4 Pt.)"
+    compset="Advance"
+    description="Select a 4 point advantage ">
+    <fieldval field="advAction" value="New Advantage"/>
+    <fieldval field="advDynamic" value="component.Advantage &amp; PointCost.4"/>
+    <fieldval field="advCost" value="4"/>
+    <tag group="Advance" tag="AddNew"/>
+    <!-- Modify advCost based on existing skill rank -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+	  var tagexpr as string
+	  
+       ~get the list of all unique skills on the hero and assemble it as a list of precluded tags
+      foreach pick in hero from Advantage where "!Hide.Advantage"
+        if (eachpick.isunique <> 0) then
+          tagexpr &= " & !Advantage." & eachpick.idstring
+          endif
+        nexteach
+	  
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+      if (empty(tagexpr) = 0) then
+        field[advDynamic].text &= tagexpr
+        endif
+	  ~notify field[advDynamic].text
+      ]]></eval>
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+  <thing
+    id="advAdvant5"
+    name="Add Advantage (5 Pt.)"
+    compset="Advance"
+    description="Select a 5 point advantage ">
+    <fieldval field="advAction" value="New Advantage"/>
+    <fieldval field="advDynamic" value="component.Advantage &amp; PointCost.5"/>
+    <fieldval field="advCost" value="5"/>
+    <tag group="Advance" tag="AddNew"/>
+    <!-- Modify advCost based on existing skill rank -->
+    <eval index="1" phase="Render" priority="1000">
+      <before name="Assign Dynamic Tagexpr"/><![CDATA[
+	  var tagexpr as string
+	  
+       ~get the list of all unique skills on the hero and assemble it as a list of precluded tags
+      foreach pick in hero from Advantage where "!Hide.Advantage"
+        if (eachpick.isunique <> 0) then
+          tagexpr &= " & !Advantage." & eachpick.idstring
+          endif
+        nexteach
+	  
+      ~if there are any tags to exclude, append them to the tagexpr appropriately
+      if (empty(tagexpr) = 0) then
+        field[advDynamic].text &= tagexpr
+        endif
+	  ~notify field[advDynamic].text
+      ]]></eval>
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      <tag group="Advance" tag="MustChoose"/>
+      </child>
+    </thing>
+
+  <!-- Replace Quirk advance
+  -->
+  <thing
+    id="advQuirk"
+    name="Change Quirk"
+    compset="Advance"
+    description="Select a Quirk to Replace.">
+    <fieldval field="advAction" value="Choose Quirk"/>
+    <fieldval field="advDynamic" value="component.Quirk &amp; !User.Hidden"/>
+    <fieldval field="advCost" value="3"/>
+	<tag group="Advance" tag="Increase"/>
+
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      </child>
+    </thing>
+	
+  <!-- Increase Attribute advance
+  -->
+  <thing
+    id="advAttrib"
+    name="Increase Trait"
+    compset="Advance"
+    description="Select an attribute to increase by one.">
+    <fieldval field="advAction" value="Increase Attribute"/>
+    <fieldval field="advDynamic" value="component.Attribute &amp; !Helper.Maximum &amp; !Hide.Attribute"/>
+    <fieldval field="advCost" value="5"/>
+	<tag group="Advance" tag="Increase"/>
+
+    <!-- Attach the child entity for tracking the advance -->
+    <child entity="Advance">
+      </child>
+    </thing>
+
+
+  </document>

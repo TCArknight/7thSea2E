@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definition of the "Skills" tab panel. This tab is where
+      the user selects and adjusts the skills for the character.
+
+      All public visual elements used with this tab panel start with the prefix "sk"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+
+  <portal
+    id="soMinor"
+    style="tblNormal">
+    <table_dynamic
+      component="PowerMin"
+      showtemplate="soMinPick"
+      choosetemplate="SimpleItem"
+      useagentadd="yes"
+      useagentcandidate="yes"
+      useagentlinkage="yes"
+      candidatefield="sPwrExprMi">
+      <titlebar><![CDATA[
+        @text = "Add a " & agent.field[sMinName].text
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+        @text = agent.field[sMinName].text & ": " & hero.child[resSorcMin].field[resSummary].text
+        ]]></headertitle>
+      <additem><![CDATA[
+        @text &= "Add New " & agent.field[sMinName].text
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+    
+  <portal
+    id="soMajor"
+    style="tblNormal">
+    <table_dynamic
+      component="PowerMaj"
+      showtemplate="soMajPick"
+      choosetemplate="SimpleItem"
+      useagentadd="yes"
+      useagentcandidate="yes"
+      useagentlinkage="yes"
+      candidatefield="sPwrExprMa">
+      <titlebar><![CDATA[
+        @text = "Add a " & agent.field[sMajName].text
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+        @text = agent.field[sMajName].text & ": " & hero.child[resSorcMaj].field[resSummary].text
+        ]]></headertitle>
+      <additem><![CDATA[
+        @text &= "Add New " & agent.field[sMajName].text
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+	
+    <portal
+      id="soSrcLbl"
+      style="lblBrdCent">
+      <label>
+	    <labeltext><![CDATA[
+        @text &= agent.field[sSrcName].text & ": "
+        ]]></labeltext>
+		</label>
+      </portal> 
+	  
+    <portal
+      id="soSrcTbl"
+      style="tblNormal">
+      <table_dynamic
+        component="SorcHelp"
+        showtemplate="SimpleItem"
+        choosetemplate="SimpleItem"
+		useagentadd="yes"
+        useagentcandidate="yes"
+        useagentlinkage="yes"
+		candidatefield="sSrcTblExp">
+        <titlebar><![CDATA[
+          @text = "Add a " & agent.field[sSrcName].text
+          ]]></titlebar>
+        <description/>
+        <headertitle><![CDATA[
+          @text = agent.field[sSrcName].text & ": " & hero.child[resSorcSrc].field[resSummary].text
+          ]]></headertitle>
+        <additem><![CDATA[
+          @text &= "Add New " & agent.field[sSrcName].text
+          ]]></additem>
+        </table_dynamic>
+      </portal>
+
+    <portal 
+      id="soSrcChs" 
+      style="chsNormal" 
+      width="150">
+      <chooser_table 
+        component="SorcHelp" 
+        choosetemplate="SimpleItem"
+        useagentcandidate="yes"
+        useagentlinkage="yes"
+		candidatefield="sSrcChsExp">
+        <chosen><![CDATA[
+          if (@ispick = 0) then
+            @text = "{text ff0000}-- Select --"
+          else
+            @text = field[name].text
+            endif
+          ]]></chosen>
+        <titlebar>
+          @text = ""
+          </titlebar>
+        </chooser_table>
+      </portal>
+
+  <template
+    id="soMinPick"
+    name="Minor Power Pick"
+    compset="PowerMin"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="name">
+        </label>
+      </portal>
+     
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+      
+    <portal
+      id="domain"
+      style="editNormal">
+      <edit
+        field="domDomain">
+        </edit>
+      </portal>
+            
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+      portal[domain].width = 150
+
+      ~center the other portals vertically
+      perform portal[name].centervert
+      perform portal[delete].centervert
+
+      ~position the delete portal on the far right
+      perform portal[delete].alignedge[right,0]
+
+      ~position the info portal to the left of the delete button
+      perform portal[info].alignrel[rtol,delete,-8]
+
+      portal[domain].visible = tagis[User.NeedDomain]
+      
+      ~if we don't need a menu or domain, position the name across entire row
+      if (tagis[User.UserSelect] + tagis[User.NeedDomain] = 0) then
+        ~position the name on the left and let it use all available space
+        portal[name].left = 0
+        portal[name].width = minimum(portal[name].width,portal[info].left - 5)
+        endif
+
+      ~if we need a menu or domain, reveal and position the name accordingly
+      ~Domain
+      if (tagis[User.NeedDomain] = 1) then
+        
+        ~position the domain portal to the left of the info button
+        perform portal[domain].alignrel[rtol,info,-8]
+        
+        ~position the name on the left and let it use all available space
+        portal[name].left = 0
+        portal[name].width = minimum(portal[name].width,portal[domain].left - 5)
+        endif
+      
+           
+      ~if the background is auto-added, change its font to indicate that fact
+      if (candelete = 0) then
+        perform portal[name].setstyle[lblAuto]
+        endif
+      ]]></position>
+
+    </template>
+  <template
+    id="soMajPick"
+    name="Major Power Pick"
+    compset="PowerMaj"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label
+        field="name">
+        </label>
+      </portal>
+     
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+      
+    <portal
+      id="domain"
+      style="editNormal">
+      <edit
+        field="domDomain">
+        </edit>
+      </portal>
+            
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+      portal[domain].width = 150
+
+      ~center the other portals vertically
+      perform portal[name].centervert
+      perform portal[delete].centervert
+
+      ~position the delete portal on the far right
+      perform portal[delete].alignedge[right,0]
+
+      ~position the info portal to the left of the delete button
+      perform portal[info].alignrel[rtol,delete,-8]
+
+      portal[domain].visible = tagis[User.NeedDomain]
+      
+      ~if we don't need a menu or domain, position the name across entire row
+      if (tagis[User.UserSelect] + tagis[User.NeedDomain] = 0) then
+        ~position the name on the left and let it use all available space
+        portal[name].left = 0
+        portal[name].width = minimum(portal[name].width,portal[info].left - 5)
+        endif
+
+      ~if we need a menu or domain, reveal and position the name accordingly
+      ~Domain
+      if (tagis[User.NeedDomain] = 1) then
+        
+        ~position the domain portal to the left of the info button
+        perform portal[domain].alignrel[rtol,info,-8]
+        
+        ~position the name on the left and let it use all available space
+        portal[name].left = 0
+        portal[name].width = minimum(portal[name].width,portal[domain].left - 5)
+        endif
+      
+           
+      ~if the background is auto-added, change its font to indicate that fact
+      if (candelete = 0) then
+        perform portal[name].setstyle[lblAuto]
+        endif
+      ]]></position>
+
+    </template>
+	  
+  <template
+    id="soSorTemp"
+    name="Sorcery Template"
+    compset="Sorcery"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="soSorTitle"
+      style="lblTitle">
+      <label>
+        <labeltext><![CDATA[
+          @text = "Description"
+          ]]></labeltext>
+        </label>
+      </portal>
+      
+    <portal
+      id="soSorDesc"
+      style="lblBrdLeft">
+      <label
+        field="descript"
+        ismultiline="yes">
+        </label>
+      </portal>
+                
+    <position><![CDATA[
+      ~set up our dimensions, with a width that we dictate; our width can vary
+      var specCheck as number
+      specCheck = 0
+	  ~hero.tagis[HasSorc.soKniAva] + hero.tagis[HasSorc.soSanderis]
+      
+      portal[soSorTitle].height = 20
+      
+      if (specCheck >= 1) then 
+        portal[soSorDesc].height = height/2 - 50
+      else
+        portal[soSorDesc].height = height/3
+        endif
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position the description on the left and let it use all available space
+      portal[soSorTitle].top = 0
+      portal[soSorTitle].left = 0
+      portal[soSorTitle].width = width
+      
+      portal[soSorDesc].top = portal[soSorTitle].bottom + 2
+      portal[soSorDesc].left = portal[soSorTitle].left
+      portal[soSorDesc].width = portal[soSorTitle].width
+	  
+	  height = portal[soSorDesc].bottom + 5
+     
+      ]]></position>
+
+    </template>
+                       
+  <!-- sorcery layout
+        This layout orchestrates the display of the visual elements that comprise
+        the Skills tab. This amounts to a title at the top and a dynamic table below
+        where the user can add and adjust the skills he wants.
+
+        The logic for this layout is similar to (albeit much simpler than) the
+        logic for the Basics tab. So please refer to the Basics tab for more details.
+  -->
+  <layout
+    id="sorcery">
+    <portalref portal="soMinor" />
+    <portalref portal="soMajor" />
+    <portalref portal="soSrcLbl" />
+    <portalref portal="soSrcTbl" />
+    <portalref portal="soSrcChs" />
+    <templateref template="soSorTemp" useagent="yes"/>
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+      ~freeze our skills table in advancement mode to disable adding new choices
+      ~Note: All freezing must be done *before* any positioning is performed.
+      ~if (state.iscreate = 0) then
+      ~  template[soSorTemp].freeze = 1
+      ~  endif
+
+	  var myPos as number
+	  
+      ~both tables span the full width
+      template[soSorTemp].width = width
+      template[soSorTemp].visible = 1
+      portal[soMinor].visible = 1
+      portal[soMajor].visible = 1
+      portal[soSrcLbl].visible = 0
+       portal[soSrcTbl].visible = 0
+      portal[soSrcChs].visible = 0
+      
+      perform template[soSorTemp].autoplace[0]
+
+	  myPos = template[soSorTemp].bottom + 5
+	  
+      if (length(agent.field[sSrcChsExp].text) <> 0) then
+	    portal[soSrcLbl].visible = 1
+		portal[soSrcLbl].top =  myPos
+		portal[soSrcLbl].left = 5
+		portal[soSrcLbl].width = 100
+		
+        portal[soSrcChs].visible = 1
+        portal[soSrcChs].top =  portal[soSrcLbl].top
+        portal[soSrcChs].left = portal[soSrcLbl].right + 5
+        portal[soSrcChs].width = width/2 - 10   
+
+        myPos = portal[soSrcLbl].bottom		
+        endif
+ 
+      if (length(agent.field[sSrcTblExp].text) <> 0) then
+        portal[soSrcTbl].visible = 1
+        portal[soSrcTbl].top = myPos
+        portal[soSrcTbl].left = 5
+        portal[soSrcTbl].width = width/2 - 10  
+        
+        myPos = portal[soSrcTbl].bottom		
+        endif
+		
+      ~portal[soMinor].height = height/3 
+      portal[soMinor].width = width - 10
+      portal[soMinor].top = myPos + 10
+      portal[soMinor].left = 5
+      
+      ~portal[soMajor].height = height/3 
+      portal[soMajor].width = portal[soMinor].width
+      portal[soMajor].top = portal[soMinor].bottom + 10
+      portal[soMajor].left = portal[soMinor].left
+
+	  height = portal[soMajor].bottom + 5
+	  
+      ]]></position>
+
+    </layout>
+
+  <!-- sorcery panel
+        This is the "Sorcery" panel shown within Hero Lab.
+  -->
+  <panel
+    id="sorcery"
+    name="Sorcery"
+    marginhorz="5"
+    marginvert="5"
+    order="155"
+    agentcompset="Sorcery"
+    agentlive="HasSorc"
+    agentname="name"
+    >
+    <live>!HideTab.sorcact</live>
+    <layoutref layout="sorcery"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+
+
+  </document>

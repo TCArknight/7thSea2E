@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the assortment of advantages for the game system.
+      Abilities confer their effects through scripts that apply the necessary changes
+      to the appropriate traits.
+
+      Abilities influence traits, so all adjustments must be applied prior to when the
+      final trait value is calculated. The script timing used below (PreTraits/5000)
+      ensures that we satisfy this requirement. All abilities should be designated as
+      "unique" so that they can only be selected a single time by the user.
+-->
+
+<document signature="Hero Lab Data">
+
+  <thing
+    id="adHead1"
+    name="1 point Advantages"
+    compset="Advantage"
+    isunique="yes">
+    <tag group="thing" tag="showonly"/>
+    <tag group="PointCost" tag="1"/>
+    </thing>
+  <thing
+    id="adHead2"
+    name="2 point Advantages"
+    compset="Advantage"
+    isunique="yes">
+    <tag group="thing" tag="showonly"/>
+    <tag group="PointCost" tag="2"/>
+    </thing>
+  <thing
+    id="adHead3"
+    name="3 point Advantages"
+    compset="Advantage"
+    isunique="yes">
+    <tag group="thing" tag="showonly"/>
+    <tag group="PointCost" tag="3"/>
+    </thing>
+  <thing
+    id="adHead4"
+    name="4 point Advantages"
+    compset="Advantage"
+    isunique="yes">
+    <tag group="thing" tag="showonly"/>
+    <tag group="PointCost" tag="4"/>
+    </thing>
+  <thing
+    id="adHead5"
+    name="5 point Advantages"
+    compset="Advantage"
+    isunique="yes">
+    <tag group="thing" tag="showonly"/>
+    <tag group="PointCost" tag="5"/>
+    </thing>
+
+  <thing
+    id="adAbleDrin"
+    name="Able Drinker"
+    compset="Advantage"
+    isunique="yes"
+    description="Alcohol never affects you, no matter how much you drink.">
+    <tag group="PointCost" tag="1"/>
+    </thing>
+
+  <thing
+    id="adCastIron"
+    name="Cast Iron Stomach"
+    compset="Advantage"
+    isunique="yes"
+    description="Spoiled or raw food never negatively affects you, and you still gain required sustenance from it.">
+    <tag group="PointCost" tag="1"/>
+    </thing>
+
+  <thing
+    id="adDirSense"
+    name="Direction Sense"
+    compset="Advantage"
+    isunique="yes"
+    description="As long as you have some point of reference, you are never lost. That isn’t the same as knowing exactly where you are -- if you’re knocked unconscious and wake up in a dungeon, you don’t necessarily have any idea what city you are in, but if you manage to escape your cell you will never get turned around in the winding tunnels that make up the dungeon.">
+    <tag group="PointCost" tag="1"/>
+    </thing>
+
+  <thing
+    id="adForBorn"
+    name="Foreign Born"
+    compset="Advantage"
+    isunique="yes"
+    description="Choose a Nation of Théah aside from your own. You were raised there, rather than your blood homeland. For example, if your parents are Castillian but you were raised in Vodacce, you would be Foreign Born [Vodacce]. Any Risk you take that would benefit from your dual heritage -- using Convince to negotiate between two merchants who hail from your two cultures, or using Tempt to know just what to say to bribe a border patrol into letting you pass without inspection -- gains 1 Bonus Die.">
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Nation"/>
+    <tag group="ChooseSrc1" tag="Thing"/>
+    <tag group="User" tag="UserSelect"/>
+    <tag group="PointCost" tag="1"/>
+    </thing>
+   
+  <thing
+    id="adLarge"
+    name="Large"
+    compset="Advantage"
+    isunique="yes"
+    description="All of your Intimidation Risks have one extra die. Any Physical Risk you take that would benefit from your size (lifting large or heavy objects, for example) gains one extra die.">
+    <tag group="PointCost" tag="1"/>
+    </thing> 
+    
+  <thing
+    id="adLinguist"
+    name="Linguist"
+    compset="Advantage"
+    isunique="yes"
+    description="You speak, read, and write all Théan languages. Even the dead ones.">
+    <tag group="PointCost" tag="1"/>
+    <bootstrap thing="laAllLang"></bootstrap>
+    <eval phase="Final" priority="500">
+      ~Hide all Languages
+      foreach pick in hero where "component.Language"
+        perform eachpick.assign[Hide.Language]
+        nexteach
+      
+      perform hero.childfound[laAllLang].delete[Hide.Language]
+      #resmax[resLang] = 1
+      #resspent[resLang] = 1
+      </eval>
+    </thing> 
+    
+  <thing
+    id="adSeaLegs"
+    name="Sea Legs"
+    compset="Advantage"
+    isunique="yes"
+    description="While aboard a ship, treacherous footing never affects you. You gain 1 Bonus Die on any physical Risk while aboard a ship at sea -- engaging in a sword fight on a pitching ship deck, or climbing through the rigging during a storm.">
+    <tag group="PointCost" tag="1"/>
+    </thing> 
+    
+  <thing
+    id="adSmall"
+    name="Small"
+    compset="Advantage"
+    isunique="yes"
+    description="You are smaller than the average Théan. Much smaller. If your small size makes a Risk easier -- using Hide to squeeze into a tiny space and escape a guard patrol, or using Athletics to slip between the bars of a jail cell -- gain 1 Bonus Die.">
+    <tag group="PointCost" tag="1"/>
+    </thing> 
+    
+  <thing
+    id="adSurvival"
+    name="Survivalist"
+    compset="Advantage"
+    isunique="yes"
+    description="If you are in the wilderness, you can forage or hunt and find enough food for yourself and up to five other people. Under extreme circumstances -- lost in the middle of a desert, or abandoned in the Ussuran tundra, for example -- you find enough food for yourself and up to two other people.">
+    <tag group="PointCost" tag="1"/>
+    </thing> 
+    
+  <thing
+    id="adTimeSen"
+    name="Time Sense"
+    compset="Advantage"
+    isunique="yes"
+    description="You always know what time it is. You know how long until the next sunrise or sunset, with less than a one minute margin of error.">
+    <tag group="PointCost" tag="1"/>
+    </thing> 
+      
+  <thing
+    id="adBarter"
+    name="Barterer"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}1 point cost if Glamour Islander{/i}{/b}{br}{br}Spend a Hero Point to convince someone to cut you a deal, give you a reasonable discount, or assure someone who knows you that 'you’re good for it.'">
+    <tag group="PointCost" tag="2"/>
+    <tag group="AltNation" tag="GlamIsla"/>
+    <tag group="NatCost" tag="1"/>
+    </thing>
+      
+  <thing
+    id="adComeHith"
+    name="Come Hither"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to lure another character into a private room and later leave said private room without him, removing him from the scene. He may be rescued after you’re long gone.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+      
+  <thing
+    id="adConnect"
+    name="Connection"
+    compset="Advantage"
+    isunique="no"
+    description="You have connections who can give you information or help you out when you need it. Choose a type of contact -- 'Freiburg underworld,' 'Five Sails city watch,' or 'Vodacce high society courtiers,' for example. You can always make contact with someone of that type who will give you basic information or help you in some minor way, so long as it doesn’t cost them anything or put them in danger. If you want more hard-to-find information or a dangerous favor, you must spend a Hero Point or agree to a cost that your connection stipulates, such as paying them money or agreeing to do a favor for them in return.">
+    <tag group="User" tag="NeedDomain"/>
+    <tag group="PointCost" tag="2"/>
+    </thing>
+      
+  <thing
+    id="adDisSmile"
+    name="Disarming Smile"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to keep another character from drawing a weapon, starting a fight, or resorting to violence. She will still defend herself, but she will not start any violent conflicts.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+      
+  <thing
+    id="adEagleEye"
+    name="Eagle Eyes"
+    compset="Advantage"
+    isunique="yes"
+    description="As long as you have a clear line of sight, you can see perfectly out to a distance of one mile. If you use a spyglass you can even pick out fine details, such as the inscription carved into a wedding band. If you make a Risk that relies heavily on your keen vision, you gain 1 Bonus Die.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+      
+  <thing
+    id="adExtFam"
+    name="Extended Family"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}1 point cost if Ussaran{/i}{/b}{br}{br}Spend a Hero Point to reveal you have a distant cousin who lives nearby and can help you with materials, information, or shelter.">
+    <tag group="PointCost" tag="2"/>
+    <tag group="Nation" tag="naUssara"/>
+    <tag group="NatCost" tag="1"/>
+    </thing>
+      
+  <thing
+    id="adFascinat"
+    name="Fascinate"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to capture the attention of another character. That character pays attention only to you until the end of the Scene or until you cease speaking/paying attention, whichever comes first.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+      
+  <thing
+    id="adFriCourt"
+    name="Friend At Court"
+    compset="Advantage"
+    isunique="yes"
+    description="When you are at a ball, feast, or similar high society function, spend a Hero Point to reveal you have a close friend also in attendance.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+      
+  <thing
+    id="adGotIt"
+    name="Got It!"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to immediately pick a lock, crack a safe, or disarm a trap.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+      
+  <thing
+    id="adHandy"
+    name="Handy"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to repair a broken item, rig a damaged gun, patch a leaky ship, or perform similar miracles, causing the object to function normally for the rest of the Scene. At the end of the Scene -- or if the object suffers any additional damage -- the object becomes unusable until you have time to perform serious repairs with the proper tools.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+      
+  <thing
+    id="adIndoWill"
+    name="Indomitable Will"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point. You cannot be intimidated, seduced, or otherwise goaded into acting a way that you do not wish. You can do this once per game session.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+      
+  <thing
+    id="adInspGen"
+    name="Inspire Generosity"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to convince another character to grant you an object you want at no cost. They might give you something they already have or go to some lengths -- legal or illegal -- to procure the item, whatever is the easiest way for them to get their hands on what you want.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+      
+  <thing
+    id="adLeader"
+    name="Leadership"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}1 point cost if Sarmatian{/i}{/b}{br}{br}Spend a Hero Point to inspire a group to action. The group must be able to hear you, but if they can and they are of neutral or better disposition, they will do whatever you command so long as it is reasonable -- they are unlikely to all throw themselves off a bridge to certain death, for example.">
+    <tag group="PointCost" tag="2"/>
+    <tag group="Nation" tag="naSarmat"/>
+    <tag group="NatCost" tag="1"/>
+    </thing>
+      
+  <thing
+    id="adMarrSea"
+    name="Married to the Sea"
+    compset="Advantage"
+    isunique="yes"
+    description="You have access to a Ship. If you and your allies already have access to a Ship, your Ship gains an additional Background. See the Sailing chapter for more information.">
+    <fieldval field="advActText" value="Already have Ship"/>
+    <tag group="User" tag="Activation"/>   
+    <tag group="PointCost" tag="2"/>   
+    <!-- Reveal the Ship Tab -->
+    <eval phase="Setup" priority="6000">
+	perform hero.assign[Hero.MarrToSea]
+	if (field[advActive].value = 1) then
+  perform hero.delete[HideTab.ship]
+  endif</eval>
+    <eval phase="Final" priority="500" index="2">if (field[advActive].value = 1) then
+  #resmax[resShBack] = 1
+  endif</eval>
+    <eval phase="Setup" priority="500" index="3">perform hero.assign[Hero.MarrToSea]
+	  </eval>
+    </thing>
+  
+  <thing
+    id="adPerfBal"
+    name="Perfect Balance"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to move across a thin beam, jump from one place to another, or otherwise perform a feat of perfect agility and balance.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+
+  <thing
+    id="adPoiImmu"
+    name="Poison Immunity"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}1 point cost if Vodacce{/i}{/b}{br}{br}Poison never affects you, aside from some potential mild discomfort. If the poison would ordinarily kill you, it might cause you only to vomit instead, but there are no additional effects.">
+    <tag group="PointCost" tag="2"/>
+    <tag group="Nation" tag="naVodacce"/>
+    <tag group="NatCost" tag="1"/>
+    </thing>
+
+  <thing
+    id="adPsstOver"
+    name="Psst, Over Here"
+    compset="Advantage"
+    isunique="yes"
+    description="While undetected, you can spend a Hero Point to lure a single character out of position and knock him out. Any other characters in the area remain unaware of your presence.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+
+  <thing
+    id="adReckTake"
+    name="Reckless Takedown"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to immediately defeat a single Brute Squad, regardless of its Strength. You immediately take 1 Dramatic Wound.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+
+  <thing
+    id="adReputNew"
+    name="Reputation (New)"
+    compset="Advantage"
+    isunique="no"
+    description="You determine what your Reputation is with a single adjective -- 'Honorable,' 'Vicious,' etc. -- When you use your reputation to your advantage in a social Risk, you gain 1 Bonus Die. A Hero can buy this Advantage multiple times. Each time she does, she can choose to gain either a new Reputation or to increase the number of Bonus Dice she gains when she invokes her existing Reputation."
+     summary="Gain a new reputation.">
+    <tag group="PointCost" tag="2"/>
+    <!-- Increase the number of allowed Reputations -->
+    <eval index="2" phase="PreTraits" priority="5000"><![CDATA[
+      
+      #resmax[resRep] += 1
+  
+      ]]></eval>
+    </thing>
+    
+  <thing
+    id="adReputAdd"
+    name="Reputation (Increase)"
+    compset="Advantage"
+    isunique="no"
+    description="You determine what your Reputation is with a single adjective -- 'Honorable,' 'Vicious,' etc. -- When you use your reputation to your advantage in a social Risk, you gain 1 Bonus Die. A Hero can buy this Advantage multiple times. Each time she does, she can choose to gain either a new Reputation or to increase the number of Bonus Dice she gains when she invokes her existing Reputation."
+     summary="Increase your existing reputation.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+
+  <thing
+    id="adSecStory"
+    name="Second Story Work"
+    compset="Advantage"
+    isunique="yes"
+    description="You can spend a Hero Point to locate a way into a building or restricted area. You can bring up to one other character along with you, but everyone else has to find their own way in -- or wait for you to open a path for them.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+
+  <thing
+    id="adSlipFree"
+    name="Slip Free"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to slip your hands free from manacles, loosen the rope tying you to a chair, or similarly free yourself.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+   
+  <thing
+    id="adSorcery"
+    name="Sorcery"
+    compset="Advantage"
+    isunique="no"
+    description="You gain the Sorcery from your National bloodline. If you purchase this Advantage after Hero Creation, you may only do so with a Hero Story.">
+    <tag group="PointCost" tag="2"/>
+    <!-- Add the Sorcery tag to the Character -->
+    <eval index="1" phase="Setup" priority="6000"><![CDATA[
+      perform hero.delete[HideTab.sorcery]
+      perform hero.assign[Sorcery.Sorcery]
+      ]]></eval>
+      
+    <!-- Add the Sorcery tag to the Character -->
+    <eval index="2" phase="PreTraits" priority="5000"><![CDATA[
+      
+      doneif (hero.tagis[Sorcery.Sorcery] = 0)
+      
+      var sorID as string
+      var myExpr as string
+      var sorccount as number
+      var tot as number
+      
+      sorID = hero.tagids[HasSorc.?,"|"]
+      sorID = replace(sorID,"HasSorc","thingid",0)
+
+      sorccount = hero.tagcount[Sorcery.Sorcery]
+
+      ~Minor Powers count
+      if (hero.tagis[Helper.AltMinAdv] <> 0) then
+        ~ Progression: 2,3,4,4
+        tot = (1 + sorccount)
+        #resmax[resSorcMin] = minimum(tot,4)
+      else
+        #resmax[resSorcMin] += 2
+        endif
+
+      ~Major Powers count
+      if (hero.tagis[Helper.AltMajAdv] <> 0) then
+        ~ Progression: 1,2,3,4
+        tot = sorccount
+        #resmax[resSorcMaj] = tot
+      else
+        #resmax[resSorcMaj] += 1
+        endif
+          
+      ]]></eval>      
+    </thing>
+
+  <thing
+    id="adStaredn"
+    name="Staredown"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}1 point cost if Eisen{/i}{/b}{br}{br}Spend a Hero Point to intimidate a character into backing down from a threat, letting you into somewhere he shouldn’t, or otherwise getting out of your way.">
+    <tag group="PointCost" tag="2"/>
+    <tag group="Nation" tag="naEisen"/>
+    <tag group="NatCost" tag="1"/>
+    </thing>
+
+  <thing
+    id="adStreetwi"
+    name="Streetwise"
+    compset="Advantage"
+    isunique="yes"
+    description="You can spend a Hero Point to locate a fixer, an information broker, a black market, or a similar underworld figure.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+
+  <thing
+    id="adTeamPlay"
+    name="Team Player"
+    compset="Advantage"
+    isunique="yes"
+    description="When you spend a Raise to create an Opportunity, you can spend a second Raise. If you do, you activate the Opportunity on behalf of another willing Hero -- she doesn’t need to spend her own Raise.">
+    <tag group="PointCost" tag="2"/>
+    </thing>
+
+  <thing
+    id="adValSpir"
+    name="Valiant Spirit"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}Note: Be sure to reset the Hero Point tracker on the In-Play tab to see the additional HP{/b}{br}{br}You begin each game with 2 Hero Points instead of 1.">
+    <tag group="PointCost" tag="2"/>
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      herofield[acBonHero].value += 1
+      ]]></eval>
+    </thing>
+    
+  <thing
+    id="adAnHonMis"
+    name="An Honest Misunderstanding"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to edit, redact, or otherwise alter something you or another Hero just said, 'reinterpreting' the words into the kindest compliment.">
+    <tag group="PointCost" tag="3"/>
+    </thing>
+    
+  <thing
+    id="adBarFight"
+    name="Bar Fighter"
+    compset="Advantage"
+    isunique="yes"
+    description="You gain 1 Bonus Die when you make a Brawling Risk to fight using an upturned table, a barstool, a plank of wood or some other improvised weapon.">
+    <tag group="PointCost" tag="3"/>
+    </thing>
+    
+  <thing
+    id="adBoxer"
+    name="Boxer"
+    compset="Advantage"
+    isunique="yes"
+    description="You gain 1 Bonus Die when you make a Brawling Risk to punch, kick, headbutt or otherwise injure another character using nothing but your own body.">
+    <tag group="PointCost" tag="3"/>
+    </thing>
+    
+  <thing
+    id="adBruiser"
+    name="Bruiser"
+    compset="Advantage"
+    isunique="yes"
+    description="You gain 1 Bonus Die when you make a Weaponry Risk using a claymore, zweihander, battle axe, halberd or similar weapon in both hands.">
+    <tag group="PointCost" tag="3"/>
+    </thing>
+    
+  <thing
+    id="adBrushPa"
+    name="Brush Pass"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to pick a pocket, steal a ring from another character’s finger, or plant a small hand-held item on another character without him noticing.">
+    <tag group="PointCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adCamarad"
+    name="Camaraderie"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}2 point cost if Montaigne{/i}{/b}{br}{br}Whenever you spend a Hero Point to aid an ally, they gain four dice instead of three.">
+    <tag group="PointCost" tag="3"/>
+    <tag group="Nation" tag="naMontai"/>
+    <tag group="NatCost" tag="2"/>
+    </thing>
+    
+  <thing
+    id="adDeadeye"
+    name="Deadeye"
+    compset="Advantage"
+    isunique="yes"
+    description="You gain 1 Bonus Die when you make an Aim Risk using a pistol, blunderbuss, or a thrown weapon such as a knife or axe.">
+    <tag group="PointCost" tag="3"/>
+    </thing> 
+    
+  <thing
+    id="adDynamApp"
+    name="Dynamic Approach"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to change your Approach during an Action Sequence or Dramatic Sequence.">
+    <tag group="PointCost" tag="3"/>
+    </thing> 
+    
+  <thing
+    id="adFencer"
+    name="Fencer"
+    compset="Advantage"
+    isunique="yes"
+    description="You gain 1 Bonus Die when you make a Weaponry Risk using a rapier, dagger, cutlass or similar weapon in one hand.">
+    <tag group="PointCost" tag="3"/>
+    </thing> 
+    
+  <thing
+    id="adFouWeaJ"
+    name="Foul Weather Jack"
+    compset="Advantage"
+    isunique="yes"
+    description="Your Hero gains a second Story. You create this Story in the same manner as all other Hero Stories, and its progression and rewards are determined independently. When this Story is completed, you may write a new one.">
+    <tag group="PointCost" tag="3"/>
+    <!-- Increase the number of allowed Storys -->
+    <eval index="1" phase="PreTraits" priority="5000"><![CDATA[
+      
+      #resmax[resStory] += 1
+  
+      ]]></eval>
+    </thing> 
+
+  <thing
+    id="adMastCraf"
+    name="Masterpiece Crafter"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}2 point cost if Vesten{/i}{/b}{br}{br}Choose one type of item -- weapons, armor, paintings, etc. When you create such an item, you may increase the time you work on it in order to create an item of greater quality. If you are using typical, mundane materials, this has no additional effect aside from cosmetic -- the item is noticeably higher quality than similar items, and may even bear your mark, earn you notoriety for your fine work, draw a higher price if it is for sale, etc. If you use exotic materials -- such as creating a sword using metal from a fallen star, for example -- you can create a Signature Item for yourself or another Hero. The time required to create a Signature Item, and whether or not a material is 'special' enough to qualify, is always a GM's discretion.">
+    <tag group="PointCost" tag="3"/>
+    <tag group="Nation" tag="naVesten"/>
+    <tag group="NatCost" tag="2"/>
+    </thing>
+
+  <thing
+    id="adOpportun"
+    name="Opportunist"
+    compset="Advantage"
+    isunique="yes"
+    description="When another Hero spends a Raise to create an Opportunity, you can spend a Hero Point to immediately activate the Opportunity for yourself.">
+    <tag group="PointCost" tag="3"/>
+    </thing>
+       
+  <thing
+    id="adOrdain"
+    name="Ordained"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}2 point cost if Castile{/i}{/b}{br}{br}You can expect refuge, a place to stay, and hot meals in any church. You also have access to many -- but not all -- of the Church’s libraries. Finally, you gain two dice for any social Risks against characters who are adherents to your faith.">
+    <tag group="PointCost" tag="3"/>
+    <tag group="Nation" tag="naCastille"/>
+    <tag group="NatCost" tag="2"/>
+    </thing>
+
+  <thing
+    id="adPatron"
+    name="Patron"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}Note: Be sure to reset the Hero Point tracker on the In-Play tab to see the additional Wealth{/b}{br}{br}You have a patron, either an individual or an organization, who appreciates your work and supplies you with steady employment. You begin each session with 1 Wealth. You may spend a Hero Point to call in a favor from your Patron. This favor is typically political or mercantile in some way -- your Patron might provide you a letter of introduction, or pull strings to get you into an exclusive party, etc. Your Patron may ask you for favors or have other expectations for you, such as expecting you to produce goods or art on her behalf if you are an artist or aiding the populace in her name if you are a knight.">
+    <tag group="PointCost" tag="3"/>
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      herofield[acBonWeal].value += 1
+      ]]></eval>
+    </thing>
+    
+  <thing
+    id="adQuiRef"
+    name="Quick Reflexes"
+    compset="Advantage"
+    isunique="no"
+    description="Choose one Skill. You always take actions as if you had an additional Raise to spend when you use that Skill. For example, if a Hero has Quick Reflexes with Weaponry and rolls 3 Raises with that Skill, she takes her first Action on 4 Raises. If she spends 1 Raise to take an action (and so has 2 Raises remaining) her next Action occurs on 3 Raises. A Hero can buy this Advantage multiple times. Each time they do, they choose a different Skill.">
+    <fieldval field="usrCandid1" value="component.Skill"/>
+    <tag group="User" tag="UserSelect"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="PointCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adRich"
+    name="Rich"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}Note: Be sure to reset the Hero Point tracker on the In-Play tab to see the additional Wealth{/b}{br}{br}You begin each session with 3 Wealth.">
+    <tag group="PointCost" tag="3"/>
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      herofield[acBonWeal].value += 2
+      ]]></eval>
+    </thing>
+
+  <thing
+    id="adSigItem"
+    name="Signature Item"
+    compset="Advantage"
+    isunique="yes"
+    description="Choose a specific item that is important to you. Describe it, decide why it is important, and maybe even give it a name. You can always spend a Hero Point to...{br}{indent 5}* have your Signature Item appear in the next scene if you lose it or it is stolen.{br}{indent 5}* gain 2 Bonus Dice on a Risk when using your Signature Item.{br}{indent 5}* attack a foe to deal Wounds equal to the Raises you spend plus your highest Trait when using the Signature Item.{br}{indent 5}* prevent a number of Wounds equal to the Raises you spend plus your highest Trait when using the Signature item.{br}{br}You must always describe how your Signature Item helps you, and it must make sense for the item to gain you any bonuses in this way (GM discretion).">
+    <tag group="PointCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adSniper"
+    name="Sniper"
+    compset="Advantage"
+    isunique="yes"
+    description="You gain 1 Bonus Die when you make an Aim Risk using a long-barrelled musket, longbow, or crossbow.">
+    <tag group="PointCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adTenure"
+    name="Tenure"
+    compset="Advantage"
+    isunique="yes"
+    description="You can expect refuge, a place to stay, and hot meals in any university. You also have access to many -- but not all -- of a university's libraries simply by requesting it. Finally, you gain 2 Bonus Dice for any social Risks against characters who are members of an institution of higher learning or who respect such an education.">
+    <tag group="PointCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adVirtuoso"
+    name="Virtuoso"
+    compset="Advantage"
+    isunique="yes"
+    description="Choose a specific Performance type, such as singing, playing a specific musical instrument, or dancing. You gain 1 Bonus Die when you make a Perform Risk using that art.">
+    <tag group="User" tag="NeedDomain"/>
+    <tag group="PointCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adAcademy"
+    name="Academy"
+    compset="Advantage"
+    isunique="yes"
+    description="You studied strategy, horsemanship, and soldiering at one of Théah's many military academies. When you make a Risk using Athletics, Warfare, or Ride, all of your dice gain +1 to their value.">
+    <fieldval field="advValue1" value="1"/>
+    <tag group="PointCost" tag="4"/>
+    </thing>
+
+  <thing
+    id="adAlchem"
+    name="Alchemist"
+    compset="Advantage"
+    isunique="yes"
+    description="Spend a Hero Point to produce an elixir or potion that provides an immediate benefit. Using the alchemical concoction requires a Raise during an Action Sequence or a Dramatic Sequence. These are some examples of uses for alchemical concoctions. There may be others. If you want to create one of your own, consult with your GM.{br}{b}Explosion:{/b} The concoction causes an explosion of choking smoke and fire, creating an Opportunity you and others can use to escape the Scene.{br}{b}Enhancement:{/b} You gain 1 Rank in 1 Trait for 1 Round.{br}{b}Oil:{/b} Anything covered with the concoction is slick and nearly impossible to hold. If poured on the floor, anyone walking or running on the surface will slip and fall. If poured down a wall, anyone trying to climb the wall slips and falls as well.">
+    <tag group="PointCost" tag="4"/>
+    <!-- Requires Castillian only -->
+    <prereq message="Castille required.">
+      <validate><![CDATA[
+        validif (tagis[Nation.naCastille] <> 0)
+        ]]></validate>
+      </prereq>
+    </thing>
+
+  <thing
+    id="adHardKill"
+    name="Hard to Kill"
+    compset="Advantage"
+    isunique="yes"
+    description="You no longer become Helpless when you have four Dramatic Wounds. Instead, when you have four Dramatic Wounds any Villain who takes a Risk against you gains 3 Bonus Dice (rather than 2). You gain an additional tier of Wounds. When you have taken your fifth Dramatic Wound, you become Helpless.">
+    <tag group="PointCost" tag="4"/>
+    </thing>
+
+  <thing
+    id="adLegTrait"
+    name="Legendary Trait"
+    compset="Advantage"
+    isunique="yes"
+    description="Choose a Trait. Whenever you roll a Risk using that Trait, you remove one die from your pool before you roll. That die is always considered to roll a 10. If your 10s explode, your free Legendary Trait 10 explodes as well.">
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <tag group="User" tag="UserSelect"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="PointCost" tag="4"/>
+    </thing>
+
+  <thing
+    id="adLyceum"
+    name="Lyceum"
+    compset="Advantage"
+    isunique="yes"
+    description="You studied rhetoric and debate, and refined your social graces at one of Théah’s many lyceums, finishing schools typically reserved for the social and noble elite. When you make a Risk using Convince, Intimidate, or Tempt, all of your dice gain +1 to their value.">
+    <tag group="PointCost" tag="4"/>
+    </thing>
+
+  <thing
+    id="adMirWork"
+    name="Miracle Worker"
+    compset="Advantage"
+    isunique="yes"
+    description="Perhaps it was study with the Church or a local shaman, but you know wounds and how to deal with them. Spend a Hero Point and 1 Raise on your Action to heal another Hero: they regain 1 Dramatic Wound. You must be able to touch the Hero you are healing.">
+    <tag group="PointCost" tag="4"/>
+    </thing>
+
+  <thing
+    id="adRiotBrea"
+    name="Riot Breaker"
+    compset="Advantage"
+    isunique="yes"
+    description="You’re used to your opponents coming in double digits. When you take Wounds from a Brute Squad, subtract your Resolve from the Wounds. The remainder is how many Wounds you take, to a minimum of 1 Wound.">
+    <tag group="PointCost" tag="4"/>
+    </thing>
+
+  <thing
+    id="adSeidr"
+    name="Seidr"
+    compset="Advantage"
+    isunique="yes"
+    description="You have studied under a Vesten Skald. You learned how to see the Names of things, how to know the future based on how the flames of a bonfire dance, and how to guide the passions of people either to laud your heroes or deride your enemies.{br}{br}Spend a Hero Point and make a speech about another character. He gains a 1 Rank Reputation (as the Advantage of the same name) of your choice, increases an existing Reputation by 1 Rank, or you change their Reputation to a different Reputation of your choice (but the Rank remains the same). If you change a character’s existing Reputation, anyone who uses the new Reputation against him gains Bonus Dice equal to that Reputation’s Rank.{br}{br} Spend a Hero Point to cast runes, dice, or bones. When you do so, ask the GM a single yes or no question about the future. The GM must answer honestly, but only needs to respond yes or no. If the event in question can be changed by the actions of others, such as whether or not a person will die, then the answer given represents the outcome that is currently most likely, but otherwise this power is never wrong.{br}{br}Spend a Hero Point when you look at another mortal human. You know that person’s name. No disguise can hide the name from you, nor will you believe any lie designed to obscure the name. For the rest of the Scene, you always recognize it, no matter how it changes.">
+    <tag group="PointCost" tag="4"/>
+    <!-- Requires Vesten only -->
+    <prereq message="Vesten required.">
+      <validate><![CDATA[
+        validif (tagis[Nation.naVesten] <> 0)
+        ]]></validate>
+      </prereq>
+    </thing>
+
+  <thing
+    id="adSpecial"
+    name="Specialist"
+    compset="Advantage"
+    isunique="yes"
+    description="When you purchase this Advantage, choose a Skill that you have at least 3 Ranks in to become your Specialist Skill. When you make a Risk using any other Skill during an Action or Dramatic Sequence, you do not have to pay additional Raises to Improvise with your Specialist Skill. A Hero can only have a single Specialist Skill; purchasing this Advantage again lets you choose a new Specialist Skill, but you lose your old one.">
+    <tag group="User" tag="UserSelect"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="PointCost" tag="4"/>
+    <eval phase="Final" priority="10000"><![CDATA[
+      ~get list of ids for Rank3 on the hero
+      var myTags as string
+      myTags = hero.tagids[Rank3.?,"|"]
+      
+      ~Replace all instances of "Rank3" with "thingid"
+      myTags = replace(myTags,"Rank3","thingid",0)
+      
+      field[usrCandid1].text = "component.Skill" 
+      
+      if (empty(myTags) = 0) then    
+        field[usrCandid1].text = "component.Skill & (" & myTags & ")"
+        endif
+       
+      ]]></eval>
+    <!-- Requires at least one Rank 3 Skill -->
+    <prereq message="One SKill at Rank 3 required.">
+      <validate><![CDATA[
+        validif (tagcount[Rank3.?] > 0)
+        ]]></validate>
+      </prereq>
+    </thing>
+
+  <thing
+    id="adTrustCom"
+    name="Trusted Companion"
+    compset="Advantage"
+    isunique="yes"
+    description="You have a small group of individuals who are devoted to you, or a single trusted ally who would walk through fire for you (a bodyguard, a horse, etc.). If your allies directly aid you in a Risk, you gain a Bonus Die if you describe specifically how they aid you. If you send them out to accomplish something else and they need to make a Risk (GM discretion), they roll five dice. Your Trusted Companion can take 5 Wounds before he becomes Helpless, and will more than likely require you to rescue him.">
+    <tag group="PointCost" tag="4"/>
+    </thing>
+
+  <thing
+    id="adUniversi"
+    name="University"
+    compset="Advantage"
+    isunique="yes"
+    description="You attended one of Théah’s formal universities and are familiar with many academic fields of study such as mathematics, architecture, and astronomy. When you make a Risk using Scholarship, Empathy, or Notice, all of your dice gain +1 to their value.">
+    <tag group="PointCost" tag="4"/>
+    </thing>
+    
+  <thing
+    id="adDuelAcad"
+    name="Duelist Academy"
+    compset="Advantage"
+    isunique="no"
+    description="You may choose a Dueling Style. If you purchase this Advantage again, you gain an additional Dueling Style. See the Dueling chapter for more information.">
+    <tag group="PointCost" tag="5"/>
+    <!-- Reveal the dueling tab -->
+    <eval index="1" phase="Setup" priority="6000"><![CDATA[
+      perform hero.delete[HideTab.dueling]
+      perform hero.assign[Hero.DuelMane]
+      ]]></eval>
+      
+    <!-- Increase the Dueling Style count to the Character -->
+    <eval index="2" phase="PreTraits" priority="5000"><![CDATA[
+      
+      #resmax[resDuel] += 1
+  
+      ]]></eval>      
+    </thing>
+
+  <thing
+    id="adIWontDie"
+    name="I Won't Die Here"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}3 point cost if Eisen{/i}{/b}{br}{br}Spend a Hero Point to ignore all negative effects from Dramatic Wounds for the round -- the Villain does not gain Bonus Dice if you have 2 Dramatic Wounds, and you do not become Helpless at 4 Dramatic Wounds.">
+    <tag group="PointCost" tag="5"/>
+    <tag group="Nation" tag="naEisen"/>
+    <tag group="NatCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adITakeWit"
+    name="I'm Taking You With Me"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}3 point cost if Vesten{/i}{/b}{br}{br}Spend a Hero Point to have all damage that you do this Round increased by the number of Dramatic Wounds you have.">
+    <tag group="PointCost" tag="5"/>
+    <tag group="Nation" tag="naVesten"/>
+    <tag group="NatCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adJoieVivr"
+    name="Joie De Vivre"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}3 point cost if Montaigne{/i}{/b}{br}{br}Just before a confrontation with a Villain occurs, spend a Hero Point and make some sort of pithy or clever comment about how 'When things look darkest, that’s when souls shine brightest.' Each Hero -- that hears the speech -- counts all dice that roll equal to or under his Skill on his next roll as 10s.">
+    <tag group="PointCost" tag="5"/>
+    <tag group="Nation" tag="naMontai"/>
+    <tag group="NatCost" tag="3"/>
+    </thing>
+               
+  <thing
+    id="adSpaGen"
+    name="Spark of Genius"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}3 point cost if Castile{/i}{/b}{br}{br}Choose a specific field of academic study (astronomy, mathematics, architecture, history, etc). When you make a Risk and call on your specialized field of study, spend a Hero Point to gain additional Raises equal to your Wits.">
+    <tag group="User" tag="NeedDomain"/>
+    <tag group="PointCost" tag="5"/>
+    <tag group="Nation" tag="naCastille"/>
+    <tag group="NatCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adStrTen"
+    name="Strength of Ten"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}3 point cost if Ussuran{/i}{/b}{br}{br}Just before a confrontation with a Villain occurs, spend a Hero Point and make some sort of pithy or clever comment about how 'When things look darkest, that’s when souls shine brightest.' Each Hero -- that hears the speech -- counts all dice that roll equal to or under his Skill on his next roll as 10s.">
+    <tag group="PointCost" tag="5"/>
+    <tag group="Nation" tag="naUssara"/>
+    <tag group="NatCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adDevilLuc"
+    name="The Devil's Own Luck"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}3 point cost if Glamour Islander{/i}{/b}{br}{br}Spend a Hero Point after you take a Risk to Re-Roll any number of dice you wish. You must keep the new roll, unless you have a different effect that allows you to Re-Roll dice. You can only use this Advantage once per Scene.">
+    <tag group="PointCost" tag="5"/>
+    <tag group="AltNation" tag="GlamIsla"/>
+    <tag group="NatCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adToStrong"
+    name="Together We Are Strong"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}3 point cost if Sarmatian{/i}{/b}{br}{br}Spend a Hero Point to give any number of your Raises to another Hero in the same scene, as long as they can see or hear you.">
+    <tag group="PointCost" tag="5"/>
+    <tag group="Nation" tag="naSarmat"/>
+    <tag group="NatCost" tag="3"/>
+    </thing>
+
+  <thing
+    id="adWeNotDif"
+    name="We're Not So Different"
+    compset="Advantage"
+    isunique="yes"
+    description="{b}{i}3 point cost if Vodacce{/i}{/b}{br}{br}Spend a Hero Point to convince a Villain you are on her side. The Villain considers you a trusted ally. As soon as the Villain sees you perform a Heroic action or if you refuse to perform a Villainous action, the illusion is over. You can only use this Advantage on each Villain once. 'Fool me once...'">
+    <tag group="PointCost" tag="5"/>
+    <tag group="Nation" tag="naVodacce"/>
+    <tag group="NatCost" tag="3"/>
+    </thing>
+                       
+  </document>

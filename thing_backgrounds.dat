@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document signature="Hero Lab Data">
+  <thing id="bkArchaeol" name="Archaeologist" description="You study Syrneth ruins and explore the lost parts of Terra." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="QuirkBack" tag="quArchaeol"/>
+    <bootstrap thing="adEagleEye"></bootstrap>
+    <bootstrap thing="adSigItem"></bootstrap>
+    </thing>
+  <thing id="bkAristo" name="Aristocrat" description="You were born into the nobility of your home country and regularly attend the courts." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="QuirkBack" tag="quAristo"/>
+    <bootstrap thing="adRich"></bootstrap>
+    <bootstrap thing="adDisSmile"></bootstrap>
+    </thing>
+  <thing id="bkArmyOff" name="Army Officer" description="You enlisted in the Army and soon found yourself in a command position." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="QuirkBack" tag="quArmyOff"/>
+    <bootstrap thing="adDirSense"></bootstrap>
+    <bootstrap thing="adAcademy"></bootstrap>
+    </thing>
+  <thing id="bkArtist" name="Artist" description="You work tirelessly to create objects of beauty." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quArtist"/>
+    <bootstrap thing="adPatron"></bootstrap>
+    <bootstrap thing="adFascinat"></bootstrap>
+    </thing>
+  <thing id="bkAssassin" name="Assassin" description="You stalked the shadows as a specter of silent death in return for bloody coin, but no more." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quAssassin"/>
+    <bootstrap thing="adPsstOver"></bootstrap>
+    <bootstrap thing="adFencer"></bootstrap>
+    </thing>
+  <thing id="bkCalvary" name="Cavalry" description="You are a mounted warrior and part of your Nation&apos;s esteemed cavalry" compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quCavalry"/>
+    <bootstrap thing="adIndoWill"></bootstrap>
+    <bootstrap thing="adBruiser"></bootstrap>
+    </thing>
+  <thing id="bkCourtier" name="Courtier" description="You solve a problem by making promises, trading political favor, etc." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quCourtier"/>
+    <bootstrap thing="adAnHonMis"></bootstrap>
+    <bootstrap thing="adFriCourt"></bootstrap>
+    </thing>
+  <thing id="bkCrafter" name="Crafter" description="You work tirelessly to create objects of function." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="QuirkBack" tag="quCrafter"/>
+    <bootstrap thing="adHandy"></bootstrap>
+    <bootstrap thing="adMastCraf"></bootstrap>
+    </thing>
+  <thing id="bkCriminal" name="Criminal" description="You break unjust laws to achieve what you believe is the greater good." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="QuirkBack" tag="quCriminal"/>
+    <bootstrap thing="adStreetwi"></bootstrap>
+    <bootstrap thing="adCamarad"></bootstrap>
+    </thing>
+  <thing id="bkDoctor" name="Doctor" description="You work to heal the sick and tend to the wounded." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="QuirkBack" tag="quDoctor"/>
+    <bootstrap thing="adMirWork"></bootstrap>
+    <bootstrap thing="adTimeSen"></bootstrap>
+    </thing>
+  <thing id="bkDuelist" name="Duelist" description="You have devoted your life to mastering the blade." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quDuelist"/>
+    <bootstrap thing="adDuelAcad"></bootstrap>
+    </thing>
+  <thing id="bkEngineer" name="Engineer" description="You are concerned with applying scientific knowledge, mathematics, and ingenuity to develop solutions for technical, social and commercial problems." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="QuirkBack" tag="quEngineer"/>
+    <bootstrap thing="adMastCraf"></bootstrap>
+    <bootstrap thing="adTimeSen"></bootstrap>
+    <bootstrap thing="adDirSense"></bootstrap>
+    </thing>
+  <thing id="bkExplorer" name="Explorer" description="You live to see the farthest reaches that Terra has to offer." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="QuirkBack" tag="quExplorer"/>
+    <bootstrap thing="quExplorer"></bootstrap>
+    <bootstrap thing="adSecStory"></bootstrap>
+    </thing>
+  <thing id="bkFarmkid" name="Farmkid" description="You were raised on a small farm, working to survive, and have never known the life of adventure." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="QuirkBack" tag="quFarmkid"/>
+    <bootstrap thing="adLegTrait"></bootstrap>
+    <bootstrap thing="adSurvival"></bootstrap>
+    </thing>
+  <thing id="bkHunter" name="Hunter" description="You sleep under the stars and hunt your meals with your own two hands." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="QuirkBack" tag="quHunter"/>
+    <bootstrap thing="adGotIt"></bootstrap>
+    <bootstrap thing="adSniper"></bootstrap>
+    </thing>
+  <thing id="bkJenny" name="Jenny" description="You seduce others for fun and profit." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quJenny"/>
+    <bootstrap thing="adComeHith"></bootstrap>
+    <bootstrap thing="adDynamApp"></bootstrap>
+    </thing>
+  <thing id="bkMerc" name="Mercenary" description="You sell your skills in battle to the highest bidder." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quMerc"/>
+    <bootstrap thing="adCastIron"></bootstrap>
+    <bootstrap thing="adHardKill"></bootstrap>
+    </thing>
+  <thing id="bkMerchant" name="Merchant" description="You travel the countryside to sell your wares in market or port." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quMerchant"/>
+    <bootstrap thing="adTimeSen"></bootstrap>
+    <bootstrap thing="adLyceum"></bootstrap>
+    </thing>
+  <thing id="bkNavOff" name="Naval Officer" description="You enlisted in the navy and worked your way into the command crew of a ship." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quNavOffic"/>
+    <bootstrap thing="adPerfBal"></bootstrap>
+    <bootstrap thing="adSeaLegs"></bootstrap>
+    <bootstrap thing="adBarter"></bootstrap>
+    </thing>
+  <thing id="bkOrphan" name="Orphan" description="You lost your parents at a young age and have been forced to look out for yourself." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="QuirkBack" tag="quOrphan"/>
+    <bootstrap thing="adBrushPa"></bootstrap>
+    <bootstrap thing="adReckTake"></bootstrap>
+    </thing>
+  <thing id="bkPerform" name="Performer" description="You work tirelessly to create an experience of beauty." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="QuirkBack" tag="quPerform"/>
+    <bootstrap thing="adInspGen"></bootstrap>
+    <bootstrap thing="adVirtuoso"></bootstrap>
+    </thing>
+  <thing id="bkPirate" name="Pirate" description="You sail the seas, taking what you need, and providing true freedom to all who accept the call." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="QuirkBack" tag="quPirate"/>
+    <bootstrap thing="adDeadeye"></bootstrap>
+    <bootstrap thing="adIndoWill"></bootstrap>
+    </thing>
+  <thing id="bkPriest" name="Priest" description="You serve a higher cause with every living breath you take." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quPriest"/>
+    <bootstrap thing="adInspGen"></bootstrap>
+    <bootstrap thing="adOrdain"></bootstrap>
+    </thing>
+  <thing id="bkProfess" name="Professor" description="You teach others at a prestigious learning institution." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quProfess"/>
+    <bootstrap thing="adTeamPlay"></bootstrap>
+    <bootstrap thing="adTenure"></bootstrap>
+    </thing>
+  <thing id="bkPugilist" name="Pugilist" description="You rely on your hands and feet to solve all the violent problems in your life." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="QuirkBack" tag="quPugilist"/>
+    <bootstrap thing="adBoxer"></bootstrap>
+    <bootstrap thing="adStaredn"></bootstrap>
+    </thing>
+  <thing id="bkQuarterm" name="Quartermaster" description="You serve aboard a ship taking care of all the things the other sailors ignore." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="QuirkBack" tag="quQuarterm"/>
+    <bootstrap thing="adHandy"></bootstrap>
+    <bootstrap thing="adSeaLegs"></bootstrap>
+    <bootstrap thing="adGotIt"></bootstrap>
+    </thing>
+  <thing id="bkSailor" name="Sailor" description="You serve no country or master, but the ship and your crew are all the family you need." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quSailor"/>
+    <bootstrap thing="adBarFight"></bootstrap>
+    <bootstrap thing="adEagleEye"></bootstrap>
+    </thing>
+  <thing id="bkScholar" name="Scholar" description="You dedicate yourself to learning and documenting all the wonders of Terra." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="QuirkBack" tag="quScholar"/>
+    <bootstrap thing="adLinguist"></bootstrap>
+    <bootstrap thing="adUniversi"></bootstrap>
+    </thing>
+  <thing id="bkServant" name="Servant" description="You work for another doing whatever your master’s bidding may be." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="QuirkBack" tag="quServant"/>
+    <bootstrap thing="adFouWeaJ"></bootstrap>
+    <bootstrap thing="adTeamPlay"></bootstrap>
+    </thing>
+  <thing id="bkShipCapt" name="Ship Captain" description="You command a crew and sail the seas for whatever banner you fly." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="QuirkBack" tag="quShipCapt"/>
+    <bootstrap thing="adMarrSea"></bootstrap>
+    <bootstrap thing="adSeaLegs"></bootstrap>
+    <bootstrap thing="adLeader"></bootstrap>
+    </thing>
+  <thing id="bkSoldier" name="Soldier" description="You know how to fight—and how to kill—and you have made a life doing so under banners and for lords." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quSoldier"/>
+    <bootstrap thing="adAbleDrin"></bootstrap>
+    <bootstrap thing="adRiotBrea"></bootstrap>
+    </thing>
+  <thing id="bkSpy" name="Spy" description="You serve your Nation by infiltrating its enemies and securing their secrets." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="QuirkBack" tag="quSpy"/>
+    <bootstrap thing="adOpportun"></bootstrap>
+    <bootstrap thing="adPoiImmu"></bootstrap>
+    </thing>
+  <thing id="bkBard" name="Bard" description="You tell the old tales, the stories of Legends, and ensure the soul of Avalon is never forgotten." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="QuirkBack" tag="quBard"/>
+    <bootstrap thing="adBarter"></bootstrap>
+    <bootstrap thing="adVirtuoso"></bootstrap>
+    <bootstrap thing="adAbleDrin"></bootstrap>
+    <exprreq message="Glamour Islander Required"><![CDATA[#altnation[GlamIsla] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkKnightEr" name="Knight Errant" description="You are imbued with the legendary magic of the Knights of King Elilodd." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quKnightEr"/>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <bootstrap thing="adDirSense"></bootstrap>
+    <exprreq message="Glamour Islander Required"><![CDATA[#altnation[GlamIsla] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkPrivatee" name="Privateer" description="You have been given a charter to sink any ships that are enemies to the Crown of Avalon." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quPrivate"/>
+    <bootstrap thing="adDevilLuc"></bootstrap>
+    <bootstrap thing="adPerfBal"></bootstrap>
+    <exprreq message="Glamour Islander Required"><![CDATA[#altnation[GlamIsla] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkUniAgent" name="Unification Agent" description="You have been tasked by the Crown of Avalon to keep the peace among the Isles." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quUniAgent"/>
+    <bootstrap thing="adUniversi"></bootstrap>
+    <bootstrap thing="adSurvival"></bootstrap>
+    <exprreq message="Glamour Islander Required"><![CDATA[#altnation[GlamIsla] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkPuritan" name="Puritan" description="You are a reformed Objectionist who seeks to “purify” the Church of Avalon from all Vaticine practices." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="QuirkBack" tag="quPuritan"/>
+    <bootstrap thing="adReputNew"></bootstrap>
+    <bootstrap thing="adDynamApp"></bootstrap>
+    <exprreq message="Avalon Required"><![CDATA[#isnation[naAvalon] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkSaoi" name="Saoi (Wise One)" description="You hold the highest honor bestowed by Aosdána, a state-supported association of Inish creative artists." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quSaoi"/>
+    <bootstrap thing="adDisSmile"></bootstrap>
+    <bootstrap thing="adTeamPlay"></bootstrap>
+    <bootstrap thing="adAbleDrin"></bootstrap>
+    <exprreq message="Inismore Required"><![CDATA[#isnation[naInismore] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkSeanch" name="Seanchadh (Warrior-Poet)" description="You are a storyteller and historian, versed in the laws of your people and their ancient ways." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quSeancha"/>
+    <bootstrap thing="adRiotBrea"></bootstrap>
+    <bootstrap thing="adLinguist"></bootstrap>
+    <exprreq message="Highland Marches Required"><![CDATA[#isnation[naHighland] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkLamiDuR" name="L&apos;Ami Du Roi (Courtier)" description="You are, literally, a favorite courtier of the King of Montaigne." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quLamiDu"/>
+    <bootstrap thing="adConnect"></bootstrap>
+    <bootstrap thing="adFriCourt"></bootstrap>
+    <bootstrap thing="adLinguist"></bootstrap>
+    <exprreq message="Montaigne Required"><![CDATA[#isnation[naMontai] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkAlqumist" name="Alqumista" description="You sought long and hard until you unlocked the mystery of alchemical creation." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="QuirkBack" tag="quAlquim"/>
+    <bootstrap thing="adCastIron"></bootstrap>
+    <bootstrap thing="adAlchem"></bootstrap>
+    <exprreq message="Castille Required"><![CDATA[#isnation[naCastille] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkAntropol" name="Antropologo" description="You are a cousin to the Archæologist but focused on the people you find and not the ruins they left behind." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="QuirkBack" tag="quAntropo"/>
+    <bootstrap thing="adUniversi"></bootstrap>
+    <bootstrap thing="adLinguist"></bootstrap>
+    <exprreq message="Castille Required"><![CDATA[#isnation[naCastille] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkDiestro" name="Diestro" description="You have dedicated your life to the understanding of the sword, not just its function." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quDiestro"/>
+    <bootstrap thing="adFencer"></bootstrap>
+    <bootstrap thing="adDisSmile"></bootstrap>
+    <exprreq message="Castille Required"><![CDATA[#isnation[naCastille] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkMirabil" name="Mirabilis (Priest)" description="You are a master scholar of the Vaticine Church and member of the Ordo Doctorem Mirabilis." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="QuirkBack" tag="quMirabil"/>
+    <bootstrap thing="adSpaGen"></bootstrap>
+    <bootstrap thing="adOrdain"></bootstrap>
+    <exprreq message="Castille Required"><![CDATA[#isnation[naCastille] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkHexe" name="Hexe" description="You are a master of Hexenwerk, the sorcery of the dead." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quHexe"/>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <bootstrap thing="adCastIron"></bootstrap>
+    <exprreq message="Eisen Required"><![CDATA[#isnation[naEisen] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkKrieger" name="Kreiger (Warrior)" description="You survived the War of the Cross and carry the scars of many battles on your flesh." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quKrieger"/>
+    <bootstrap thing="adStaredn"></bootstrap>
+    <bootstrap thing="adAcademy"></bootstrap>
+    <exprreq message="Eisen Required"><![CDATA[#isnation[naEisen] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkUngetum" name="Ungetumjager (Monster Hunter)" description="You know that there are unnatural creatures stalking your homeland, and you’ve sworn to destroy them." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quUngetum"/>
+    <bootstrap thing="adIndoWill"></bootstrap>
+    <bootstrap thing="adIWontDie"></bootstrap>
+    <exprreq message="Eisen Required"><![CDATA[#isnation[naEisen] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkVitalien" name="Vitalienbruder (Pirate)" description="You know that there are unnatural creatures stalking your homeland, and you’ve sworn to destroy them." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="QuirkBack" tag="quVitalien"/>
+    <bootstrap thing="adSeaLegs"></bootstrap>
+    <bootstrap thing="adStreetwi"></bootstrap>
+    <bootstrap thing="adLeader"></bootstrap>
+    <exprreq message="Eisen Required"><![CDATA[#isnation[naEisen] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkMousque" name="Mousquetaire" description="You are sworn to protect the King of Montaigne and your fellow musketeers until your death." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAim"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quMousque"/>
+    <bootstrap thing="adQuiRef"></bootstrap>
+    <bootstrap thing="adCamarad"></bootstrap>
+    <exprreq message="Montaigne Required"><![CDATA[#isnation[naMontai] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkRevolut" name="Revolutionnaire" description="You have pledged yourself to seeing your country freed\nfrom the tyranny of the aristocracy." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quRevolut"/>
+    <bootstrap thing="adSlipFree"></bootstrap>
+    <bootstrap thing="adJoieVivr"></bootstrap>
+    <exprreq message="Montaigne Required"><![CDATA[#isnation[naMontai] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkSorcPort" name="Sorcier Porte" description="You have mastered the art of Porté, the magical opening of doorways." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quSorcPort"/>
+    <bootstrap thing="adTimeSen"></bootstrap>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <exprreq message="Montaigne Required"><![CDATA[#isnation[naMontai] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkPosel" name="Posel (Envoy)" description="You act as an advisor to the entire voting body of the Commonwealth." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quPosel"/>
+    <bootstrap thing="adLyceum"></bootstrap>
+    <bootstrap thing="adLeader"></bootstrap>
+    <exprreq message="Sarmatian Required"><![CDATA[#isnation[naSarmat] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkTremtis" name="Tremtis (Expatriate)" description="You fled to the Commonwealth seeking asylum after Golden Liberty was declared." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="QuirkBack" tag="quTremtis"/>
+    <bootstrap thing="adForBorn"></bootstrap>
+    <bootstrap thing="adStreetwi"></bootstrap>
+    <bootstrap thing="adConnect"></bootstrap>
+    <exprreq message="Sarmatian Required"><![CDATA[#isnation[naSarmat] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkWIngHuss" name="Winged Hussar" description="You serve in the proudest of cavalry regiments, an elite unit in the Sarmatian military." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quWingHuss"/>
+    <bootstrap thing="adToStrong"></bootstrap>
+    <bootstrap thing="adTeamPlay"></bootstrap>
+    <exprreq message="Sarmatian Required"><![CDATA[#isnation[naSarmat] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkZynys" name="Zynys (Soothsayer)" description="You met the Devil on the road, tricked him, and gained his powers at your command." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quZynys"/>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <bootstrap thing="adLinguist"></bootstrap>
+    <exprreq message="Sarmatian Required"><![CDATA[#isnation[naSarmat] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkCossack" name="Cossack" description="You live in the Eastern steppes of Ussura, a place with a proud heritage of horsemanship and warfare." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quCossack"/>
+    <bootstrap thing="adStrTen"></bootstrap>
+    <bootstrap thing="adReckTake"></bootstrap>
+    <exprreq message="Ussaran Required"><![CDATA[#isnation[naUssara] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkProgress" name="Progressivist" description="You travel Théah to bring innovations home to modernize the old country." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quProgress"/>
+    <bootstrap thing="adExtFam"></bootstrap>
+    <bootstrap thing="adHandy"></bootstrap>
+    <bootstrap thing="adConnect"></bootstrap>
+    <exprreq message="Ussaran Required"><![CDATA[#isnation[naUssara] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkTouByMa" name="Touched By Matushka" description="You have been touched by Matushka and granted great power at a terrible price." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="SkillBack" tag="skTheft"/>
+    <tag group="QuirkBack" tag="quTouMatus"/>
+    <bootstrap thing="adSurvival"></bootstrap>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <exprreq message="Ussaran Required"><![CDATA[#isnation[naUssara] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkWhaler" name="Whaler" description="You sail the frozen seas of Ussura with spears and boats tracking the most dangerous sea life." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quWhaler"/>
+    <bootstrap thing="adPatron"></bootstrap>
+    <bootstrap thing="adSeaLegs"></bootstrap>
+    <bootstrap thing="adAbleDrin"></bootstrap>
+    <exprreq message="Ussaran Required"><![CDATA[#isnation[naUssara] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkBearsark" name="Bearsark" description="You fight with a nearly uncontrollable, trance-like fury." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quBearsark"/>
+    <bootstrap thing="adHardKill"></bootstrap>
+    <bootstrap thing="adAbleDrin"></bootstrap>
+    <exprreq message="Vestenmennavenjar Required"><![CDATA[#isnation[naVesten] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkGuildmas" name="Guildmastern" description="You serve on the Vendel League and manage Guilds in some capacity." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quGuildmas"/>
+    <bootstrap thing="adRich"></bootstrap>
+    <bootstrap thing="adMastCraf"></bootstrap>
+    <exprreq message="Vestenmennavenjar Required"><![CDATA[#isnation[naVesten] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkSjorover" name="Sjorover" description="You give honor to the ancient Vestenmennavenjar heritage of naval combat, raiding, and pillaging." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quSjorover"/>
+    <bootstrap thing="adStaredn"></bootstrap>
+    <bootstrap thing="adITakeWit"></bootstrap>
+    <exprreq message="Vestenmennavenjar Required"><![CDATA[#isnation[naVesten] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkSkald" name="Skald" description="You interpret the mysteries of the bonfire and the bones, sharing tales of glory and defeat." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skBrawl"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skSailing"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quSkald"/>
+    <bootstrap thing="adSeidr"></bootstrap>
+    <bootstrap thing="adSeaLegs"></bootstrap>
+    <exprreq message="Vestenmennavenjar Required"><![CDATA[#isnation[naVesten] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkBravo" name="Bravo" description="You have sworn to protect someone else and will always be at his side." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skIntim"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quBravo"/>
+    <bootstrap thing="adHardKill"></bootstrap>
+    <bootstrap thing="adPoiImmu"></bootstrap>
+    <exprreq message="Vodacce Required"><![CDATA[#isnation[naVodacce] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkConsigli" name="Consigliere" description="You work as an “advisor” to a Merchant Prince." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skNotice"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quConsig"/>
+    <bootstrap thing="adWeNotDif"></bootstrap>
+    <bootstrap thing="adStreetwi"></bootstrap>
+    <exprreq message="Vodacce Required"><![CDATA[#isnation[naVodacce] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkEsplorat" name="Esploratore" description="You travel the world on behalf of a Merchant Prince." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quEsplorat"/>
+    <bootstrap thing="adLyceum"></bootstrap>
+    <bootstrap thing="adLinguist"></bootstrap>
+    <exprreq message="Vodacce Required"><![CDATA[#isnation[naVodacce] <> 0]]></exprreq>
+    </thing>
+  <thing id="bkSortStre" name="Sorte Strega" description="You can sense the strands of Fate, twisting and controlling them to your will… but not without a price." compset="Background" uniqueness="unique">
+    <tag group="SkillBack" tag="skConvince"/>
+    <tag group="SkillBack" tag="skHide"/>
+    <tag group="SkillBack" tag="skPerform"/>
+    <tag group="SkillBack" tag="skRide"/>
+    <tag group="SkillBack" tag="skTempt"/>
+    <tag group="QuirkBack" tag="quSorteStr"/>
+    <bootstrap thing="adTimeSen"></bootstrap>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <bootstrap thing="adSorcery"></bootstrap>
+    <exprreq message="Vodacce Required"><![CDATA[#isnation[naVodacce] <> 0]]></exprreq>
+    </thing>
+  </document>

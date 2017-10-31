@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+-->
+
+<document signature="Hero Lab Data">
+
+  <thing
+    id="soPorte"
+    name="Porte"
+    compset="Sorcery"
+    isunique="yes"
+    description="{b}Blood Mark:{/b} the ability to mark an object with your own blood. A mage can feel the object's presence when it is nearby or know where it might be at a distance.{br}{br}{b}Pull:{/b} the ability to open a portal to pull a Marked object to you.{br}{br}{b}Walk:{/b} This allows the sorcier to open a portal and walk to a location or object he has Marked."
+    summary="Montaigne Sorcery">
+    <fieldval field="sMinName" value="Minor Mark"/>
+    <fieldval field="sMajName" value="Major Mark"/>
+    <tag group="ValSorc" tag="naMontai"/>
+    </thing>
+
+  <thing
+    id="soMatushki"
+    name="Dar Matushki"
+    compset="Sorcery"
+    isunique="yes"
+    description="{b}'Mother's Touch'{/b}{br}{br}Matushka sought you out because she wanted to teach you a Lesson. Each lesson includes supernatural Gifts and Restrictions.{br}{br}{b}Gift: {/b}Your Lesson includes a supernatural power. You can use your power by spending a Hero Point.{br}{br}{b}Restriction: {/b}This is a limit on your behavior. So long as you maintain your Restriction, you can use the Lesson's Gift. Your Restriction also includes the price you must pay if you break the Restriction."
+    summary="Ussaran Sorcery">
+    <fieldval field="sMinName" value="Gift"/>
+    <fieldval field="sMajName" value="Restriction"/>
+    <tag group="ValSorc" tag="naUssara"/>
+    </thing>
+
+  <thing
+    id="soHexen"
+    name="Hexenwork"
+    compset="Sorcery"
+    isunique="yes"
+    description="Hexenwerk is a Sorcery practiced almost exclusively in Eisen. In many parts of the country, the Sorcery is illegal, punishable by death. In others, it is seen as a necessary tool to fight the horrors of the night. A {i}hexe{/i} is one who practices this forbidden art. Some use it to fight the undead of Eisen and others use it for more nefarious ends."
+    summary="Eisen Sorcery">
+    <fieldval field="sMinName" value="Minor Unguent"/>
+    <fieldval field="sMajName" value="Major Unguent"/>
+    <tag group="ValSorc" tag="naEisen"/>
+    </thing>
+
+  <thing
+    id="soKniAva"
+    name="Knights of Avalon"
+    compset="Sorcery"
+    isunique="yes"
+    description="You are the embodiment of a hero of the Graal."
+    summary="Avalon Sorcery">
+    <fieldval field="sSrcName" value="Knight"/>
+    <fieldval field="sSrcChsExp" value="component.GlaKnight"/>
+    <fieldval field="sMinName" value="Minor Glamour"/>
+    <fieldval field="sMajName" value="Major Glamour"/>
+    <tag group="ValSorc" tag="naAvalon"/>
+    </thing>
+
+  <thing
+    id="soSanderis"
+    name="Sanderis"
+    compset="Sorcery"
+    isunique="yes"
+    description="The art of Sanderis (literally bargain) is a powerful magical tradition in Sarmatia. A {i}Losejas{/i} (plural: {i}losejai{/i}), is one who practices Sanderis, having forged powerful and binding contracts with an otherworldly powerful creature known as a {i}dievas{/i} (plural: {i}dievai{/i}). The goal of the {i}losejas{/i} is to learn his {i}dievas?{/i} full true name so he can destroy it. The {i}dievas?{/i} goal is to turn the {i}losejas{/i} into a Villain. They are on a path of mutual destruction and only one of them can win."
+    summary="Samartian Sorcery">
+    <fieldval field="sSrcName" value="Deal"/>
+    <fieldval field="sSrcTblExp" value="component.PowerSrc"/>
+    <fieldval field="sMinName" value="Minor Favor"/>
+    <fieldval field="sMajName" value="Major Favor"/>
+    <tag group="ValSorc" tag="naSarmat"/>
+    <!-- Increment the number of Deals -->
+    <eval index="1" phase="Effects" priority="6000"><![CDATA[
+     var mytag as number
+     mytag = hero.tagcount[Sorcery.Sorcery]
+     
+     hero.child[resSorcSrc].field[resMax].value += mytag 
+      ]]></eval>
+      
+    </thing>
+
+  <thing
+    id="soSorte"
+    name="Sorte"
+    compset="Sorcery"
+    isunique="yes"
+    description="Sorte (soar-tay, also known as 'fate magic') is one of the rarest sorceries in Théah. It is only found in Vodacce and runs only in the blood of its women. Those attuned to Sorte can see the great web of fate and how its strands connect to all things. With enough skill, the Sorte Strega ('Fate Witch') can manipulate the strands, changing the fates of those around her.{br}{br}Sorte contains a number of effects, each called a Weave or Tessere (plural: Tesse) which has both Minor and Major effects. The first time you purchase the Sorcery Advantage, your Hero gains the Read Weave, two additional Minor Weaves and one additional Major Weave. In order to learn a Major Weave, you must first learn the same Minor Weave."
+    summary="Vodacce Sorcery">
+    <fieldval field="sMinName" value="Minor Weave"/>
+    <fieldval field="sMajName" value="Major Weave"/>
+    <tag group="ValSorc" tag="naVodacce"/>
+    <tag group="Helper" tag="AltMinAdv"/>
+    <tag group="Helper" tag="AltMajAdv"/>
+    </thing>
+ 
+  <!-- Avalon Knights -->          
+  <thing
+    id="knAescFor"
+    name="AEsc, of the Forests"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of AEsc.">
+    <tag group="GlaMajor" tag="attrRes"/>
+    <tag group="GlaMinor" tag="attrPan"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knBeorht"
+    name="Beorhtsige, Siegebreaker"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Beorhtsige.">
+    <tag group="GlaMajor" tag="attrPan"/>
+    <tag group="GlaMinor" tag="attrBra"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knCenhelm"
+    name="Cenhelm, The Keen"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Cenhelm.">
+    <tag group="GlaMajor" tag="attrFin"/>
+    <tag group="GlaMinor" tag="attrWit"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knCeolmund"
+    name="Ceolmund, Knight Protector"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Ceolmund.">
+    <tag group="GlaMajor" tag="attrRes"/>
+    <tag group="GlaMinor" tag="attrFin"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing> 
+    
+  <thing
+    id="knDudda"
+    name="Dudda, The Round"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Dudda.">
+    <tag group="GlaMajor" tag="attrBra"/>
+    <tag group="GlaMinor" tag="attrRes"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>    
+    
+  <thing
+    id="knDunstan"
+    name="Dunstan, The Outsider"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Dunstan.">
+    <tag group="GlaMajor" tag="attrBra"/>
+    <tag group="GlaMinor" tag="attrWit"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knEadburg"
+    name="Eadburg, The Wealthy"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Eadburg.">
+    <tag group="GlaMajor" tag="attrPan"/>
+    <tag group="GlaMinor" tag="attrWit"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knEaldread"
+    name="Ealdread, The Oldest Knight"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Ealdread.">
+    <tag group="GlaMajor" tag="attrPan"/>
+    <tag group="GlaMinor" tag="attrWit"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knFrideswi"
+    name="Frideswide, The Knight of Peace"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Frideswide.">
+    <tag group="GlaMajor" tag="attrWit"/>
+    <tag group="GlaMinor" tag="attrRes"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knGodric"
+    name="Godric, The Pious"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Godric.">
+    <tag group="GlaMajor" tag="attrPan"/>
+    <tag group="GlaMinor" tag="attrRes"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knHereward"
+    name="Hereward, Knight Advisor"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of .">
+    <tag group="GlaMajor" tag="attrWit"/>
+    <tag group="GlaMinor" tag="attrPan"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+       
+  <thing
+    id="knHildraed"
+    name="Hildread"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Hildread.">
+    <tag group="GlaMajor" tag="attrFin"/>
+    <tag group="GlaMinor" tag="attrBra"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knLeofric"
+    name="Leofric, The Beloved"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Leofric.">
+    <tag group="GlaMajor" tag="attrRes"/>
+    <tag group="GlaMinor" tag="attrWit"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+     
+  <thing
+    id="knMildgyd"
+    name="Mildgyd, The Gentle"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Mildgyd.">
+    <tag group="GlaMajor" tag="attrBra"/>
+    <tag group="GlaMinor" tag="attrPan"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knOsgar"
+    name="Osgar, The Spear Knight"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Osgar.">
+    <tag group="GlaMajor" tag="attrFin"/>
+    <tag group="GlaMinor" tag="attrRes"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+        
+  <thing
+    id="knPaega"
+    name="Paega, Forgotten"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Paega.">
+    <tag group="GlaMajor" tag="attrFin"/>
+    <tag group="GlaMinor" tag="attrPan"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knSaewine"
+    name="Saewine, The Sailor"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Saewine.">
+    <tag group="GlaMajor" tag="attrPan"/>
+    <tag group="GlaMinor" tag="attrFin"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knSunngifu"
+    name="Sunngifu, The Generous"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Sunngifu.">
+    <tag group="GlaMajor" tag="attrWit"/>
+    <tag group="GlaMinor" tag="attrBra"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knWilfrith"
+    name="Wilfrith, The Knight of Will"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Wilfrith.">
+    <tag group="GlaMajor" tag="attrRes"/>
+    <tag group="GlaMinor" tag="attrBra"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+    
+  <thing
+    id="knWulfnod"
+    name="Wulfnod, The Bold"
+    compset="GlaKnight"
+    isunique="yes"
+    description="You are the embodiment of Wulfnod.">
+    <tag group="GlaMajor" tag="attrBra"/>
+    <tag group="GlaMinor" tag="attrFin"/>
+    <tag group="Nation" tag="naAvalon"/>
+    </thing>
+
+  <!-- Deals -->           
+  <thing
+    id="deDark"
+    name="Darkness"
+    compset="PowerSrc"
+    isunique="yes"
+    description="A dievas with the Darkness Deal can manipulate shadows and darkness, stretching or shrinking them. They can see and hear through shadows, use them as doorways, and even give a shadow physical form in order to use it to cause harm to another creature.">
+	<fieldval field="PwrSrcName" value="Deal"/>
+    <tag group="Nation" tag="naSarmat"/>
+    </thing>
+    
+  <thing
+    id="deFire"
+    name="Fire"
+    compset="PowerSrc"
+    isunique="yes"
+    description="A dievas with the Fire Deal is a being of living flame, whose blood can melt stone and whose touch can set wood ablaze. They can create and manipulate fire, restore objects that have been damaged or destroyed by burning, or summon devastating swarms of fire to rain down from the sky.">
+	<fieldval field="PwrSrcName" value="Deal"/>
+    <tag group="Nation" tag="naSarmat"/>
+    </thing>
+    
+  <thing
+    id="deCold"
+    name="Cold"
+    compset="PowerSrc"
+    isunique="yes"
+    description="Cold Deal dievas have visible mist rising from their frost-wreathed skin. They can freeze water with a touch -- perhaps even with just a look. They can turn a man into a single frozen piece and then shatter it with a fingertip, or cut down scores of them with impossibly sharp claws made of ice.">
+	<fieldval field="PwrSrcName" value="Deal"/>
+    <tag group="Nation" tag="naSarmat"/>
+    </thing>
+           
+  <thing
+    id="deStorm"
+    name="Storm"
+    compset="PowerSrc"
+    isunique="yes"
+    description="A dievas with the Storm Deal can be as unpredictable as the wind itself. They drift effortlessly through the air with perfect control. They can create a tornado with their breath as easily as a mortal can draw breath or summon a bolt of lightning with a snap of their fingers.">
+	<fieldval field="PwrSrcName" value="Deal"/>
+    <tag group="Nation" tag="naSarmat"/>
+    </thing>
+    
+  <thing
+    id="deSea"
+    name="Sea"
+    compset="PowerSrc"
+    isunique="yes"
+    description="While the form of a dievas with the Sea Deal might vary (sometimes a creature with black scales covered in barnacles and draped in seaweed, others a creature whose body is a rough facsimile of a man?s but made entirely of water), their power is undeniable. They can drown a man as he sits atop a mountain, call a tidal wave to devastate an entire port city, or command monstrous creatures of the deep.">
+	<fieldval field="PwrSrcName" value="Deal"/>
+    <tag group="Nation" tag="naSarmat"/>
+    </thing>
+    
+  <thing
+    id="deKnow"
+    name="Knowledge"
+    compset="PowerSrc"
+    isunique="yes"
+    description="Dievai who favor the Knowledge Deal often appear similar to a typical Thean, perhaps huddling within a voluminous cloak to hide their faces or wearing masks. They can call upon the sum total of knowledge, of men or other creatures. They also govern the connection between the mind and the body, and can cause a clean break between the two, turning a Th顮?s mortal body into a prison from which their mind cannot escape.">
+	<fieldval field="PwrSrcName" value="Deal"/>
+    <tag group="Nation" tag="naSarmat"/>
+    </thing>
+    
+  <thing
+    id="deLove"
+    name="Love"
+    compset="PowerSrc"
+    isunique="yes"
+    description="Dievai with the Love Deal know the passions of the Thean heart. Their appearance is most likely to be dependent on the tastes of their losejas, seeking a form that will entice and tempt their subject while twisting that desire in some way (a beautiful woman, perfect in every way except for the blood-red tone of her skin or an Adonis-like man with hair made of angry, snapping vipers).">
+	<fieldval field="PwrSrcName" value="Deal"/>
+    <tag group="Nation" tag="naSarmat"/>
+    </thing>
+            
+  </document>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Combat Maneuvers
+-->
+
+<document signature="Hero Lab Data">
+  <!-- Combat Maneuvers -->
+
+  <!-- Basic -->
+  <thing
+    id="cmSlash"
+    name="Slash"
+    compset="CoManeuver"
+    isunique="yes"
+    description="The art of putting your weapon between yourself and harm. Perform Parry to prevent a number of Wounds equal to your Ranks in Weaponry. You can only activate Parry on your Action, immediately following the Maneuver that caused your Wounds.">
+    <tag group="CoManeuver" tag="Basic"/>
+    <tag group="CoManeuver" tag="Attack"/>
+    </thing>
+    
+  <thing
+    id="cmParry"
+    name="Parry"
+    compset="CoManeuver"
+    isunique="yes"
+    description="The art of putting your weapon between yourself and harm. Perform Parry to prevent a number of Wounds equal to your Ranks in Weaponry. You can only activate Parry on your Action, immediately following the Maneuver that caused your Wounds.">
+    <tag group="CoManeuver" tag="Basic"/>
+    <tag group="CoManeuver" tag="Defense"/>
+    </thing>
+                                                   
+  </document>
+  

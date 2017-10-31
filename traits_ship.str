@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Pirate Nations 
+
+     This file contains the definitions of components associated with traits such as
+     attributes, skills, special abilities, etc.
+-->
+
+<document signature="Hero Lab Structure">
+
+  <!-- Ship Background component
+        Each special ability derives from this component
+  -->
+  <component
+    id="ShipBack"
+    name="Ship Background"
+    autocompset="yes"
+    panellink="ship">
+
+    <!-- Activation state of ability - we're not activated by default -->
+    <field
+      id="shbkActive"
+      name="Is Activated?"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+
+    <!-- Each ability needs its own identity tag to detect cascading dependencies via prereqs -->
+    <identity group="ShipBack"/>
+
+    <!-- Setup an identity tag group to track all activated abilities and adjustments -->
+    <identity group="Activated"/>
+
+    <!-- All abilities get the same tag for sorting purposes -->
+    <tag group="SpecialTab" tag="ShipBack"/>
+
+    <!-- Each ability that is added by the user costs 1 slot -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      ~we must ignore bootstrapped abilities from races and abilities added via advances
+      if (isuser + origin.ishero >= 2) then
+        hero.child[resShBack].field[resSpent].value += 1
+        endif
+      ]]></eval>
+
+    <!-- Track the ability on the actor -->
+    <eval index="2" phase="Setup" priority="5000"><![CDATA[
+      perform forward[ShipBack.?]
+      ]]></eval>
+
+    <!-- If the ability is activated, designate it appropriately -->
+    <eval index="3" phase="Setup" priority="100"><![CDATA[
+      ~if we're not able to be activated, we don't qualify
+      doneif (tagis[User.Activation] = 0)
+
+      ~if we've been activated by the user, mark ourselves as activated; in addition,
+      ~forward our identity tag to our parent actor; this allows the actor to track
+      ~when abilities are activated and reflect the state to the user
+      if (field[shbkActive].value <> 0) then
+        perform assign[Helper.Activated]
+        perform forward[Activated.?]
+        endif
+      ]]></eval>
+      
+    <!-- Verify abilities that are only available at creation -->
+    <prereq message="Only available during character creation.">
+      <validate><![CDATA[
+        ~we only report this as a failure things (once added, we assume the user knows best)
+        validif (@ispick <> 0)
+
+        ~if we are not designated as creation only, we're valid
+        validif (altthing.tagis[User.CreateOnly] = 0)
+
+        ~if the mode is creation, we're valid
+        validif (state.iscreate <> 0)
+        ]]></validate>
+      </prereq>
+
+    </component>
+                        
+  <!-- Define various component sets associated with the components defined above.
+  -->
+
+  <!-- No compsets are auto-defined for the component -->
+
+      
+  </document>

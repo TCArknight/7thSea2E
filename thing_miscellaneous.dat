@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the assortment of miscellaneous things that are required for
+      the game system. Miscellaneous things include the mechanisms for managing applied
+      damage, user images, and personal info for each actor. It also includes things
+      used to track resource pools, such as those used for managing the available
+      attribute points, skill points, etc.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Damage transaction handler for use when applying damage on the In-Play tab -->
+  <thing
+    id="mscDamage"
+    name="Damage"
+    compset="Damage">
+
+    <!-- Automatically add the damage transaction to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+    </thing>
+
+
+  <!-- Personal information details used on the Personal tab -->
+  <thing
+    id="mscPerson"
+    name="Personal"
+    compset="Personal">
+    </thing>
+
+
+  <!-- Basic user-added image that is managed through the gallery on Personal tab -->
+  <thing
+    id="mscUserImg"
+    name="User Image"
+    compset="UserImage">
+    </thing>
+
+  <!-- Background slot resource to track the pool of background slots being spent -->
+  <thing
+    id="resBackgr"
+    name="Background Slots"
+    compset="Resource">
+    <fieldval field="resObject" value="Ability"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Use the starting ability slots as our initial maximum -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      field[resMax].value = herofield[acStartBac].value
+      ]]></eval>
+    </thing>
+
+  <!-- Ship Background slot resource to track the pool of ship background slots being spent -->
+  <thing
+    id="resShBack"
+    name="Ship Background Slots"
+    compset="Resource">
+    <fieldval field="resObject" value="Ability"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Use the starting ability slots as our initial maximum -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      field[resMax].value = 0
+      ]]></eval>
+    </thing>
+    
+  <!-- Skill resource to track the number of skill points that can be assigned -->
+  <thing
+    id="resSkill"
+    name="Skill Points"
+    compset="Resource"
+    panellink="skills">
+    <fieldval field="resObject" value="Skill"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+    <!-- Show this resource as associated with character creation details -->
+    <tag group="Helper" tag="Creation"/>
+    <tag group="explicit" tag="5"/>
+
+    <!-- This resource's behavior is modified when the character is an NPC -->
+    <tag group="Helper" tag="NPCImpact"/>
+
+
+    <!-- Use the starting ability slots as our initial maximum -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      field[resMax].value = herofield[acStartSki].value
+      ]]></eval>
+    </thing>
+        
+  <!-- Resource to track the number of languages that can be assigned -->
+  <thing
+    id="resLang"
+    name="Languages"
+    compset="Resource">
+    <fieldval field="resMax" value="1"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+    
+    <!-- Use the starting character points as our initial maximum -->
+    <eval index="1" phase="Traits" priority="10000"><![CDATA[
+      field[resMax].value = hero.childfound[attrWit].field[trtFinal].value
+      ]]></eval>
+    </thing>
+
+  <!-- Attribute resource to track the number of skill points that can be assigned -->
+  <thing
+    id="resAttrib"
+    name="Attribute Points"
+    compset="Resource"
+    panellink="basics">
+    <fieldval field="resObject" value="Attribute"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+    <!-- Show this resource as associated with character creation details -->
+    <tag group="Helper" tag="Creation"/>
+    <tag group="explicit" tag="5"/>
+
+    <!-- This resource's behavior is modified when the character is an NPC -->
+    <tag group="Helper" tag="NPCImpact"/>
+
+    <!-- Use the starting attribute points as our initial maximum -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      field[resMax].value = herofield[acStartAP].value
+      ]]></eval>
+      
+    </thing>
+    
+  <!-- Attribute resource to track the number of skill points that can be assigned -->
+  <thing
+    id="resAdvant"
+    name="Advantage Points"
+    compset="Resource"
+    panellink="advback">
+    <fieldval field="resObject" value="Attribute"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+    <!-- Show this resource as associated with character creation details -->
+    <tag group="Helper" tag="Creation"/>
+    <tag group="explicit" tag="5"/>
+
+    <!-- This resource's behavior is modified when the character is an NPC -->
+    <tag group="Helper" tag="NPCImpact"/>
+
+    <!-- Use the starting attribute points as our initial maximum -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      field[resMax].value = herofield[acStartAdv].value
+      ]]></eval>
+      
+    </thing>
+    
+  <!-- Experience points resource to track the pool of XP accrued and spent -->
+  <thing
+    id="resXP"
+    name="Experience Points"
+    compset="Resource">
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Do NOT require this resource to be fully utilized -->
+    <tag group="Helper" tag="NoMinimum"/>
+
+    <!-- Use the starting XP plus the accrued XP as our maximum -->
+    <eval index="1" phase="Setup" priority="1000" name="Calc XP Max"><![CDATA[
+      field[resMax].value = herofield[acStartXP].value + hero.usagepool[TotalXP].value
+      ]]></eval>
+    </thing>
+
+
+  <!-- Advance resource to track the number of advances accrued/spent -->
+  <thing
+    id="resAdvance"
+    name="Advances"
+    compset="Resource"
+    panellink="advances">
+    <fieldval field="resObject" value="Advance"/>
+
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    <!-- Base our maximum on the accrued XP -->
+    <eval index="1" phase="Setup" priority="2000">
+      <after name="Calc XP Max"/><![CDATA[
+      field[resMax].value = round(#resmax[resXP] / 20,0,-1)
+      ]]></eval>
+
+    </thing>
+
+  <!-- Sorcery Minor Powers resource  -->
+  <thing
+    id="resSorcMin"
+    name="Sorcery Minor Powers"
+    compset="Resource"
+    panellink="sorcery">
+    <fieldval field="resMax" value="0"/>
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    </thing>
+
+  <!-- Sorcery Major Powers resource  -->
+  <thing
+    id="resSorcMaj"
+    name="Sorcery Major Powers"
+    compset="Resource"
+    panellink="sorcery">
+    <fieldval field="resMax" value="0"/>
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    </thing>
+
+  <!-- Sorcery - Samartian 'Deals' resource  -->
+  <thing
+    id="resSorcSrc"
+    name="Sorcery - Power Source Count"
+    compset="Resource"
+    panellink="sorcery">
+    <fieldval field="resMax" value="0"/>
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    </thing>
+
+  <!-- Dueling - Dueling Style resource  -->
+  <thing
+    id="resDuel"
+    name="Dueling Styles"
+    compset="Resource"
+    panellink="dueling">
+    <fieldval field="resMax" value="0"/>
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    </thing>
+
+  <!-- Reputation - Reputation resource  -->
+  <thing
+    id="resRep"
+    name="Reputation"
+    compset="Resource">
+    <fieldval field="resMax" value="0"/>
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    </thing>
+    
+  <!-- Story - Story resource  -->
+  <thing
+    id="resStory"
+    name="Story"
+    compset="Resource">
+    <fieldval field="resMax" value="1"/>
+    <!-- Automatically add the resource to every actor -->
+    <tag group="Helper" tag="Bootstrap"/>
+
+    </thing>                    
+  <thing
+    id="trkHeroPts"
+    name="Hero Points"
+    compset="HeroPoint">
+    <fieldval field="trkMin" value="0"/>
+    <fieldval field="trkMax" value="1"/>
+    <tag group="Helper" tag="Bootstrap"/>
+    <tag group="Helper" tag="ResetMax"/>
+    <tag group="Helper" tag="StartMax"/>
+    <tag group="Helper" tag="NoMaxBound"/>
+    <eval index="1" phase="Final" priority="5000"><![CDATA[
+      ~adjust tracker for acBonHero field value
+      var bonus as number
+      bonus = herofield[acBonHero].value
+
+      field[trkMax].value += bonus
+      ]]></eval>
+     
+    </thing>
+
+  <thing
+    id="trkWealth"
+    name="Wealth"
+    compset="Wealth">
+    <fieldval field="trkMin" value="0"/>
+    <fieldval field="trkMax" value="0"/>
+    <tag group="Helper" tag="Bootstrap"/>
+    <tag group="Helper" tag="ResetMax"/>
+    <tag group="Helper" tag="StartMax"/>
+    <tag group="Helper" tag="NoMaxBound"/>   
+    <eval index="1" phase="Final" priority="5000"><![CDATA[
+      ~adjust tracker for acBonWeal field value
+      var bonus as number
+      bonus = herofield[acBonWeal].value
+
+      field[trkMax].value += bonus
+      ]]></eval>
+    </thing>
+      
+  <!-- Types of characters you might want to build -->
+  <thing
+    id="typHero"
+    name="Type: Hero (PC)"
+    compset="CharType">
+    </thing>
+  <thing
+    id="typNPC"
+    name="Type: Non-Player Character"
+    compset="CharType">
+    </thing>
+
+
+  <!-- NPC Info to display on the NPC info tab - the final "Additional
+      Information" pick can be added multiple times and customised by the user. -->
+  <thing
+    id="npcDesc"
+    name="Description"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="5"/>
+    </thing>
+  <thing
+    id="npcGoals"
+    name="Motivations &amp; Goals"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="10"/>
+    </thing>
+  <thing
+    id="npcSchemes"
+    name="Schemes, Plots &amp; Adventure Hooks"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="15"/>
+    </thing>
+  <thing
+    id="npcTacBef"
+    name="Tactics - Before Combat"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="20"/>
+    </thing>
+  <thing
+    id="npcTacDur"
+    name="Tactics - During Combat"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="25"/>
+    </thing>
+  <thing
+    id="npcMorale"
+    name="Tactics - Morale"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="30"/>
+    </thing>
+  <thing
+    id="npcEnviron"
+    name="Ecology - Environment"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="35"/>
+    </thing>
+  <thing
+    id="npcOrganiz"
+    name="Ecology - Organization"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="40"/>
+    </thing>
+  <thing
+    id="npcTreas"
+    name="Ecology - Treasure"
+    compset="NPCInfo"
+    uniqueness="unique">
+    <tag group="explicit" tag="45"/>
+    </thing>
+  <thing
+    id="npcOther"
+    name="Additional Information"
+    compset="NPCInfo">
+    <tag group="Helper" tag="CustomItem"/>
+    <tag group="explicit" tag="50"/>
+    </thing>
+
+   
+    </document>

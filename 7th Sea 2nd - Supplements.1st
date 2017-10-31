@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document signature="Hero Lab Structure">
+  <loadonce key="7th Sea 2nd Supplements"/>
+<!--
+
+February 1, 2017 - Thomas Clegg (TCArknight)
+-Created New 
+
+-->
+
+  <!-- ============================================== -->
+  <!-- SOURCES                                        -->
+  <!-- ============================================== -->
+  <source
+    id="srcHeroVil"
+    name="Heroes and Villains"
+    selectable="yes"
+    parent="src7thSea2"
+    sortorder="10"
+    description="Heroes and Villains Supplement for 7th Sea (2nd Edition).">
+  </source>
+  <source
+    id="srcPirate"
+    name="Pirate Nations"
+    selectable="no"
+    parent="src7thSea2"
+    sortorder="20"
+    description="Pirate Nations Supplement for 7th Sea (2nd Edition).">
+  </source>
+  <source
+    id="srcTheahV1"
+    name="Nations of Theah (Vol 1)"
+    selectable="no"
+    parent="src7thSea2"
+    sortorder="30"
+    description="Nations of Theah (Vol 1) Supplement for 7th Sea (2nd Edition).">
+  </source>
+  <source
+    id="srcTheahV2"
+    name="Nations of Theah (Vol 2)"
+    selectable="no"
+    parent="src7thSea2"
+    sortorder="30"
+    description="Nations of Theah (Vol 2) Supplement for 7th Sea (2nd Edition).">
+  </source>
+
+
+</document>

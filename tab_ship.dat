@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definition of the "Skills" tab panel. This tab is where
+      the user selects and adjusts the skills for the character.
+
+      All public visual elements used with this tab panel start with the prefix "sk"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+
+  <portal
+    id="shShipBack"
+    style="tblNormal">
+    <table_dynamic
+      component="ShipBack"
+      showtemplate="SimpleItem"
+      choosetemplate="SimpleItem"
+      showfixedlast="yes"
+      addpick="resShBack">
+      <candidate>!Hide.ShipBack</candidate>
+      <titlebar><![CDATA[
+        @text = "Add Background to Ship History - " & hero.child[resShBack].field[resSummary].text
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+        @text = "Ship Backgrounds: " & hero.child[resShBack].field[resSummary].text
+        ]]></headertitle>
+      <additem><![CDATA[
+        ~if we're in advancement mode, we've been frozen, so display accordingly
+        if (state.iscreate = 0) then
+          @text = "{text clrgrey}Add Backgrounds Via Advances Tab"
+          done
+          endif
+
+        ~set the color based on whether the proper number of slots are allocated
+        if (field[resLeft].value = 0) then
+          @text = "{text clrgrey}"
+        elseif (field[resLeft].value < 0) then
+          @text = "{text clrwarning}"
+          endif
+        @text &= "Add New Ship Background"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+                       
+  <!-- ship layout
+        This layout orchestrates the display of the visual elements that comprise
+        the Ship tab. This amounts to a title at the top and a dynamic table below
+        where the user can add and adjust the skills he wants.
+
+        The logic for this layout is similar to (albeit much simpler than) the
+        logic for the Basics tab. So please refer to the Basics tab for more details.
+  -->
+  <layout
+    id="ship">
+    <portalref portal="shShipBack" taborder="10"/>
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+      
+      perform portal[shShipBack].autoplace[0]
+
+      ]]></position>
+
+    </layout>
+
+  <!-- ship panel
+        This is the "Sorcery" panel shown within Hero Lab.
+  -->
+  <panel
+    id="ship"
+    name="Married To The Sea"
+    marginhorz="5"
+    marginvert="5"
+    order="165"
+    >
+    <live>!HideTab.ship</live>
+    <layoutref layout="ship"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+
+  </document>

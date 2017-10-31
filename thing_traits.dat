@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the assortment of derived traits for the game system. Derived
+      traits are calculated via scripts and based on the attributes from which they
+      are derived.
+
+      Since derived traits are based upon other traits, we have a "chicken-and-egg"
+      situation with respect to script evaluation timing. The "Trait" component
+      auto-calculates the final value for the traits derived FROM, while the "Derived"
+      component provides a second calculation after that to incorporate the results of
+      the special calculation for each derived trait. Each derived trait must then
+      calculate the new derived value between those two times, which is what we
+      accomplish below within the eval script for each derived trait. The script is
+      timed to occur at Traits/4000 to splice it between the two other scripts that
+      mentioned above and performed by the component.
+
+      We calculate the derived value as a "bonus" for the trait, allowing it to be
+      added in appropriately by the component script. Trait bonuses can arise from
+      multiple sources, so we need to ADD our calculated amount instead of setting the
+      amount.
+
+      All trait values are rounded down, so we apply the proper rounding as needed.
+      Rounding must be performed BEFORE we add the adjustment.
+
+      Appropriate tags are assigned to each derived trait to control where the trait
+      displayed to the user and the order in which the traits are displayed.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Attributes -->
+  <thing
+    id="attrBra"
+    name="Brawn"
+    compset="Attribute"
+    isunique="yes"
+    description="Brawn is a Hero’s strength and physical power.">
+    <fieldval field="trtAbbrev" value="Bra"/>
+    <tag group="explicit" tag="1"/>
+    </thing>
+
+  <thing
+    id="attrFin"
+    name="Finesse"
+    compset="Attribute"
+    isunique="yes"
+    description="Finesse measures a Hero’s coordination and agility.">
+    <fieldval field="trtAbbrev" value="Fin"/>
+    <tag group="explicit" tag="2"/>
+    </thing>
+ 
+  <thing
+    id="attrRes"
+    name="Resolve"
+    compset="Attribute"
+    isunique="yes"
+    description="Resolve is a Hero’s willpower and endurance.">
+    <fieldval field="trtAbbrev" value="Res"/>
+    <tag group="explicit" tag="3"/>
+    </thing>
+
+  <thing
+    id="attrWit"
+    name="Wits"
+    compset="Attribute"
+    isunique="yes"
+    description="Wits measures how quickly a Hero thinks on his feet.">
+    <fieldval field="trtAbbrev" value="Fin"/>
+    <tag group="explicit" tag="4"/>
+    </thing>
+
+  <thing
+    id="attrPan"
+    name="Panache"
+    compset="Attribute"
+    isunique="yes"
+    description="Panache is a Hero’s charm and personal magnetism.">
+    <fieldval field="trtAbbrev" value="Fin"/>
+    <tag group="explicit" tag="5"/>
+    </thing>
+   
+    
+  <!-- Story Thing -->
+  <thing
+    id="stoStory"
+    name="Story"
+    compset="Story"
+    isunique="no"
+    description="">
+    </thing>
+
+    
+  <!-- Reputation Thing -->
+  <thing
+    id="repReputat"
+    name="Reputation"
+    compset="Reputation"
+    isunique="no"
+    description="">
+    </thing>
+    
+  </document>

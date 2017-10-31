@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the definitions of components that don't really fit anywhere
+      else, such as resources, journal entries, etc. 
+-->
+
+<document signature="Hero Lab Structure">
+
+  <!-- Resource component
+        Encapsulates management of script-controlled resource pools (e.g. XP, CP,
+        etc.). Resources track a minimum and maximum value, as well as a tally of
+        how much of the resource has been spent. Summaries of the resource usage
+        are auto-generated for display where appropriate.
+  -->
+  <component
+    id="Resource"
+    name="Resource">
+
+    <!-- Name of target object managed by resource (for display to user) -->
+    <field
+      id="resObject"
+      name="Managed Object"
+      type="static"
+      maxlength="50">
+      </field>
+
+    <!-- Minimum value for resource -->
+    <field
+      id="resMin"
+      name="Minimum Value"
+      type="derived">
+      </field>
+
+    <!-- Maximum value for resource -->
+    <field
+      id="resMax"
+      name="Maximum Value"
+      type="derived">
+      </field>
+
+    <!-- Quantity of resource that has been spent -->
+    <field
+      id="resSpent"
+      name="Quantity Spent"
+      type="derived">
+      </field>
+
+    <!-- Extra value for arbitrary use with a given resource -->
+    <field
+      id="resExtra"
+      name="Extra Value"
+      type="derived">
+      </field>
+
+    <!-- Quantity of resource leftover -->
+    <field
+      id="resLeft"
+      name="Quantity Remaining"
+      type="derived">
+      <!-- Calculate the amount unused from the maximum and amount spent -->
+      <calculate phase="Final" priority="1000" name="Calc resLeft"><![CDATA[
+        @value = field[resMax].value - field[resSpent].value
+        ]]></calculate>
+      </field>
+
+    <!-- Summary display of resource usage -->
+    <field
+      id="resSummary"
+      name="Summary"
+      type="derived"
+      maxlength="50">
+      </field>
+
+    <!-- Short summary display of resource usage -->
+    <field
+      id="resShort"
+      name="Short Summary"
+      type="derived"
+      maxlength="40">
+      </field>
+
+    <!-- Text to display within the "AddItem" script of a table portal using the resource -->
+    <field
+      id="resAddItem"
+      name="Add Item Text"
+      type="derived"
+      maxfinal="50">
+      <!-- Calculate a value that is based on all the fields referenced by the
+            "finalize" script. This ensures that the field always changes if any of
+            its pieces changes, which triggers the finalized value to be updated.
+      -->
+      <calculate phase="Render" priority="10000"><![CDATA[
+        @value = field[resLeft].value
+        ]]></calculate>
+      <!-- Final value for display shows the color-highlighted quantity left
+      -->
+      <finalize><![CDATA[
+        ~determine any color highlighting to be applied to the text
+        var unspent as number
+        unspent = field[resLeft].value
+        if (unspent = 0) then
+          @text = "{text clrgrey}"
+        elseif (unspent < 0) then
+          @text = "{text clrwarning}"
+        elseif (unspent > 0) then
+          @text = "{text clrprompt}"
+        else
+          @text = ""
+          endif
+
+        ~append the managed object (or the resource name if no object given)
+        if (field[resObject].isempty = 0) then
+          @text &= "Add New " & field[resObject].text
+        else
+          @text &= "Add New " & field[name].text
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Synthesize the "short" field for display, showing the quantity unspent
+          and total available, with color highlighting to indicate if underspent
+          or overspent
+    -->
+    <eval index="1" phase="Render" priority="9000"><![CDATA[
+      ~show the quantity unspent and the total available
+      var short as string
+      var unspent as number
+      unspent = field[resLeft].value
+      short = unspent & " (" & field[resMax].value & ")"
+
+      ~if we've overspent, put the text in red; if underspent, put the text in yellow
+      if (unspent < 0) then
+        short = "{text clrwarning}" & short
+      elseif (unspent > 0) then
+        short = "{text clrprompt}" & short
+        endif
+
+      ~put the result into the field
+      field[resShort].text = short
+      ]]></eval>
+
+    <!-- Synthesize the "summary" field for display, showing the quantity used and
+          the maximum, with an additional indication of how much is unused or over-used
+    -->
+    <eval index="2" phase="Render" priority="9000"><![CDATA[
+      ~start with the quantity used out of the quantity possessed
+      var summary as string
+      summary = field[resSpent].value & " of " & field[resMax].value
+
+      ~if we've overspent, append the count and put the text in red
+      var unspent as number
+      unspent = field[resLeft].value
+      if (unspent < 0) then
+        unspent = -unspent
+        summary &= " (" & unspent & " Overspent)"
+        summary = "{text clrwarning}" & summary
+
+      ~if we've got points left, append the count and put the text in yellow
+      elseif (unspent > 0) then
+        summary &= " (" & unspent & " Left)"
+        summary = "{text clrprompt}" & summary
+        endif
+
+      ~put the result into the field
+      field[resSummary].text = summary
+      ]]></eval>
+
+    <!-- If the resource is overspent, report a validation error -->
+    <evalrule index="1" phase="Validate" priority="5000" message="Resource overspent"><![CDATA[
+      ~if we aren't overspent, we're valid
+      validif (field[resLeft].value >= 0)
+
+      ~mark any associated tab as invalid
+      if (ispanel <> 0) then
+        linkvalid = 0
+        endif
+      ]]></evalrule>
+
+    <!-- If the resource is underspent, report a validation warning -->
+    <evalrule index="2" phase="Validate" priority="5000" severity="warning" message="Resource unspent"><![CDATA[
+      ~if this resource does not require full utilization, we're valid
+      validif (tagis[Helper.NoMinimum] <> 0)
+
+      ~if we aren't underspent, we're valid
+      validif (field[resLeft].value <= 0)
+
+      ~mark any associated tab as invalid
+      if (ispanel <> 0) then
+        linkvalid = 0
+        endif
+      ]]></evalrule>
+
+    </component>
+
+
+  <!-- Transact component
+        Used for game-specific transaction info when buying/selling gear. Each
+        transaction needs to track the amount of cash to change hands, whether the
+        entire transaction is free, and whether the item being sold holds other
+        items that need to be dealt with properly.
+  -->
+  <component
+    id="Transact"
+    name="Buy/Sell Transaction Helper"
+    autocompset="no"
+    ispublic="no">
+
+    <!-- User-specified cost of the item in cash -->
+    <field
+      id="xactCash"
+      name="User Cash Cost"
+      type="user">
+      </field>
+
+    <!-- Whether the purchase is being made for free (0=no, 1=yes) -->
+    <field
+      id="xactIsFree"
+      name="Buy for Free?"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+
+    <!-- Whether the item being sold holds other items (0=no, 1=yes) -->
+    <field
+      id="xactHolder"
+      name="Contains Gear?"
+      type="derived">
+      </field>
+
+    </component>
+
+
+  <!-- Journal component
+        Used for game-specific journal info. Each journal entry needs to track the
+        amount XP and cash awarded, which entails both a field and a usage pool for
+        each facet. A summary is also generated to properly display the award totals
+        for the entry.
+  -->
+  <component
+    id="Journal"
+    name="Journal"
+    autocompset="no">
+
+    <!-- User-specified XP quantity awarded -->
+    <field
+      id="jrnXP"
+      name="XP Awarded"
+      type="user">
+      </field>
+
+    <!-- User-specified cash amount awared -->
+    <field
+      id="jrnCash"
+      name="Cash Awarded"
+      type="user">
+      </field>
+
+    <!-- Summary of the total XP and cash amount awarded -->
+    <field
+      id="jrnSummary"
+      name="Summary"
+      type="derived"
+      maxfinal="50">
+      <!-- Calculate a value that is based on all the values referenced by the
+            "finalize" script. This ensures that the field always changes if any of
+            its pieces changes, which triggers the finalized value to be updated.
+      -->
+      <calculate phase="Render" priority="10000"><![CDATA[
+        @value = usagepool[JrnlCash].value * 1000 + usagepool[JrnlXP].value
+        ]]></calculate>
+      <!-- Final value for display shows the total cash and XP amounts awarded -->
+      <finalize><![CDATA[
+        var moneyvalue as number
+        var money as string
+        moneyvalue = usagepool[JrnlCash].value
+        call MoneyBare
+        @text = "$: " & money & "{horz 20}XP: " & usagepool[JrnlXP].value
+        ]]></finalize>
+      </field>
+
+    <!-- Each journal entry makes use of usage pools to track the quantities awarded -->
+    <usage usagepool="JrnlXP"/>
+    <usage usagepool="JrnlCash"/>
+
+    <!-- If a journal entry is deleted, we must delete the awarded totals for the entry
+        out of our overall tracked pools for the actor -->
+    <deletion><![CDATA[
+      perform hero.usagepool[TotalXP].adjust[-usagepool[JrnlXP].value]
+      perform hero.usagepool[TotalCash].adjust[-usagepool[JrnlCash].value]
+      ]]></deletion>
+
+    </component>
+
+
+  <!-- Damage component
+        Used for tracking the application of damage to the actor. A single field is
+        needed so the user can specify the amount of damage or healing to apply to
+        the character.
+  -->
+  <component
+    id="Damage"
+    name="Damage"
+    ispublic="no">
+
+    <!-- Damage to be sustained or healed -->
+    <field
+      id="dmgDamage"
+      name="Damage"
+      type="user"
+      minvalue="0"
+      maxvalue="99">
+      </field>
+
+    </component>
+
+
+  <!-- UserImage component
+        Used for user-added images (i.e. on the Personal tab). A single field tracks
+        the image selected by the user.
+  -->
+  <component
+    id="UserImage"
+    name="User Image"
+    ispublic="no"
+    orderfield="uimgIndex">
+
+    <field
+      id="uimgImage"
+      name="Image"
+      type="user">
+      </field>
+
+    </component>
+
+
+  <!-- Simple component
+        Used for validation reporting and other similar stuff
+        NOTE! This component has no fields because validation rules don't necessarily
+              need any fields. The rules can simply access the fields they need to
+              test on other picks that have been added to the actor.
+  -->
+  <component
+    id="Simple"
+    name="Simple">
+
+    </component>
+
+
+  <!-- Mechanics component
+        Used for generic instrumentation mechanics added by other users
+        NOTE! See the documentation for more on how "mechanics" things are used.
+  -->
+  <component
+    id="Mechanics"
+    name="Mechanics">
+
+    </component>
+
+
+  <!-- CharType component
+        Used for specifying character types (usually "Player", "NPC" or "Monster").
+  -->
+  <component
+    id="CharType"
+    name="Character Type">
+
+    <!-- Each type needs its own identity tag that is forwarded to the hero
+          by the actor pick when selected -->
+    <identity group="CharType"/>
+
+    </component>
+
+
+  <!-- NPCInfo component
+        Used for specifying a type of information about an NPC. Displayed in
+        the tables on the NPC tab.
+  -->
+  <component
+    id="NPCInfo"
+    name="NPC Info">
+
+    <field
+      id="npcInfo"
+      name="Info Text"
+      type="user"
+      maxlength="10000">
+      </field>
+
+    <creation><![CDATA[
+      ~custom items need to pick a name
+      if (tagis[Helper.CustomItem] <> 0) then
+        field[username].text = "Enter Name"
+        endif
+      ]]></creation>
+
+    <!-- Make sure the choose template has enough width for our names -->
+    <tag group="SimpleItem" tag="width300"/>
+
+    </component>
+    
+  <component
+    id="HeroPoint"
+    name="Hero Point"
+    autocompset="no">
+    <tag group="SpecialTab" tag="HeroPoints"/>
+    <eval index="1" phase="Render" priority="5000"><![CDATA[
+      field[spcName].text = "Hero Points (" & #trkuser[trkHeroPts] & " per game)"
+      herofield[acHeroPts].value = #trkuser[trkHeroPts]
+      ]]></eval>    
+    </component>
+
+    
+  <component
+    id="Wealth"
+    name="Wealth"
+    autocompset="no">
+    <tag group="SpecialTab" tag="Wealth"/>
+    <eval index="1" phase="Render" priority="5000"><![CDATA[
+      field[spcName].text = "Wealth Rating (" & #trkuser[trkWealth] & ")"
+      herofield[acWealth].value = #trkuser[trkWealth]
+      ]]></eval>
+    </component>
+    
+  <!-- Sorcery component -->
+  <component
+    id="Sorcery"
+    name="Sorcery"
+    autocompset="no"
+	panellink="sorcery">
+    
+    <field
+      id="sSummary"
+      name="Summary"
+      type="derived"
+      maxlength="500">
+      </field>    
+    
+    <field
+      id="sMinName"
+      name="Minor Ability Name"
+      type="derived"
+      maxlength="25">
+      </field>
+       
+    <field
+      id="sMajName"
+      name="Major Ability Name"
+      type="derived"
+      maxlength="25">
+      </field>
+
+    <field
+      id="sPwrExprMi"
+      name="Minor Power Expression"
+      type="derived"
+      maxlength="150">
+      </field>
+
+    <field
+      id="sPwrExprMa"
+      name="Major Power Expression"
+      type="derived"
+      maxlength="150">
+      </field>
+	  
+    <field
+      id="sSrcChsExp"
+      name="Sorcery Chooser Expression"
+      type="derived"
+      maxlength="150">
+      </field> 
+	  
+    <field
+      id="sSrcTblExp"
+      name="Sorcery Table Expression"
+      type="derived"
+      maxlength="150">
+      </field>
+	  
+    <field
+      id="sSrcType"
+      name="Sorcery Source Type"
+      type="derived"
+      maxlength="150">
+      </field>
+	  
+    <field
+      id="sSrcName"
+      name="Sorcery Source Name"
+      type="derived"
+      maxlength="150">
+      </field>
+	  
+    <!-- Identity tags -->  
+    <identity group="Sorcery"/>
+    <identity group="HasSorc"/>
+    
+    <!-- Track the sorcery on the actor -->
+    <eval index="1" phase="Setup" priority="6000"><![CDATA[
+      if (hero.tagis[Sorcery.Sorcery] = 1) then
+        perform forward[HasSorc.?]
+        if (tagis[Helper.AltMinAdv] <> 0) then
+          perform forward[Helper.AltMinAdv]
+          endif
+        if (tagis[Helper.AltMajAdv] <> 0) then
+          perform forward[Helper.AltMajAdv]
+          endif
+        
+        field[sPwrExprMi].text = "component.PowerMin & Sorcery.Minor & " & tagids[ValSorc.?,"|"] 
+        field[sPwrExprMa].text = "component.PowerMaj & Sorcery.Major & " & tagids[ValSorc.?,"|"]
+
+        endif
+      ]]></eval>
+
+    <!-- Populate the summary -->
+    <eval index="2" phase="Render" priority="1000"><![CDATA[
+      doneif (hero.tagis[Sorcery.Sorcery] = 0)
+      
+      var myText as string
+      var myTag as string
+      var myPower as string
+      var prevPower as string
+      
+      myText = "{align left}{b}Sorcery: " & field[name].text
+      
+      doneif (hero.tagcount[HasPower.?] = 0)
+
+      myText &= "{/b}{br}   {b}Powers (Minor){/b}{br}"
+      myTag = "Sorcery.Minor & (" & hero.tagids[HasPower.?,"|"] & ")"
+      
+      doneif (hero.tagcount[HasPower.?] = 0)
+      foreach pick in hero from PowerMin where myTag
+        myPower = eachpick.field[name].text
+		
+        if (eachpick.tagis[Sorcery.PwrRanked] <> 0) then
+          myPower &= " (Rank " & eachpick.field[pwrRank].value & ")"
+          endif
+        
+        if (eachpick.tagis[Sorcery.PwrRanked] <> 0) then
+		  if (compare(myPower,prevPower) <> 0) then
+            myText &= myPower & "{br}"
+            endif
+	    else
+          myText &= myPower & "{br}" 
+          endif
+          
+        prevPower = myPower
+        nexteach
+        
+      myText &= "{br}{b}   Powers (Major){/b}{br}"
+      myTag = "Sorcery.Major & (" & hero.tagids[HasPower.?,"|"] & ")"
+      
+      foreach pick in hero from PowerMaj where myTag
+        myPower = eachpick.field[name].text
+        if (eachpick.field[pwrRank].value > 1) then
+          myPower &= " (Rank " & eachpick.field[pwrRank].value & ")"
+          endif
+        
+        if (compare(myPower,prevPower) <> 0) then
+          myText &= myPower & "{br}"
+          endif
+          
+        prevPower = myPower
+        nexteach
+        
+      field[sSummary].text = myText
+
+      ]]></eval>
+             
+    </component>
+
+  <component
+    id="Power"
+    name="Power"
+    autocompset="no">
+
+    <field
+      id="pwrRank"
+      name="Rank"
+      type="user"
+      defvalue="0">
+      </field>
+          
+    <!-- Identity tags -->  
+    <identity group="Power"/>
+    <identity group="HasPower"/>
+    
+    <!-- Track the sorcery on the actor -->
+    <eval index="1" phase="Setup" priority="6000"><![CDATA[
+     perform forward[HasPower.?]
+      ]]></eval>
+    
+    <!-- Track the sorcery on the actor -->
+    <eval index="2" phase="Effects" priority="6000"><![CDATA[
+     trustme
+     var mytag as string
+     mytag = "HasPower." & this.idstring
+     
+	 field[pwrRank].value = 1
+	 
+	 ~if power is not Ranked, then we're done
+	 doneif (tagis[Sorcery.PwrRanked] = 0)
+	 
+     field[pwrRank].value = hero.tagcountstr[mytag]
+      ]]></eval>
+
+    <!-- Track the power on the actor -->
+    <eval index="3" phase="Final" priority="500"><![CDATA[
+     field[livename].text = field[UserName].text 
+      ]]></eval>             
+    </component> 
+
+  <component
+    id="SorcHelp"
+    name="Sorcery Helper"
+    autocompset="no">
+      
+    </component>
+	
+  <component
+    id="PowerMin"
+    name="Minor Power Helper"
+    autocompset="no">
+    
+    <!-- Each ability that is added by the user costs 1 slot -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      ~we must ignore bootstrapped abilities from races and abilities added via advances
+      
+      hero.child[resSorcMin].field[resSpent].value += 1
+      
+      ]]></eval>
+      
+    </component>
+      
+  <component
+    id="PowerMaj"
+    name="Major Power Helper"
+    autocompset="no">
+    
+    <!-- Each ability that is added by the user costs 1 slot -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      ~we must ignore bootstrapped abilities from races and abilities added via advances
+      if (isuser + origin.ishero >= 2) then
+        hero.child[resSorcMaj].field[resSpent].value += 1
+        endif
+      ]]></eval>   
+    </component>
+
+  <!-- DuelStyle component
+        Used for Duelist Styles
+  -->
+  <component
+    id="DuelStyle"
+    name="Duelist Style"
+	autocompset="no">
+
+    <!-- Each type needs its own identity tag that is forwarded to the hero
+          by the actor pick when selected -->
+    <identity group="DuelStyle"/>
+
+    <!-- Track the style on the actor -->
+    <eval index="1" phase="Setup" priority="6000"><![CDATA[
+     perform forward[DuelStyle.?]
+      ]]></eval>
+
+    <!-- Each style costs 1 -->
+    <eval index="2" phase="Traits" priority="10000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+      hero.child[resDuel].field[resSpent].value += 1
+      ]]></eval>
+            
+    </component>
+    
+  <!-- StyleBon component
+        Used for Duelist Style Bonus
+  -->
+  <component
+    id="StyleBon"
+    name="Style Bonus"
+    autocompset="no">
+
+    <!-- Each type needs its own identity tag that is forwarded to the hero
+          by the actor pick when selected -->
+    <identity group="StyleBon"/>
+
+    <!-- Track the sorcery on the actor -->
+    <eval index="1" phase="Setup" priority="6000"><![CDATA[
+     perform forward[StyleBon.?]
+      ]]></eval>
+      
+    </component>
+
+  <!-- Combat Maneuvers component
+        Each Combat Maneuver derives from this component
+  -->
+  <component
+    id="CoManeuver"
+    name="Combat Maneuver"
+    autocompset="no">
+
+    <!-- Each race needs its own identity tag to configure the hero appropriately -->
+    <identity group="CoManeuver"/>
+
+    <!-- Track the race on the actor by assigning the appropriate tag -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform forward[CoManeuver.?]
+      ]]></eval>
+
+    </component>
+                     
+  <!-- Define various component sets associated with the components defined above.
+  -->
+
+  <!-- The "Resource" compset is auto-defined for the component -->
+  <!-- The "Damage" compset is auto-defined for the component -->
+  <!-- The "UserImage" compset is auto-defined for the component -->
+  <!-- The "Simple" compset is auto-defined for the component -->
+  <!-- The "Mechanic" compset is auto-defined for the component -->
+
+  <!-- Journal - all journal entries are based on this compset -->
+  <compset
+    id="Journal">
+    <compref component="Journal"/>
+    </compset>
+    
+  <!-- Transact - all transactions utilize this compset -->
+  <compset
+    id="Transact">
+    <compref component="Transact"/>
+    </compset>
+
+  <!-- DuelStyle - all dueling styles are based on this compset -->
+  <compset
+    id="DuelStyle"
+    forceunique="yes">
+    <compref component="DuelStyle"/>
+    <compref component="UserSelect"/>
+    <compref component="Domain"/>
+     </compset>
+	
+  <!-- Combat Maneuver - all combat maneuvers are based on this compset -->    
+  <compset
+    id="CoManeuver"
+    forceunique="yes">
+    <compref component="CoManeuver"/>
+    </compset>
+ 
+  <!-- -->
+  <compset
+    id="StyleBon">
+    <compref component="StyleBon"/>
+    <compref component="CoManeuver"/>    
+    <compref component="UserSelect"/>
+    <compref component="Domain"/>
+    </compset>
+
+  <!-- Sorcery - all Sorcery components utilize this compset -->
+  <compset
+    id="Sorcery"
+    forceunique="yes">
+    <compref component="Sorcery"/>
+    </compset>
+
+  <compset
+    id="Power">
+    <compref component="Power"/>
+    <compref component="Domain"/>
+    </compset>
+        
+  <compset
+    id="PowerMin">
+    <compref component="PowerMin"/>
+    <compref component="Power"/>
+    <compref component="Domain"/>
+    <compref component="Custom"/>
+    </compset>
+
+  <compset
+    id="PowerMaj">
+    <compref component="PowerMaj"/>
+    <compref component="Power"/>
+    <compref component="Domain"/>
+    <compref component="Custom"/>
+    </compset>
+
+  <compset
+    id="HeroPoint">
+    <compref component="Tracker"/>
+    <compref component="SpecialTab"/>
+    <compref component="HeroPoint"/>
+    </compset>
+
+  <compset
+    id="Wealth">
+    <compref component="Tracker"/>
+    <compref component="SpecialTab"/>
+    <compref component="Wealth"/>
+    </compset>
+              
+  </document>

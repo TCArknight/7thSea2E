@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+-->
+
+<document signature="Hero Lab Data">
+  <!-- Sorcery Powers -->
+  <!-- Matushki Powers -->
+  <thing
+    id="pResurr"
+    name="Resurrect"
+    compset="PowerMin"
+    isunique="yes"
+    description="Spend a Hero Point and lend aid to a character who has died in the last minute (such as giving him a drink of water, staunching his wounds, or literally breathing the life back into him). The character returns to life, but he remains Helpless."
+    summary="Bring recently deceased back to life.">
+    <usesource source="srcHeroVil"/>
+    <tag group="Sorcery" tag="Minor"/>
+    <tag group="Nation" tag="naUssara"/>
+    </thing>
+
+  <thing
+    id="pDignity"
+    name="Dignity"
+    compset="PowerMaj"
+    isunique="yes"
+    description="{b}Limit:{/b} You must always act with calm and logic, and never allow emotions to cause you to act rashly or without careful consideration for the consequences of your actions.{br}{b}Penance:{/b} You must undo the decision that you made, and undo the consequences that resulted from your rash actions."
+    summary="">
+    <usesource source="srcHeroVil"/>
+    <tag group="Sorcery" tag="Major"/>
+    <tag group="Nation" tag="naUssara"/>
+    </thing>
+                                                       
+  </document>
+  

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document signature="Hero Lab Data">
+  <thing id="bkDocent" name="Docent" description="Is Théah worthy of the friendship of Numa? You will put them to the test." compset="Background" uniqueness="unique">
+    <usesource source="srcHeroVil"/>
+    <tag group="SkillBack" tag="skAthletic"/>
+    <tag group="SkillBack" tag="skEmpathy"/>
+    <tag group="SkillBack" tag="skScholar"/>
+    <tag group="SkillBack" tag="skWarfare"/>
+    <tag group="SkillBack" tag="skWeapon"/>
+    <tag group="QuirkBack" tag="quDocent"/>
+     <bootstrap thing="adDuelAcad"></bootstrap>
+    <bootstrap thing="dsLakeDai"></bootstrap>
+    <bootstrap thing="adTeamPlay"></bootstrap>
+    </thing>
+  </document>
